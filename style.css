@@ -1,0 +1,208 @@
+/* AI Romance - SugarCube Story Styles */
+
+/* === Base Styles === */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+#story {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* === Passage Styles === */
+.passage {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.passage h1 {
+    color: #764ba2;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.passage p {
+    margin: 15px 0;
+    font-size: 1.1em;
+}
+
+/* === Link Styles === */
+.passage a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 5px;
+    border: 2px solid #667eea;
+}
+
+.passage a:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* === Character-specific Styles === */
+/* ChatGPT */
+.passage[tags~="cg"] {
+    border-left: 5px solid #10a37f;
+}
+
+.passage[tags~="cg"] h1 {
+    color: #10a37f;
+}
+
+/* Gemini */
+.passage[tags~="mn"] {
+    border-left: 5px solid #4285f4;
+}
+
+.passage[tags~="mn"] h1 {
+    color: #4285f4;
+}
+
+/* Claude */
+.passage[tags~="cd"] {
+    border-left: 5px solid #cc785c;
+}
+
+.passage[tags~="cd"] h1 {
+    color: #cc785c;
+}
+
+/* === Background Tags === */
+.passage[tags~="bg1"] {
+    background: linear-gradient(135deg, rgba(255, 245, 235, 0.95) 0%, rgba(255, 235, 215, 0.95) 100%);
+}
+
+.passage[tags~="bg2"] {
+    background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(230, 240, 255, 0.95) 100%);
+}
+
+/* === UI Bar Styles === */
+#ui-bar {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+#ui-bar-toggle {
+    background: rgba(102, 126, 234, 0.9);
+    border-radius: 0 8px 8px 0;
+}
+
+#ui-bar-toggle:hover {
+    background: rgba(102, 126, 234, 1);
+}
+
+/* === Menu Styles === */
+#menu ul {
+    list-style: none;
+}
+
+#menu a {
+    color: white;
+    transition: all 0.3s ease;
+}
+
+#menu a:hover {
+    color: #667eea;
+    padding-left: 10px;
+}
+
+/* === Dialog Styles === */
+.ui-dialog {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ui-dialog-titlebar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+/* === Button Styles === */
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+button:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* === Save/Load Menu === */
+#saves-list {
+    background: white;
+    border-radius: 8px;
+}
+
+.saves-row {
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s ease;
+}
+
+.saves-row:hover {
+    background: #f8f8f8;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.passage {
+    animation: fadeIn 0.5s ease;
+}
+
+/* === Mobile Responsive === */
+@media (max-width: 768px) {
+    .passage {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .passage h1 {
+        font-size: 1.5em;
+    }
+
+    .passage p {
+        font-size: 1em;
+    }
+
+    .passage a {
+        display: block;
+        margin: 10px 0;
+    }
+}
