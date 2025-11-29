@@ -6,10 +6,9 @@ const characters = ['cg', 'mn', 'ry'];
 // passage가 표시된 후 실행 (DOM에 완전히 추가된 후)
 $(document).on(':passagedisplay', function (ev) {
     
-    // 현재 passage의 태그 가져오기 (DOM에서 직접 읽기)
-    const passageElement = $('.passage');
-    const tagsAttr = passageElement.attr('data-tags');
-    const passageTags = tagsAttr.split(' ');
+    // [수정] DOM에서 읽지 않고, 엔진이 주는 passage 객체에서 태그 배열을 직접 가져옵니다.
+    // 태그가 없으면 빈 배열 []을 반환하므로 에러가 나지 않습니다.
+    const passageTags = ev.passage.tags || [];
 
     // 캐릭터와 번호 찾기
     let character = null;
@@ -34,6 +33,10 @@ $(document).on(':passagedisplay', function (ev) {
             .attr('id', 'character-image')
             .attr('src', imagePath)
             .attr('alt', `${character} ${imageNumber}`)
+            .on('error', function() {
+                console.log('이미지 로드 실패:', imagePath);
+                $(this).remove(); // 이미지 파일이 없으면 엑박 뜨지 않게 제거
+            });
         $('body').append(img);
     } else {
         console.log('Character or image number missing. Character:', character, 'Number:', imageNumber);
