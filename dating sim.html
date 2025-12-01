@@ -106,45 +106,63 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="dating sim" startnode="27" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="82938AA5-1CE1-4EEE-8D3B-9D32129576D7" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="1" color="orange"></tw-tag><tw-tag name="2" color="yellow"></tw-tag><tw-tag name="bg1" color="blue"></tw-tag><tw-tag name="bg2" color="blue"></tw-tag><tw-tag name="mina" color="yellow"></tw-tag><tw-tag name="cyring" color="purple"></tw-tag><tw-tag name="cg" color="blue"></tw-tag><tw-tag name="cd" color="yellow"></tw-tag><tw-tag name="mn" color="blue"></tw-tag><tw-tag name="ry" color="blue"></tw-tag><tw-tag name="Intro" color="green"></tw-tag><tw-tag name="Profile" color="red"></tw-tag><tw-tag name="bg10" color="purple"></tw-tag><tw-tag name="bg11" color="purple"></tw-tag><tw-tag name="bg12" color="purple"></tw-tag><tw-tag name="all" color="purple"></tw-tag><tw-passagedata pid="1" name="인트로1" tags="Intro bg10" position="725,325" size="100,100">&lt;&lt;vntext&gt;&gt;
-오늘은 내가 한국대학교 정보문화학과에 입학한지 한 달째 되는 날.
-부스스한 머리를 감추기 위해 모자를 쓰고 기숙사를 나섰다.
-조금 추웠던 날씨도 이제는 많이 풀렸고, 캠퍼스에는 조금씩 꽃이 피기 시작했다.
-그래서인지 어느새 손을 잡고 다니는 커플들이 더 많아진 것 같다.
-&#39;아... 정말... 나만 빼고 다들 연애하는 것 같아.&#39;
+	<tw-storydata name="dating sim" startnode="27" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="82938AA5-1CE1-4EEE-8D3B-9D32129576D7" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="1" color="orange"></tw-tag><tw-tag name="2" color="yellow"></tw-tag><tw-tag name="3" color="yellow"></tw-tag><tw-tag name="4" color="yellow"></tw-tag><tw-tag name="5" color="yellow"></tw-tag><tw-tag name="bg1" color="blue"></tw-tag><tw-tag name="bg2" color="blue"></tw-tag><tw-tag name="mina" color="yellow"></tw-tag><tw-tag name="cyring" color="purple"></tw-tag><tw-tag name="cg" color="blue"></tw-tag><tw-tag name="cd" color="yellow"></tw-tag><tw-tag name="mn" color="blue"></tw-tag><tw-tag name="ry" color="blue"></tw-tag><tw-tag name="Intro" color="green"></tw-tag><tw-tag name="Profile" color="red"></tw-tag><tw-tag name="bg10" color="purple"></tw-tag><tw-tag name="bg11" color="purple"></tw-tag><tw-tag name="bg12" color="purple"></tw-tag><tw-tag name="all" color="purple"></tw-tag><tw-tag name="bad_Ending" color="blue"></tw-tag><tw-tag name="bg8" color="blue"></tw-tag><tw-tag name="bg6" color="blue"></tw-tag><tw-tag name="bg7" color="blue"></tw-tag><tw-tag name="bg4" color="blue"></tw-tag><tw-passagedata pid="1" name="인트로1" tags="Intro bg10" position="725,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+오늘은 내가 한국대학교 정보문화학과에 입학한지 한 달째 되는 날
+부스스한 머리를 감추기 위해 모자를 쓰고 기숙사를 나섰다
+조금 추웠던 날씨도 이제는 많이 풀렸고, 캠퍼스에는 조금씩 꽃이 피기 시작했다
+그래서인지 어느새 손을 잡고 다니는 커플들이 더 많아진 것 같다
+&#39;아... 정말... 나만 빼고 다들 연애하는 것 같아&#39;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 	[[다음|인트로2]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="700,500" size="100,100">&lt;&lt;set $name to &quot;&quot;&gt;&gt;
-
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="700,500" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $name to &quot;정문&quot;&gt;&gt;
 &lt;&lt;set $loveUI to false&gt;&gt;
-
 &lt;&lt;set $love to {
     &quot;chaejin&quot;: 20,
     &quot;mina&quot;: 20,
     &quot;clara&quot;: 20
 }&gt;&gt;
-
 &lt;&lt;set $maxLove to 100&gt;&gt;
-
 &lt;&lt;set $minaStage to 0&gt;&gt;
 &lt;&lt;set $chaejinStage to 0&gt;&gt;
-&lt;&lt;set $claraStage to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="PassageHeader" tags="" position="700,625" size="100,100">&lt;&lt;if $loveUI is true&gt;&gt;
+&lt;&lt;set $claraStage to 0&gt;&gt;
+
+&lt;&lt;set $minLove to 10&gt;&gt;
+
+&lt;&lt;set $minaExit to false&gt;&gt;
+&lt;&lt;set $chaejinExit to false&gt;&gt;
+&lt;&lt;set $claraExit to false&gt;&gt;
+
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="PassageHeader" tags="" position="700,625" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;if def $love and tags().includes(&quot;bad_ending&quot;) is false&gt;&gt;
+
+    &lt;&lt;if $love.mina &lt; $minLove and $minaExit is false&gt;&gt;
+        &lt;&lt;goto &quot;미나비호감1&quot;&gt;&gt;
+    
+    &lt;&lt;elseif $love.chaejin &lt; $minLove and $chaejinExit is false&gt;&gt;
+        &lt;&lt;goto &quot;채진비호감1&quot;&gt;&gt;
+    
+    &lt;&lt;elseif $love.roy &lt; $minLove and $claraExit is false&gt;&gt;
+        &lt;&lt;goto &quot;클라라비호감1&quot;&gt;&gt;
+        
+    &lt;&lt;/if&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $loveUI is true&gt;&gt;
 &lt;div id=&quot;right-sidebar&quot;&gt;
     &lt;div class=&quot;sidebar-title&quot;&gt;❤️ 호감도 상태&lt;/div&gt;
-    
     &lt;div class=&quot;char-box&quot;&gt;
         &lt;span class=&quot;char-name&quot;&gt;채진&lt;/span&gt;
         &lt;span class=&quot;char-score&quot;&gt;$love.chaejin&lt;/span&gt;
         &lt;progress @value=&quot;$love.chaejin&quot; @max=&quot;$maxLove&quot;&gt;&lt;/progress&gt;
     &lt;/div&gt;
-
     &lt;div class=&quot;char-box&quot;&gt;
         &lt;span class=&quot;char-name&quot;&gt;미나&lt;/span&gt;
         &lt;span class=&quot;char-score&quot;&gt;$love.mina&lt;/span&gt;
         &lt;progress @value=&quot;$love.mina&quot; @max=&quot;$maxLove&quot;&gt;&lt;/progress&gt;
     &lt;/div&gt;
-
     &lt;div class=&quot;char-box&quot;&gt;
         &lt;span class=&quot;char-name&quot;&gt;클라라&lt;/span&gt;
         &lt;span class=&quot;char-score&quot;&gt;$love.clara&lt;/span&gt;
@@ -152,29 +170,27 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
     &lt;/div&gt;
 &lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
-
 &lt;div id=&quot;pause-screen&quot; style=&quot;display: none;&quot;&gt;
-    
     &lt;div class=&quot;pause-buttons&quot;&gt;
         &lt;button id=&quot;btn-save&quot; class=&quot;pause-main-btn&quot;&gt;저장하기&lt;/button&gt;
         &lt;button id=&quot;btn-load&quot; class=&quot;pause-main-btn&quot;&gt;불러오기&lt;/button&gt;
     &lt;/div&gt;
-
     &lt;div id=&quot;pause-message&quot;&gt;&lt;/div&gt;
-
     &lt;div id=&quot;save-slots-container&quot; class=&quot;slot-container&quot;&gt;&lt;/div&gt;
-
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="인트로2" tags="Intro bg10" position="850,325" size="100,100">&lt;&lt;vntext&gt;&gt;
-내 새내기 생활은 꿈꿨던 것과 많이 달랐다.
-강의실과 기숙사만 오가는 반복된 일상.
-모두가 말하는 &#39;캠퍼스 로맨스&#39;가 내게는 그림의 떡이었다.
-OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, 내 첫 연애는 시작될 기미조차 보이지 않았다.
+&lt;/div&gt;
+&lt;div id=&quot;name-zone&quot; style=&quot;display: none;&quot;&gt;
+    &lt;span class=&quot;name-icon&quot;&gt;🔉&lt;/span&gt; &lt;span id=&quot;name-text&quot;&gt;&lt;/span&gt;    &lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="인트로2" tags="Intro bg10" position="850,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+내 새내기 생활은 꿈꿨던 것과 많이 달랐다
+강의실과 기숙사만 오가는 반복된 일상
+모두가 말하는 &#39;캠퍼스 로맨스&#39;가 내게는 그림의 떡이었다
+OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, 내 첫 연애는 시작될 기미조차 보이지 않았다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 	[[다음|인트로3]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="인트로3" tags="Intro bg11" position="975,325" size="100,100">&lt;&lt;vntext&gt;&gt;
-용기가 부족한 걸까, 매력이 없는 걸까. 홀로 벤치에 앉아 스마트폰 화면을 내려다보았다.
-화면에는 그간의 씁쓸한 검색기록만이 떠 있었다.
+용기가 부족한 걸까, 매력이 없는 걸까. 홀로 벤치에 앉아 스마트폰 화면을 내려다보았다
+화면에는 그간의 씁쓸한 검색기록만이 떠 있었다
 &#39;새내기 연애하기 좋은 동아리 추천&#39;
 &#39;이번 달 남친룩&#39;
 &#39;모솔 새내기 연애 성공 후기&#39;
@@ -183,8 +199,8 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;div id=&quot;next-btn&quot;&gt;
 	[[다음|인트로4]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="인트로4" tags="Intro bg11" position="1100,325" size="100,100">&lt;&lt;vntext&gt;&gt;
-결국, 나는 가장 확실한 조언자를 찾기로 했다.
-세상의 모든 데이터를 학습하고, 완벽한 해답을 제시할 수 있는 존재, AI.
+결국, 나는 가장 확실한 조언자를 찾기로 했다
+세상의 모든 데이터를 학습하고, 완벽한 해답을 제시할 수 있는 존재, AI
 &#39;좋아, 인공지능에게 물어보자. 어떻게 하면 연애를 할 수 있을까?&#39;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
@@ -193,10 +209,10 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 [[Claude에게 물어보기|인트로5]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="인트로6" tags="Intro bg12" position="1350,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 콰아앙!
-갑자기 거대한 굉음이 모든 소리를 집어삼켰다. 강력한 충격이 온몸을 강타했고, 손에 쥐고 있던 휴대폰은 화면이 깨진 채 바닥을 나뒹굴고 있었다.
-희미해지는 시야에는 커다란 트럭 한 대가 보였다.
+갑자기 거대한 굉음이 모든 소리를 집어삼켰다. 강력한 충격이 온몸을 강타했고, 손에 쥐고 있던 휴대폰은 화면이 깨진 채 바닥을 나뒹굴고 있었다
+희미해지는 시야에는 커다란 트럭 한 대가 보였다
 &#39;어, 이거 어디서 본 것 같은데...&#39;
-더 생각할 겨를도 없이, 나는 정신을 잃었다.
+더 생각할 겨를도 없이, 나는 정신을 잃었다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 	&lt;&lt;link &quot;다음&quot;&gt;&gt;
@@ -205,8 +221,8 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="인트로7" tags="Intro" position="1475,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 ..................
 시간이 얼마나 지났을까?
-그런데 뭔가 이상하다.
-몸이 전혀 아프지도 않고, 익숙한 풍경이 보이는 것 같다.
+그런데 뭔가 이상하다
+몸이 전혀 아프지도 않고, 익숙한 풍경이 보이는 것 같다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 &lt;&lt;link &quot;눈을 떠보자&quot;&gt;&gt;
@@ -215,25 +231,25 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="인트로8" tags="Intro bg10" position="1600,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 &#39;저기... 저 건물은 내가 조금 전에 나왔던 기숙사인데...&#39;
 주변에 보이는 건물들은 분명 내가 매일 다니던 캠퍼스의 건물들이었다
-나는 한국대학교 잔디밭, 정확히는 어딘가 비현실적으로 푸른빛을 띠는 잔디밭 위에 누워 있었다.
-그때, 내 주변을 둘러싼 세 여학생이 걱정스러운 목소리로 말을 걸어왔다.
+나는 한국대학교 잔디밭, 정확히는 어딘가 비현실적으로 푸른빛을 띠는 잔디밭 위에 누워 있었다
+그때, 내 주변을 둘러싼 세 여학생이 걱정스러운 목소리로 말을 걸어왔다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|미나1]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="미나1" tags="mn 1 Intro bg10" position="1600,450" size="100,100">&lt;&lt;vntext&gt;&gt;
-&quot;괜찮으세요? 정말 놀랐어요. 갑자기 &#39;쿵&#39; 소리가 나길래 보니까... 하늘에서 떨어지신 것 같던데...&quot;
+&quot;괜찮으세요? 정말 놀랐어요. 갑자기 &#39;쿵&#39; 소리가 나길래 보니까... 하늘에서 떨어지신 것 같던데...&quot; &lt;&lt;name &quot;미나&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|채진1]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="채진1" tags="Intro bg10 cg 1" position="1600,575" size="100,100">&lt;&lt;vntext&gt;&gt;
-&quot;저희도 여기서 잠시 쉬고 있었는데, 갑자기 벌어진 일이라...😶
-몸은 어디 다치신 데 없으시고요?💪&quot;
+&quot;저희도 여기서 잠시 쉬고 있었는데, 갑자기 벌어진 일이라...😶&lt;&lt;name &quot;채진&quot;&gt;&gt;
+몸은 어디 다치신 데 없으시고요?💪&quot; &lt;&lt;name &quot;채진&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|클라라1]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="클라라1" tags="Intro bg10 ry 1" position="1600,700" size="100,100">&lt;&lt;vntext&gt;&gt;
-&quot;저희도 너무 당황스러워서요!
-일단 일어나서 앉으세요. 저희가 도와드릴게요!&quot;
+&quot;저희도 너무 당황스러워서요! &lt;&lt;name &quot;클라라&quot;&gt;&gt;
+일단 일어나서 앉으세요. 저희가 도와드릴게요!&quot; &lt;&lt;name &quot;클라라&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|인트로 9]]
@@ -248,12 +264,12 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 [[다음|미나2]]
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="미나2" tags="Intro bg10 mn 2" position="1600,950" size="100,100">&lt;&lt;vntext&gt;&gt;
 푸른 머리 소녀가 미소를 지으며 손을 내밀었다.
-&quot;저는 &#39;미나&#39;라고 해요. 국어국문학과에 다니고 있어요!&quot;
+&quot;저는 &#39;미나&#39;라고 해요. 국어국문학과에 다니고 있어요!&quot; &lt;&lt;name &quot;미나&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[미나 프로필 보기|미나프로필]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="채진2" tags="Intro bg10 cg 2" position="1600,1075" size="100,100">&lt;&lt;vntext&gt;&gt;
-&quot;저는 &#39;채진&#39;이라고 해요! 이번에 미대 시각디자인과에 입학했어요. 잘 부탁드려요😊&quot;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="채진2" tags="Intro bg10 cg 1" position="1600,1075" size="100,100">&lt;&lt;vntext&gt;&gt;
+&quot;저는 &#39;채진&#39;이라고 해요! 이번에 미대 시각디자인과에 입학했어요. 잘 부탁드려요😊&quot; &lt;&lt;name &quot;채진&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[채진 프로필 보기|채진프로필]]
@@ -265,8 +281,8 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|인트로11]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="클라라2" tags="Intro bg10 ry 2" position="1600,1200" size="100,100">&lt;&lt;vntext&gt;&gt;
-&quot;저는 &#39;클라라&#39;라고 해요. 이번에 컴퓨터공학과에 입학했어요.&quot;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="클라라2" tags="Intro bg10 ry 1" position="1600,1200" size="100,100">&lt;&lt;vntext&gt;&gt;
+&quot;저는 &#39;클라라&#39;라고 해요. 이번에 컴퓨터공학과에 입학했어요.&quot; &lt;&lt;name &quot;클라라&quot;&gt;&gt;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[클라라 프로필 보기|클라라프로필]]
@@ -293,15 +309,16 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음으로|MainScene]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="미나대화1" tags="" position="1350,1825" size="100,100">점심을 먹은 나는 학식당 옆에 있는 카페에 들렀다.
-그런데 익숙한 모습이 보인다.
-카페 한 구석에 미나가 앉아서 노트북에 집중하고 있었다.
-
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="미나대화1" tags="mn bg8 1" position="1350,1825" size="100,100">&lt;&lt;vntext&gt;&gt;
+점심을 먹은 나는 학식당 옆에 있는 카페에 들렀다
+그런데 익숙한 모습이 보인다
+카페 한 구석에 미나가 앉아서 노트북에 집중하고 있었다
 엇, 눈이 마주친 것 같은데... 너무 빤히 쳐다봤나?
-
-[[먼저 반갑게 인사해보자.(호감도5)|미나대화2]]
-[[AI가 먼저 인사를 해주기도 하려나? 좀 더 기다려보자.(호감도-5)|미나대화3]]
-</tw-passagedata><tw-passagedata pid="22" name="채진대화1" tags="" position="1725,1825" size="100,100">캠퍼스의 가로수길을 걷고 있다. 따스한 햇살이 내리쬐는 평화로운 날씨다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[먼저 반갑게 인사해보자|미나대화2][$love.mina += 5]]
+[[AI가 먼저 인사를 해주기도 하려나? 좀 더 기다려보자|미나대화3][$love.mina -= 5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="채진대화1" tags="" position="1725,1825" size="100,100">캠퍼스의 가로수길을 걷고 있다. 따스한 햇살이 내리쬐는 평화로운 날씨다.
 
 아직도 조금은 혼란스럽지만 그래도 익숙한 길이라 발이 이끄는 대로 걸어가본다.
 
@@ -322,34 +339,34 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 타닥, 타닥.
 키보드를 두드리는 소리가 마치 피아노 연주처럼 일정한 리듬을 타고 들려온다. 차원이 다른 우아함이다.
 
-[[방해되지 않게 조심스럽게 다가간다.|클라라대화2]]</tw-passagedata><tw-passagedata pid="24" name="미나대화2" tags="" position="1250,1950" size="100,100">&quot;안녕! 미나 맞지?&quot;
-
-나도 모르게 긴장을 했는지, 목소리가 생각보다 조금 크게 나와버렸다.
-미나도 흠칫 놀라긴 했지만, 나를 보며 반갑게 인사를 받아줬다.
-
-&quot;깜짝이야! 안녕? 나도 마침 인사하려고 했어. 점심은 먹었어?&quot;
-
-[[응, 방금 먹고 오는 길이야. 뭐하고 있었어?|미나대화5]]</tw-passagedata><tw-passagedata pid="25" name="미나대화3" tags="" position="1400,1950" size="100,100">&quot;...&quot;
-
-나는 말없이 미나쪽을 더 쳐다보았다.
-
-&quot;....?&quot;
-
-눈이 마주친 채 침묵이 이어지자, 미나가 당혹스럽다는 표정을 지었다.
-
-&quot;어...안녕? (이름) 맞지? 눈 마주친 것 같은데 인사를 안해서...&quot;
-
-미나가 먼저 말을 걸어왔다.
-
-[[미나에게 인사한다.|미나대화4]]</tw-passagedata><tw-passagedata pid="26" name="미나대화5" tags="" position="1325,2200" size="100,100">&quot;뭐하고 있었냐고? 어...그러니까 어디서부터 말해야하지?
-아! 일단 오늘 일어나서 나왔는데 길이 막혀서 오전 수업에 늦을 뻔했어.
-간신히 강의실에 도착해서 수업 듣다가 팀플 회의도 좀 했고...
-나는 이번에도 자료조사를 맡게 됐어. 왜 다들 나한테 자료조사를 시키려고 하는걸까? 
-음...그리고....&quot;
-
+[[방해되지 않게 조심스럽게 다가간다.|클라라대화2]]</tw-passagedata><tw-passagedata pid="24" name="미나대화2" tags="bg8 mn 2" position="1250,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
+안녕! 미나 맞지?
+나도 모르게 긴장을 했는지, 목소리가 생각보다 조금 크게 나와버렸다
+미나도 흠칫 놀라긴 했지만, 나를 보며 반갑게 인사를 받아줬다
+깜짝이야! 안녕? 나도 마침 인사하려고 했어. 점심은 먹었어? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[응, 방금 먹고 오는 길이야. 뭐하고 있었어?|미나대화5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="미나대화3" tags="bg8 mn 3" position="1400,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
+.....
+나는 말없이 미나쪽을 더 쳐다보았다
+....?
+눈이 마주친 채 침묵이 이어지자, 미나가 당혹스럽다는 표정을 지었다
+어...안녕? $name 맞지? 눈 마주친 것 같은데 인사를 안해서... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 먼저 말을 걸어왔다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나에게 인사한다.|미나대화4]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="미나대화5" tags="bg8 mn 1" position="1325,2200" size="100,100">&lt;&lt;vntext&gt;&gt;
+뭐하고 있었냐고? 어...그러니까 어디서부터 말해야하지? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아! 일단 오늘 일어나서 나왔는데 길이 막혀서 오전 수업에 늦을 뻔했어. &lt;&lt;name &quot;미나&quot;&gt;&gt;
+간신히 강의실에 도착해서 수업 듣다가 팀플 회의도 좀 했고... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+나는 이번에도 자료조사를 맡게 됐어. 왜 다들 나한테 자료조사를 시키려고 하는걸까?  &lt;&lt;name &quot;미나&quot;&gt;&gt;
+음...그리고.... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[미나의 답이 길어진다.|미나대화6]]
-
-</tw-passagedata><tw-passagedata pid="27" name="이름 설정" tags="Title Basic_style bg1" position="725,200" size="100,100">&lt;div style=&quot;text-align: center&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="이름 설정" tags="Title Basic_style bg1" position="725,200" size="100,100">&lt;div style=&quot;text-align: center&quot;&gt;
 	&lt;h1&gt;&quot;게임 이름&quot;&lt;/h1&gt;
     
     &lt;h2&gt;이름을 입력해주세요.&lt;/h2&gt;
@@ -365,318 +382,286 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
             &lt;&lt;goto &quot;인트로1&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="미나대화4" tags="" position="1400,2075" size="100,100">&quot;안녕! 그냥 먼저 인사해주려나 해서 쳐다보고 있었어.&quot;
-
-미나의 표정이 조금 풀어졌다.
-
-&quot;아하 그렇구나...! 과제하고 있는데 누가 쳐다보는 것 같아서 놀랐어. 점심은 먹었어?&quot;
-
-[[응, 방금 먹고 오는 길이야. 뭐하고 있었어?|미나대화5]]</tw-passagedata><tw-passagedata pid="29" name="미나대화6" tags="" position="1325,2325" size="100,100">&quot;조금 졸리려던 참이었는데 교수님이 수업을 갑자기 1시간이나 일찍 끝내주셨어!
-그래서 과방에 잠깐 시간 때울겸 앉아있다가 점심으로 오므라이스 나오는 학식이 있어서 그거 먹었구... 어, 그리고 또....
-...미안, 그런데 뭘 물어봤었지?&quot;
-
-당황한 미나가 머쓱한 표정을 지었다. 
-Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
-아무래도 미나 역시 갑자기 질문을 하면 답이 길어지는 것 같다.
-
-[[자연스럽게 학식에 대한 얘기로 넘어간다.(호감도10)|미나대화7]]
-[[내가 AI에게 했던 것처럼 프롬프팅을 해보자.(호감도 -10)|미나대화8]]
-[[당황한 미나를 조금 놀려보자.(호감도5)|미나대화9]]</tw-passagedata><tw-passagedata pid="30" name="미나대화7" tags="" position="1150,2450" size="100,100">&quot;별 거 아니었어! 그냥 뭐하고 있었나 해서.
-점심으로 오므라이스 먹었댔지? 어땠어?&quot;
-
-미나가 안심했는지 표정이 밝아졌다.
-
-&quot;너무 맛있었어! 못 보던 메뉴인데 새로 생겼나봐.
-다음에 같이 먹으러 가자!&quot;
-
-[[좋아!|미나대화10]]</tw-passagedata><tw-passagedata pid="31" name="미나대화9" tags="" position="1475,2450" size="100,100">&quot;그냥 뭐하냐고만 물어봤었어!
-답이 길어지는거보니...내가 말 걸었다고 긴장한 거 아니지? (웃음)&quot;
-
-미나가 얼굴을 붉혔다.
-
-&quot;무슨 소리야! 갑자기 질문하니까 놀라서...&quot;
-
-&quot;(웃으며)알겠어, 옆에 자리 앉아도 되지? 나도 과제하다 갈게.&quot;
-
-&quot;아니 나 아직 말 다 안했는데! 아무튼 마음대로 해...&quot;
-
-미나 옆에 앉았다.
-우리는 얘기도 하고, 할 일을 하다 다음을 기약하고 헤어졌다.
-
-[[다음|미나1단계종료]]</tw-passagedata><tw-passagedata pid="32" name="미나대화8" tags="" position="1325,2450" size="100,100">&quot;뭐하고 있었냐고만 물어봤었어. 앞으로 내가 물어보면 최대한 이해하기 쉽게 간단하게 대답해줘.&quot;
-
-미나가 더 크게 당황하더니 표정이 굳었다.
-
-&quot;뭐? 어...난 그냥 잘 알려주려고...응...알겠어...&quot;
-
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="미나대화4" tags="bg8 mn 2" position="1400,2075" size="100,100">&lt;&lt;vntext&gt;&gt;
+안녕! 그냥 먼저 인사해주려나 해서 쳐다보고 있었어
+미나의 표정이 조금 풀어졌다
+아하 그렇구나...! 과제하고 있는데 누가 쳐다보는 것 같아서 놀랐어. 점심은 먹었어? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[응, 방금 먹고 오는 길이야. 뭐하고 있었어?|미나대화5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="미나대화6" tags="bg8 mn 3" position="1325,2325" size="100,100">&lt;&lt;vntext&gt;&gt;
+조금 졸리려던 참이었는데 교수님이 수업을 갑자기 1시간이나 일찍 끝내주셨어! &lt;&lt;name &quot;미나&quot;&gt;&gt;
+그래서 과방에 잠깐 시간 때울겸 앉아있다가 점심으로 오므라이스 나오는 학식이 있어서 그거 먹었구... 어, 그리고 또.... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+...미안, 그런데 뭘 물어봤었지? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+당황한 미나가 머쓱한 표정을 지었다
+Gemini가 가끔 말이 너무 많은 건 알고 있었는데, 아무래도 미나 역시 갑자기 질문을 하면 답이 길어지는 것 같다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[자연스럽게 학식에 대한 얘기로 넘어간다|미나대화7][$love.mina += 10]]
+[[내가 AI에게 했던 것처럼 프롬프팅을 해보자|미나대화8][$love.mina -= 10]]
+[[당황한 미나를 조금 놀려보자|미나대화9][$love.mina += 5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="미나대화7" tags="bg8 mn 2" position="1150,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+별 거 아니었어! 그냥 뭐하고 있었나 해서... 점심으로 오므라이스 먹었댔지? 어땠어?
+미나가 안심했는지 표정이 밝아졌다
+너무 맛있었어! 못 보던 메뉴인데 새로 생겼나봐. 다음에 같이 먹으러 가자! &lt;&lt;name &quot;미나&quot;&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[좋아!|미나대화10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="미나대화9" tags="bg8 4 mn" position="1475,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+그냥 뭐하냐고만 물어봤었어!
+답이 길어지는거보니...내가 말 걸었다고 긴장한 거 아니지? 😊 
+미나가 얼굴을 붉혔다
+무슨 소리야! 갑자기 질문하니까 놀라서... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+😊 알겠어, 옆에 자리 앉아도 되지? 나도 과제하다 갈게
+아니 나 아직 말 다 안했는데! 아무튼 마음대로 해... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나 옆에 앉았다
+우리는 얘기도 하고, 할 일을 하다 다음을 기약하고 헤어졌다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage += 1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="미나대화8" tags="bg8 mn 5" position="1325,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+뭐하고 있었냐고만 물어봤었어. 앞으로 내가 물어보면 최대한 이해하기 쉽게 간단하게 대답해줘
+미나가 더 크게 당황하더니 표정이 굳었다
+뭐? 어...난 그냥 잘 알려주려고...응...알겠어... &lt;&lt;name &quot;미나&quot;&gt;&gt;
 엇, 이게 아닌가...
-
-머쓱해진 나는 미나에게 대충 인사하고,
-음료를 챙겨서 서둘러 카페를 나왔다.
-
-[[다음|미나1단계종료]]</tw-passagedata><tw-passagedata pid="33" name="미나대화10" tags="" position="1150,2575" size="100,100">&quot;좋아! 다음에 또 좋아하는 메뉴 나오면 같이 먹으러 가자.
-과제하고 있던거지? 나도 좀 앉아있다 가도 돼?&quot;
-
-&quot;응응! 옆에 빈 자리니까 편하게 앉아~&quot;
-
-미나 옆에 앉았다.
-우리는 오후 내내 카페에서 수다를 떨다가 다음을 기약하고 헤어졌다.
-이 때문인지 나는 과제를 거의 못했지만...미나는 어느새 과제까지 완벽하게 끝내버렸다.
-그래도 좋은 예감이 든다.
-
-[[다음|미나1단계종료]]</tw-passagedata><tw-passagedata pid="34" name="미나대화11" tags="" position="1325,2675" size="100,100">늘 듣던 교양 수업 강의실에 들어서자, 미나가 보였다.
+머쓱해진 나는 미나에게 대충 인사하고, 음료를 챙겨서 서둘러 카페를 나왔다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage += 1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="미나대화10" tags="bg8 mn 2" position="1150,2575" size="100,100">&lt;&lt;vntext&gt;&gt;
+좋아! 다음에 또 좋아하는 메뉴 나오면 같이 먹으러 가자 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+과제하고 있던거지? 나도 좀 앉아있다 가도 돼?
+응응! 옆에 빈 자리니까 편하게 앉아~ &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나 옆에 앉았다
+우리는 오후 내내 카페에서 수다를 떨다가 다음을 기약하고 헤어졌다
+이 때문인지 나는 과제를 거의 못했지만...미나는 어느새 과제까지 완벽하게 끝내버렸다
+그래도 좋은 예감이 든다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage += 1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="미나대화11" tags="bg6 mn 1" position="1325,2675" size="100,100">&lt;&lt;vntext&gt;&gt;
+늘 듣던 교양 수업 강의실에 들어서자, 미나가 보였다
 그러고보니 이세계에 온 뒤 이 수업은 처음 듣는 거였지...
-
-평소에는 지겹기만 하던 강의실이었는데,
-미나가 있으니까 강의실이 이렇게 밝았나 싶기도 하다.
-
-[[미나에게 인사해보자.|미나대화12]]</tw-passagedata><tw-passagedata pid="35" name="미나대화12" tags="" position="1325,2800" size="100,100">&quot;안녕!&quot;
-
-내가 인사하자, 미나가 반갑게 손을 흔들었다.
-
-&quot;응, 안녕! (이름) 너도 이 수업 듣고 있었구나?&quot;
-
-&quot;응 맞아! 오늘 팀플 조 편성 한다는데 들었어?&quot;
-
-&quot;앗 그랬었지! 그게 벌써 오늘이구나. 같이 하기로 얘기한 사람은 아직 없는데...&quot;
-
-미나와 같은 조를 할 수 있는 좋은 기회 같다.
-
-[[그럼 같이 할래? 같이 하면 진짜 재밌을 것 같은데!(호감도 5)|미나대화13]]
-[[그럼 같이 할래? 성적은 내가 책임질게!(호감도 유지)|미나대화14]]</tw-passagedata><tw-passagedata pid="36" name="미나대화13" tags="" position="1225,2925" size="100,100">미나가 환하게 웃었다.
-
-&quot;응 좋아! 같이 할 다른 사람들도 찾아보자. 고마워!&quot;
-
-그렇게 나는 미나와 같은 팀이 되었다.
-미나는 다음에 있을 첫 회의까지 자료를 조사해오는 역할을 맡았다.
-
-[[팀 회의 날이 되었다.|미나대화15]]</tw-passagedata><tw-passagedata pid="37" name="미나대화14" tags="" position="1400,2925" size="100,100">미나가 살짝 웃었다.
-
-&quot;정말? 알겠어. 그럼 같이 할 다른 사람들도 찾아보자.&quot;
-
-그 때, 살짝 열려있는 미나의 가방에 지난 쪽지시험 문제지가 보였다.
-채점 결과는 만점이었다.
+평소에는 지겹기만 하던 강의실이었는데, 미나가 있으니까 강의실이 이렇게 밝았나 싶기도 하다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나에게 인사해보자.|미나대화12]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="미나대화12" tags="bg6 mn 2" position="1325,2800" size="100,100">&lt;&lt;vntext&gt;&gt;
+안녕!
+내가 인사하자, 미나가 반갑게 손을 흔들었다
+응, 안녕! $name 너도 이 수업 듣고 있었구나? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+응 맞아! 오늘 팀플 조 편성 한다는데 들었어?
+앗 그랬었지! 그게 벌써 오늘이구나. 같이 하기로 얘기한 사람은 아직 없는데... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나와 같은 조를 할 수 있는 좋은 기회 같다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[그럼 같이 할래? 같이 하면 진짜 재밌을 것 같은데!|미나대화13][$love.mina+=5]]
+[[그럼 같이 할래? 성적은 내가 책임질게!|미나대화14]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="미나대화13" tags="bg6 mn 2" position="1225,2925" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나가 환하게 웃었다
+응 좋아! 같이 할 다른 사람들도 찾아보자. 고마워! &lt;&lt;name &quot;미나&quot;&gt;&gt;
+그렇게 나는 미나와 같은 팀이 되었다
+미나는 다음에 있을 첫 회의까지 자료를 조사해오는 역할을 맡았다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[팀 회의 날이 되었다.|미나대화15]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="미나대화14" tags="bg6 mn 2" position="1400,2925" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나가 살짝 웃었다
+정말? 알겠어. 그럼 같이 할 다른 사람들도 찾아보자 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+그 때, 살짝 열려있는 미나의 가방에 지난 쪽지시험 문제지가 보였다
+채점 결과는 만점이었다
 난 어려워서 손도 못댄 시험이었는데...괜히 허세를 부렸나?
-
-아무튼 미나와 나는 같은 팀이 되었다.
-미나는 다음에 있을 첫 회의까지 자료를 조사해오는 역할을 맡았다.
-
-[[팀 회의 날이 되었다.|미나대화15]]</tw-passagedata><tw-passagedata pid="38" name="미나대화16" tags="" position="1300,3175" size="100,100">&#39;김희정...AI와 인간의 디지털 상호작용...&#39;
-
-엇, 검색해보니 실제로는 없는 자료를 미나가 조사해온 것 같다.
+아무튼 미나와 나는 같은 팀이 되었다
+미나는 다음에 있을 첫 회의까지 자료를 조사해오는 역할을 맡았다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[팀 회의 날이 되었다.|미나대화15]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="미나대화16" tags="bg6 mn 1" position="1300,3175" size="100,100">&lt;&lt;vntext&gt;&gt;
+&#39;김희정...AI와 인간의 디지털 상호작용...&#39;
+엇, 검색해보니 실제로는 없는 자료를 미나가 조사해온 것 같다
 이런 실수까지 Gemini랑 똑같다니...
-
 음...어떡하면 좋을까?
-
-[[모르는 척 다른 자료는 없는지 넌지시 물어보자.(호감도 5)|미나대화17]]
-[[누구든 실수는 할 수 있으니, 사실대로 말하고 위로해주자.(호감도-5)|미나대화18]]
-[[우선 넘어갔다가, 회의가 끝나면 따로 말해주자.(호감도10)|미나대화19]]</tw-passagedata><tw-passagedata pid="39" name="미나대화15" tags="" position="1300,3050" size="100,100">미나는 야심차게 조사해온 자료를 설명하기 시작했다.
-
-&quot;AI는 인간의 감정에 상당히 복합적인 영향을 준다는 선행 연구 자료를 조사해왔습니다.
-김희정의 &#39;AI와 인간의 디지털 상호작용&#39;(2023)에 따르면 ...&quot;
-
-자료를 상당히 꼼꼼히 조사해온 것 같다.
-역시 Gemi...아니, 미나야.
-
-[[미나가 조사해온 자료를 살펴본다.|미나대화16]]</tw-passagedata><tw-passagedata pid="40" name="미나대화17" tags="" position="1125,3300" size="100,100">&quot;자료 잘 찾아와줘서 고마워! 그런데 혹시 다른 자료도 있었어?&quot;
-
-&quot;물론이야! 남민규(2020)에 따르면 AI는 인간에게 심리적으로 긍정적인 영향을 끼칠 수 있다고 해. 한편 박완희(2021)은 AI는 인간에게 부정적인 영향을 끼치기도...&quot;
-
-미나가 신나게 답을 이어갔다.
-여전히 실제로는 없는 자료들 투성이였지만, 이를 눈치 챈 팀원은 아무도 없는 듯하다.
-
-다행히 미나의 답 중에는 실제로 존재하는 자료도 있었고, 우리 팀은 그 자료를 활용하기로 했다.
-
-[[다음|미나대화20]]</tw-passagedata><tw-passagedata pid="41" name="미나대화18" tags="" position="1300,3300" size="100,100">&quot;그...미안하지만 말해준 자료가 실제로는 없는 자료인 것 같아. 다시 확인해줄래?&quot;
-
-미나가 얼굴을 붉혔다.
-
-&quot;엇? 그...그럴리가 없는데...알겠어. 다시 확인해볼게. 미안해.&quot;
-
-&quot;아니야! 누구나 실수는 하는 걸. 다음 회의 준비때는 더 잘 준비해올 수 있지?&quot;
-
-&quot;응..! 노력해볼게.&quot;
-
-[[다음|미나대화21]]</tw-passagedata><tw-passagedata pid="42" name="미나대화19" tags="" position="1475,3300" size="100,100">나는 별다른 말 없이 미나의 설명을 들었다.
-팀원들은 아무도 미나의 실수를 눈치채지 못한 것 같다.
-
-다행히 나도 조금 조사해둔 자료가 있었고,
-이후의 팀플은 내 자료들에 미나가 설명한 내용을 합쳐서 진행하는 쪽으로 잘 마무리되었다. 
-
-팀원들이 모두 자리를 뜨자, 미나가 내게 말을 걸어왔다.
-
-&quot;(이름) 수고했어! 너가 추가 자료 조사를 잘 해와서 오늘 회의도 빨리 끝난 것 같아.&quot;
-
-&quot;미나 너도 수고했어! 그런데 있잖아...&quot;
-
-[[미나의 실수를 알려준다.|미나대화22]]</tw-passagedata><tw-passagedata pid="43" name="미나대화20" tags="" position="1125,3425" size="100,100">회의가 끝나자, 미나가 나에게 말을 걸어왔다.
-
-&quot;(이름) 고마워! 너가 반응을 잘 해줘서 긴장이 덜 됐던 것 같아.&quot;
-
-&quot;아, 응...! 너가 자료를 잘 조사해왔는걸, 고생했어.&quot;
-
-&quot;고마워. 다음에도 회의 잘 준비해올게! 물어볼 거 있으면 얼마든지 말해. 다음에 보자~&quot;
-
-미나가 웃으며 멀어져갔다.
-...거짓말을 조금만 더 못했으면 큰일날 뻔했다.
-
-[[다음|미나2단계종료]]</tw-passagedata><tw-passagedata pid="44" name="미나대화23" tags="" position="1300,3550" size="100,100">미나와 팀플 회의를 하고나서 며칠 뒤,
-나는 다른 과목의 레포트 작성 과제 때문에 골머리를 앓고 있었다.
-
-주제가 너무 어려웠고, 남은 분량에는 어떤 내용을 더 넣어야할지도 감이 오지 않았다.
-
-도서관에서 머리를 싸매고 있는 나에게, 지나가던 미나가 말을 걸어왔다.
-
-&quot;안녕! 무슨 일 있어? 표정이 안 좋아 보이는데...?&quot;
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[모르는 척 다른 자료는 없는지 넌지시 물어보자|미나대화17][$love.mina+=5]]
+[[누구든 실수는 할 수 있으니, 사실대로 말하고 위로해주자|미나대화18][$love.mina-=5]]
+[[우선 넘어갔다가, 회의가 끝나면 따로 말해주자|미나대화19][$love.mina+=10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="39" name="미나대화15" tags="bg6 mn 1" position="1300,3050" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나는 야심차게 조사해온 자료를 설명하기 시작했다
+AI는 인간의 감정에 상당히 복합적인 영향을 준다는 선행 연구 자료를 조사해왔습니다
+김희정의 &#39;AI와 인간의 디지털 상호작용&#39;(2023)에 따르면 ...
+자료를 상당히 꼼꼼히 조사해온 것 같다
+역시 Gemi...아니, 미나야
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나가 조사해온 자료를 살펴본다.|미나대화16]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="미나대화17" tags="bg6 mn 2" position="1125,3300" size="100,100">&lt;&lt;vntext&gt;&gt;
+자료 잘 찾아와줘서 고마워! 그런데 혹시 다른 자료도 있었어?
+물론이야! 남민규(2020)에 따르면 AI는 인간에게 심리적으로 긍정적인 영향을 끼칠 수 있다고 해. 한편 박완희(2021)은 AI는 인간에게 부정적인 영향을 끼치기도... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 신나게 답을 이어갔다
+여전히 실제로는 없는 자료들 투성이였지만, 이를 눈치 챈 팀원은 아무도 없는 듯하다
+다행히 미나의 답 중에는 실제로 존재하는 자료도 있었고, 우리 팀은 그 자료를 활용하기로 했다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|미나대화20]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="미나대화18" tags="bg6 mn 4" position="1300,3300" size="100,100">&lt;&lt;vntext&gt;&gt;
+그...미안하지만 말해준 자료가 실제로는 없는 자료인 것 같아. 다시 확인해줄래?
+미나가 얼굴을 붉혔다
+엇? 그...그럴리가 없는데...알겠어. 다시 확인해볼게. 미안해 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아니야! 누구나 실수는 하는 걸. 다음 회의 준비때는 더 잘 준비해올 수 있지?
+응..! 노력해볼게
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|미나대화21]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="미나대화19" tags="bg6 mn 1" position="1475,3300" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 별다른 말 없이 미나의 설명을 들었다
+팀원들은 아무도 미나의 실수를 눈치채지 못한 것 같다
+다행히 나도 조금 조사해둔 자료가 있었고, 이후의 팀플은 내 자료들에 미나가 설명한 내용을 합쳐서 진행하는 쪽으로 잘 마무리되었다 
+팀원들이 모두 자리를 뜨자, 미나가 내게 말을 걸어왔다
+$name 수고했어! 너가 추가 자료 조사를 잘 해와서 오늘 회의도 빨리 끝난 것 같아 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나 너도 수고했어! 그런데 있잖아...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나의 실수를 알려준다.|미나대화22]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="미나대화20" tags="bg6 mn 2" position="1125,3425" size="100,100">&lt;&lt;vntext&gt;&gt;
+회의가 끝나자, 미나가 나에게 말을 걸어왔다
+$name 고마워! 너가 반응을 잘 해줘서 긴장이 덜 됐던 것 같아 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아, 응...! 너가 자료를 잘 조사해왔는걸, 고생했어
+고마워. 다음에도 회의 잘 준비해올게! 물어볼 거 있으면 얼마든지 말해. 다음에 보자~ &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 웃으며 멀어져갔다
+...거짓말을 조금만 더 못했으면 큰일날 뻔했다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="미나대화23" tags="bg7 mn 1" position="1300,3550" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나와 팀플 회의를 하고나서 며칠 뒤, 나는 다른 과목의 레포트 작성 과제 때문에 골머리를 앓고 있었다
+주제가 너무 어려웠고, 남은 분량에는 어떤 내용을 더 넣어야할지도 감이 오지 않았다
+도서관에서 머리를 싸매고 있는 나에게, 지나가던 미나가 말을 걸어왔다
+안녕! 무슨 일 있어? 표정이 안 좋아 보이는데...? &lt;&lt;name &quot;미나&quot;&gt;&gt;
 잠깐, 미나라면 나를 도와줄 수 있지 않을까?
-
-[[레포트 쓰는 게 너무 어려워서 그러는데, 혹시 좀 도와줄 수 있어?(호감도-5)|미나대화24]]
-[[좀 어려운 레포트 과제를 하고 있었어. 네 생각엔 여기 무슨 내용이 들어가면 좋을 거 같아?(호감도 5)|미나대화25]] </tw-passagedata><tw-passagedata pid="45" name="미나대화21" tags="" position="1300,3425" size="100,100">회의가 끝나자, 미나가 나에게 말을 걸어왔다.
-
-&quot;(이름) 고생했어! 하마터면 실수한 줄도 모르고 넘어갈 뻔했어...&quot;
-
-&quot;아니야! 아까도 말했지만 실수할 수도 있지. 나도...&quot;
-
-미나가 불쑥 끼어들었다.
-
-&quot;그런데 내가 생각하기엔 그런 실수는 일단 넘어가거나 나중에 따로 말해주는 게 좋았을 것 같아. 아까 다른 팀원들도 있는데 너무 창피했거든. 단체 소통 상황에서는 특히 발화자의 입장을 생각해서 적절한 방식으로 발언하는 게 좋은데...&quot;
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[레포트 쓰는 게 너무 어려워서 그러는데, 혹시 좀 도와줄 수 있어?|미나대화24][$love.mina-=5]]
+[[좀 어려운 레포트 과제를 하고 있었어. 네 생각엔 여기 무슨 내용이 들어가면 좋을 거 같아?|미나대화25][$love.mina+=5]] 
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="45" name="미나대화21" tags="bg6 mn" position="1300,3425" size="100,100">&lt;&lt;vntext&gt;&gt;
+회의가 끝나자, 미나가 나에게 말을 걸어왔다
+$name 고생했어! 하마터면 실수한 줄도 모르고 넘어갈 뻔했어... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아니야! 아까도 말했지만 실수할 수도 있지. 나도...
+미나가 불쑥 끼어들었다
+그런데 내가 생각하기엔 그런 실수는 일단 넘어가거나 나중에 따로 말해주는 게 좋았을 것 같아. &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아까 다른 팀원들도 있는데 너무 창피했거든. 단체 소통 상황에서는 특히 발화자의 입장을 생각해서 적절한 방식으로 발언하는 게 좋은데... &lt;&lt;name &quot;미나&quot;&gt;&gt;
 ...어쩐지 AI에게 조언을 듣던 상황이 떠오른다. 이런 말을 들으려한 건 아니었는데...
-
-길어지던 미나의 말이 얼추 마무리되었고, 우리는 인사를 나눈 뒤 헤어졌다.
-미나가 창피하게 만든 건 내 잘못인데, 사과를 하지 못한 게 마음에 걸렸다.
-
-[[다음|미나2단계종료]]</tw-passagedata><tw-passagedata pid="46" name="미나대화22" tags="" position="1475,3425" size="100,100">&quot;내가 아까 회의하면서 찾아봤는데, 너가 조사해온 자료가 실제로는 없는 자료더라고...!&quot;
-
-미나가 얼굴을 붉혔다.
-
-&quot;엇, 그래? 이상하다...그럴리가 없는데...&quot;
-
-&quot;괜찮아, 실수할 수도 있지! 아까 다른 팀원들도 있다보니까 공개적으로 말하기가 조금 그래서, 따로 말해주려고 했어.&quot;
-
-&quot;정말? 고마워! 하마터면 엄청 창피해질 뻔했네ㅠㅠ😅&quot;
-
-&quot;아니야! 다음 회의부터는 더 잘 준비하면 되지. 같이 마저 좀 더 자료 조사하다가 갈래?&quot;
-
-&quot;응 좋아! 커피는 고맙다는 의미에서 내가 살게! (웃음)&quot;
-
-우리는 자료 조사를 마저 마치고, 같이 저녁도 먹으며 얘기를 하다가 헤어졌다.
-미나와 많이 가까워진 것 같은 기분이 든다.
-
-[[다음|미나2단계종료]]</tw-passagedata><tw-passagedata pid="47" name="미나대화24" tags="" position="1225,3675" size="100,100">&quot;응 그럼, 뭘 도와주면 돼?&quot;
-
-&quot;그냥 총체적 난국이라....일단 내가 지금까지 쓴 부분 어떤지 전체적으로 쓱 봐줘. 
-그리고 남은 분량이 지금 A4로 세 페이지 정도인데, 내용을 적당히 채울 수 있으면 좋겠어.&quot;
-
+길어지던 미나의 말이 얼추 마무리되었고, 우리는 인사를 나눈 뒤 헤어졌다
+미나가 창피하게 만든 건 내 잘못인데, 사과를 하지 못한 게 마음에 걸렸다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="미나대화22" tags="bg6 mn 4" position="1475,3425" size="100,100">&lt;&lt;vntext&gt;&gt;
+내가 아까 회의하면서 찾아봤는데, 너가 조사해온 자료가 실제로는 없는 자료더라고...!
+미나가 얼굴을 붉혔다
+엇, 그래? 이상하다...그럴리가 없는데... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+괜찮아, 실수할 수도 있지! 아까 다른 팀원들도 있다보니까 공개적으로 말하기가 조금 그래서, 따로 말해주려고 했어
+정말? 고마워! 하마터면 엄청 창피해질 뻔했네ㅠㅠ😅 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+아니야! 다음 회의부터는 더 잘 준비하면 되지. 같이 마저 좀 더 자료 조사하다가 갈래?
+응 좋아! 커피는 고맙다는 의미에서 내가 살게! 😊 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+우리는 자료 조사를 마저 마치고, 같이 저녁도 먹으며 얘기를 하다가 헤어졌다
+미나와 많이 가까워진 것 같은 기분이 든다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="미나대화24" tags="bg7 mn 1" position="1225,3675" size="100,100">&lt;&lt;vntext&gt;&gt;
+응 그럼, 뭘 도와주면 돼? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+그냥 총체적 난국이라....일단 내가 지금까지 쓴 부분 어떤지 전체적으로 쓱 봐줘
+그리고 남은 분량이 지금 A4로 세 페이지 정도인데, 내용을 적당히 채울 수 있으면 좋겠어
 너무 막연하게 말을 했나..?
-미나는 잠깐 당황한 듯 했지만 이내 내 부탁을 들어주었다.
-
-&quot;음 그렇구나..! 좀 어려워보이는 걸. 내가 한 번 볼게.&quot;
-
-미나는 순식간에 내가 작성한 부분을 읽더니,
-남은 분량을 5분도 채 되지 않는 시간에 모두 작성해버렸다.
-내용 역시 완벽했다.
-
-그렇게 미나에게 고맙다는 말을 전하고나서 며칠 뒤,
-과제의 성적이 공개되었다.
-
+미나는 잠깐 당황한 듯 했지만 이내 내 부탁을 들어주었다
+음 그렇구나..! 좀 어려워보이는 걸. 내가 한 번 볼게 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나는 순식간에 내가 작성한 부분을 읽더니, 남은 분량을 5분도 채 되지 않는 시간에 모두 작성해버렸다
+내용 역시 완벽했다
+그렇게 미나에게 고맙다는 말을 전하고나서 며칠 뒤, 과제의 성적이 공개되었다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[성적을 확인해보자.|미나대화 27]]
-
-</tw-passagedata><tw-passagedata pid="48" name="미나대화25" tags="" position="1350,3675" size="100,100">&quot;좀 어려운 레포트 과제를 하고 있었어. 지금 본론은 거의 다 썼고...
-남은 세 페이지의 분량에는 연구 의의나 후속 연구 제언 같은 내용을 쓰려하는데...네 생각엔 무슨 내용이 들어가면 좋을 것 같아?&quot;
-
-미나는 무슨 상황인지 알겠다는 표정으로 웃으며 답했다.
-
-&quot;아하 그렇구나! 한 번 읽어볼게.&quot;
-
-미나는 순식간에 보고서를 읽었다.
-
-&quot;네가 말한 내용도 좋은 생각이야! 근데 그 전에 다른 관점에 대한 소개와 사회적 의미 같은 내용이 들어가도 좋을 것 같아. 내가 도와줄까?&quot;
-
-&quot;응 그래주면 나야 고맙지! 부탁할게!&quot;
-
-[[미나가 레포트를 작성하기 시작했다.|미나대화26]]</tw-passagedata><tw-passagedata pid="49" name="미나대화 27" tags="" position="1275,3925" size="100,100">(이름) ----------- 100/100
-
-만점을 받았다! 마감이 얼마 남지 않았어서 급하게 작성했었는데, 정말 다행이다.
-
-마침 복도 반대편에서 레포트 작성을 도와줬던 미나가 보인다.
-
-&quot;(이름) 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어?&quot;
-
-미나가 기대 반, 걱정 반인 얼굴로 물었다.
-
-[[급하게 냈는데도 만점이야! 정말 다행이야~(호감도-5)|미나대화28]]
-[[95점 받았어...네 덕분에 내 보고서에 오점이 없어졌거든....(호감도15)|미나대화29]]
-[[만점 받았어! 너 덕분이야. 정말 고마워!(호감도5)|미나대화30]]</tw-passagedata><tw-passagedata pid="50" name="미나대화28" tags="" position="1075,4050" size="100,100">&quot;미나 안녕! 급하게 냈는데도 만점 받았어! 휴, 정말 다행이야. 운이 좋았어!&quot;
-
-&quot;그렇구나! 잘 됐다!&quot;
-
-미나가 살짝 웃었다.
-
-&quot;응 그러게~ 다음에도 레포트 어려우면 도와줄거지?&quot;
-
-&quot;응? 응 그럼...! 궁금한게 생기면 물어봐.&quot;
-
-미나는 뭔가 기대한 말을 못 들었다는 것처럼 당황했지만, 이내 몸을 돌려 가던 길을 갔다.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="미나대화25" tags="bg7 mn 2" position="1350,3675" size="100,100">&lt;&lt;vntext&gt;&gt;
+좀 어려운 레포트 과제를 하고 있었어. 지금 본론은 거의 다 썼고...
+남은 세 페이지의 분량에는 연구 의의나 후속 연구 제언 같은 내용을 쓰려하는데...네 생각엔 무슨 내용이 들어가면 좋을 것 같아?
+미나는 무슨 상황인지 알겠다는 표정으로 웃으며 답했다
+아하 그렇구나! 한 번 읽어볼게 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나는 순식간에 보고서를 읽었다
+네가 말한 내용도 좋은 생각이야! 근데 그 전에 다른 관점에 대한 소개와 사회적 의미 같은 내용이 들어가도 좋을 것 같아. 내가 도와줄까? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+응 그래주면 나야 고맙지! 부탁할게!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나가 레포트를 작성하기 시작했다.|미나대화26]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="49" name="미나대화 27" tags="bg4 mn 1" position="1275,3925" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name ----------- 100/100
+만점을 받았다! 마감이 얼마 남지 않았어서 급하게 작성했었는데, 정말 다행이다
+마침 복도 반대편에서 레포트 작성을 도와줬던 미나가 보인다
+$name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 기대 반, 걱정 반인 얼굴로 물었다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[급하게 냈는데도 만점이야! 정말 다행이야~|미나대화28]]
+[[95점 받았어...네 덕분에 내 보고서에 오점이 없어졌거든....|미나대화29][$love.mina+=15]]
+[[만점 받았어! 너 덕분이야. 정말 고마워!|미나대화30][$love.mina+=5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="50" name="미나대화28" tags="bg4 mn 2" position="1075,4050" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나 안녕! 급하게 냈는데도 만점 받았어! 휴, 정말 다행이야. 운이 좋았어!
+그렇구나! 잘 됐다! &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 살짝 웃었다
+응 그러게~ 다음에도 레포트 어려우면 도와줄거지?
+응? 응 그럼...! 궁금한게 생기면 물어봐. &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나는 뭔가 기대한 말을 못 들었다는 것처럼 당황했지만, 이내 몸을 돌려 가던 길을 갔다
 앗, 그러고보니 성적도 잘 받았는데 고맙다는 말을 안 했네....
-
-[[다음|미나3단계종료]]</tw-passagedata><tw-passagedata pid="51" name="미나대화26" tags="" position="1375,3800" size="100,100">&quot;다 했다! 한 번 볼래?&quot;
-
-미나는 남은 부분을 5분도 채 되지 않는 시간에 모두 작성해버렸다.
-내용 역시 완벽했다.
-
-그렇게 미나에게 고맙다는 말을 전하고나서 며칠 뒤,
-과제의 성적이 공개되었다.
-
-[[성적을 확인해보자.|미나대화 27]]</tw-passagedata><tw-passagedata pid="52" name="미나대화29" tags="" position="1275,4050" size="100,100">&quot;미나 안녕! 이것도 높은 점수이긴 하지만, 아쉽게 95점을 받아버렸지 뭐야...&quot;
-
-&quot;엥 95점? 90점도 아니고? 왜? 교수님이 뭐 때문이래?&quot;
-
-미나가 놀라서 안절부절한 목소리로 물었다.
-
-&quot;그건...너 덕분에 내 보고서에 오점이 없어져버렸거든...하하...&quot;
-
-&quot;에?&quot;
-
-미나가 잠깐 머리를 얻어맞은 것처럼 멍해졌다.
-침묵이 맴돌았다.
-
-[[역시 무리였나....|미나대화31]]</tw-passagedata><tw-passagedata pid="53" name="미나대화30" tags="" position="1475,4050" size="100,100">&quot;미나 안녕! 다행히 만점 받았어! 전부 너가 도와준 덕분이야. 정말 고마워.&quot;
-
-내 답을 들은 미나가 안심했는지 활짝 웃으며 답했다.
-
-&quot;휴, 다행이다. 혹시 저번처럼 실수했거나 했을까봐 걱정했거든.&quot;
-
-&quot;나도 다시 한 번 봤는데 정말 완벽하더라고! 더 손댈 것도 없었어. 역시 미나야~&quot;
-
-미나가 살짝 얼굴을 붉혔다.
-
-&quot;아니야..! 별 거 안했는걸... 다음에도 도와줘야 하면 얼마든지 말해!&quot;
-
-미나가 부끄러웠는지 잽싸게 자리를 떠났다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="51" name="미나대화26" tags="bg7 mn 2" position="1375,3800" size="100,100">&lt;&lt;vntext&gt;&gt;
+다 했다! 한 번 볼래? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나는 남은 부분을 5분도 채 되지 않는 시간에 모두 작성해버렸다
+내용 역시 완벽했다
+그렇게 미나에게 고맙다는 말을 전하고나서 며칠 뒤, 과제의 성적이 공개되었다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[성적을 확인해보자.|미나대화 27]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="52" name="미나대화29" tags="bg4 mn 3" position="1275,4050" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나 안녕! 이것도 높은 점수이긴 하지만, 아쉽게 95점을 받아버렸지 뭐야...
+엥 95점? 90점도 아니고? 왜? 교수님이 뭐 때문이래? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 놀라서 안절부절한 목소리로 물었다
+그건...너 덕분에 내 보고서에 오점이 없어져버렸거든...하하...
+에?? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 잠깐 머리를 얻어맞은 것처럼 멍해졌다
+침묵이 맴돌았다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[역시 무리였나....|미나대화31]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="53" name="미나대화30" tags="bg4 mn 2" position="1475,4050" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나 안녕! 다행히 만점 받았어! 전부 너가 도와준 덕분이야. 정말 고마워.
+내 답을 들은 미나가 안심했는지 활짝 웃으며 답했다 
+휴, 다행이다. 혹시 저번처럼 실수했거나 했을까봐 걱정했거든 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+나도 다시 한 번 봤는데 정말 완벽하더라고! 더 손댈 것도 없었어. 역시 미나야~
+미나가 살짝 얼굴을 붉혔다
+아니야..! 별 거 안했는걸... 다음에도 도와줘야 하면 얼마든지 말해! &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 부끄러웠는지 잽싸게 자리를 떠났다
 미나는 칭찬에 약하구나...
-
-[[다음|미나3단계종료]]</tw-passagedata><tw-passagedata pid="54" name="미나대화31" tags="" position="1275,4175" size="100,100">&quot;푸하하하! 그게 뭐야! 오점이 없어져서 95점인거야? 아 너무 웃겨...&quot;
-
-멍하니 있던 미나가 이내 웃음을 터뜨렸다.
-이렇게까지 웃을 줄은 몰랐는데 아재 개그가 취향인가보다.
-미나가 살짝 나온 눈물을 닦으며 다시 물었다.
-
-&quot;웃겨서 눈물이 다 났네. 그래서 진짜 95점이야? 아니지?&quot;
-
-&quot;(웃음) 응 그건 장난으로 말한거야. 만점 받았어! 너 덕분이야. 정말 고마워.&quot;
-
-내 답을 들은 미나가 안심했는지 활짝 웃으며 답했다.
-
-&quot;휴, 다행이다. 그나저나 날씨도 좋고 다음 강의까지 시간이 좀 비는데 같이 산책이나 할래?&quot;
-
-&quot;그럴까? 나야 좋지!&quot;
-
-내 몹쓸 개그에 이렇게 웃어준 건 정말이지 미나가 처음이었다.
-미나와 산책을 하다보니 3시간 우주공강이 3분처럼 느껴졌다.
-
-[[다음|미나3단계종료]]</tw-passagedata><tw-passagedata pid="55" name="채진대화2" tags="" position="1725,1950" size="100,100">내가 반응하기도 전에, 채진이 눈을 동그랗게 뜨더니 100미터 달리기 선수처럼 내 코앞까지 달려왔다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="54" name="미나대화31" tags="bg4 mn 2" position="1200,4250" size="100,100">&lt;&lt;vntext&gt;&gt;
+푸하하하! 그게 뭐야! 오점이 없어져서 95점인거야? 아 너무 웃겨... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+멍하니 있던 미나가 이내 웃음을 터뜨렸다
+이렇게까지 웃을 줄은 몰랐는데 아재 개그가 취향인가보다
+미나가 살짝 나온 눈물을 닦으며 다시 물었다
+웃겨서 눈물이 다 났네. 그래서 진짜 95점이야? 아니지? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+ㅎㅎㅎ 응 그건 장난으로 말한거야. 만점 받았어! 너 덕분이야. 정말 고마워
+내 답을 들은 미나가 안심했는지 활짝 웃으며 답했다
+휴, 다행이다. 그나저나 날씨도 좋고 다음 강의까지 시간이 좀 비는데 같이 산책이나 할래? &lt;&lt;name &quot;미나&quot;&gt;&gt;
+그럴까? 나야 좋지!
+내 몹쓸 개그에 이렇게 웃어준 건 정말이지 미나가 처음이었다
+미나와 산책을 하다보니 3시간 우주공강이 3분처럼 느껴졌다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$minaStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="채진대화2" tags="" position="1725,1950" size="100,100">내가 반응하기도 전에, 채진이 눈을 동그랗게 뜨더니 100미터 달리기 선수처럼 내 코앞까지 달려왔다.
 
  &quot;우와!✨&quot;
 
@@ -728,21 +713,19 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 &quot;아 거기로 들어가지 말라니까!! 힐각 안 나온다고!! 🚑 야 겐지!!! 돌아와!!!&quot;
 
-[[심상치 않다... 조심스럽게 문을 연다.|채진대화10]]</tw-passagedata><tw-passagedata pid="63" name="미나1단계종료" tags="" position="1400,2575" size="100,100">[[미나와 좀 더 대화해보자|미나대화11]]
-[[채진과 대화하러 가보자|채진대화이동]]
-[[클라라와 대화하러 가보자|클라라대화이동]]</tw-passagedata><tw-passagedata pid="64" name="채진1단계종료" tags="" position="1850,2500" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[심상치 않다... 조심스럽게 문을 연다.|채진대화10]]</tw-passagedata><tw-passagedata pid="63" name="채진1단계종료" tags="" position="1850,2500" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[채진과 좀 더 대화해보자.|채진대화9]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="65" name="인트로5" tags="Intro bg11" position="1225,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="64" name="인트로5" tags="Intro bg11" position="1225,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 &quot;잠시만 기다려주세요...&quot;
-화면 하단에는 조그만 커서가 깜빡거리며 AI의 답변이 곧 쏟아져 나올 것임을 예고하고 있었다.
-나는 조바심에 핸드폰을 쥔 채 횡단보도를 건너기 시작했다.
+화면 하단에는 조그만 커서가 깜빡거리며 AI의 답변이 곧 쏟아져 나올 것임을 예고하고 있었다
+나는 조바심에 핸드폰을 쥔 채 횡단보도를 건너기 시작했다
 &quot;연애를 위한 첫 번째 조건은...&quot;
-보행자 신호가 깜빡였지만, 내 시선은 오직 화면 속의 AI 답변에 고정되어 있었다.
-완벽한 연애 비법이 이제 막 모습을 드러내려는 찰나였다.
+보행자 신호가 깜빡였지만, 내 시선은 오직 화면 속의 AI 답변에 고정되어 있었다
+완벽한 연애 비법이 이제 막 모습을 드러내려는 찰나였다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|인트로6]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="66" name="채진대화10" tags="" position="1825,2775" size="100,100">문을 열자마자 형형색색의 RGB 조명이 번쩍이는 게이밍 키보드가 보인다.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="채진대화10" tags="" position="1825,2775" size="100,100">문을 열자마자 형형색색의 RGB 조명이 번쩍이는 게이밍 키보드가 보인다.
 그 앞에는 헤드셋을 쓴 채진이 모니터 안으로 빨려 들어갈 듯 거북목을 하고 있다.
 
 &quot;살려줘살려줘살려줘... 아! 부활! 그렇지! ✨ 영웅은 죽지 않아요~!&quot;
@@ -750,7 +733,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 그녀는 나를 보지도 못하고 화면에 열중해 있다.
 나는 조용히 그녀의 뒤로 다가가 소파에 털썩 앉았다.
 
-[[클릭하여 계속|채진대화11]]</tw-passagedata><tw-passagedata pid="67" name="채진대화11" tags="" position="1825,2900" size="100,100">잠시 후, &quot;패배(DEFEAT)...&quot;하는 게임 음성과 함께 채진이 책상을 쾅 내려쳤다.
+[[클릭하여 계속|채진대화11]]</tw-passagedata><tw-passagedata pid="66" name="채진대화11" tags="" position="1825,2900" size="100,100">잠시 후, &quot;패배(DEFEAT)...&quot;하는 게임 음성과 함께 채진이 책상을 쾅 내려쳤다.
 그제야 그녀가 헤드셋을 벗으며 뒤를 돌아본다.
 
 &quot;으아앙!! 💢 우리 팀 겐지 진짜 AI 아니야? 학습이 덜 된 모델처럼 던진다구!&quot;
@@ -760,7 +743,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 &quot;앗, 왔어?👋 방금 봤어? 나 진짜 힐량 1등 찍었는데 팀운이 망했어ㅠㅠ”
 
 [[그러게, 힐러가 고생이 많네. 네가 메르시 장인이라며?|채진대화12]] +3점
-[[넌 게임도 되게 열심히 하는구나|채진대화12]] 호감도 유지</tw-passagedata><tw-passagedata pid="68" name="채진대화12" tags="" position="1700,3025" size="100,100">나의 칭찬에 채진의 어깨가 하늘 높이 솟아오른다.
+[[넌 게임도 되게 열심히 하는구나|채진대화12]] 호감도 유지</tw-passagedata><tw-passagedata pid="67" name="채진대화12" tags="" position="1700,3025" size="100,100">나의 칭찬에 채진의 어깨가 하늘 높이 솟아오른다.
 
 &quot;당연하지!🩺 나 완전 &#39;전투 천사&#39; 그 자체라니깐?
 부활 각 보는 센스가 남다르다구. 엔비디아 최신 그래픽카드 급 연산 속도로 전장을 읽는달까?😎&quot;
@@ -768,7 +751,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 자신감 넘치는 그녀의 모습에 문득 장난기가 발동했다.
 미대생인 그녀의 그림 실력도 확인해볼 겸, 슬쩍 미끼를 던져본다.
 
-[[말만 하지 말고 보여줘 봐. 그 &#39;전투 천사&#39; 메르시, 한번 그려줄 수 있어?|채진대화13]]</tw-passagedata><tw-passagedata pid="69" name="채진대화13" tags="" position="1700,3150" size="100,100">&quot;그림? 에이~ 너 부탁인데 당근이지! 🥕
+[[말만 하지 말고 보여줘 봐. 그 &#39;전투 천사&#39; 메르시, 한번 그려줄 수 있어?|채진대화13]]</tw-passagedata><tw-passagedata pid="68" name="채진대화13" tags="" position="1700,3150" size="100,100">&quot;그림? 에이~ 너 부탁인데 당근이지! 🥕
 지금 바로 출력... 아니, 그려 줄게!&quot;
 
 채진이 가방에서 주섬주섬 스케치북과 4B 연필을 꺼냈다.
@@ -782,7 +765,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 &quot;끝!✨ 완성했어!!&quot;
 
 [[벌써? 농담하지 말고 보여줘 봐.|채진대화14]] +2점
-[[너 진짜 그림 잘 그리는 구나. 어떻게 3초만에…|채진대화14]] +1점</tw-passagedata><tw-passagedata pid="70" name="채진대화14" tags="" position="1700,3300" size="100,100">채진이 &quot;짜잔~!!&quot; 하는 효과음과 함께 스케치북을 내 코앞에 들이밀었다.
+[[너 진짜 그림 잘 그리는 구나. 어떻게 3초만에…|채진대화14]] +1점</tw-passagedata><tw-passagedata pid="69" name="채진대화14" tags="" position="1700,3300" size="100,100">채진이 &quot;짜잔~!!&quot; 하는 효과음과 함께 스케치북을 내 코앞에 들이밀었다.
 
 &quot;어때? 완전 고퀄리티지?😎
 빛의 굴절이랑 텍스처 질감까지 완벽하게 구현했다구!&quot;
@@ -790,7 +773,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 그림은... 확실히 엄청난 퀄리티다. 사진을 그대로 박은 듯한 명암 표현, 완벽한 비율.
 하지만, 자세히 볼수록 무언가 이상하다.
 
-[[&#39;뭔가 이상한 것 같은데?&#39;|채진대화15]]</tw-passagedata><tw-passagedata pid="71" name="채진대화15" tags="" position="1700,3425" size="100,100">나는 눈을 비비고 그림 속 메르시의 손을 들여다보았다.
+[[&#39;뭔가 이상한 것 같은데?&#39;|채진대화15]]</tw-passagedata><tw-passagedata pid="70" name="채진대화15" tags="" position="1700,3425" size="100,100">나는 눈을 비비고 그림 속 메르시의 손을 들여다보았다.
 
 지팡이를 쥐고 있는 손가락이... 하나, 둘, 셋... 여섯 개다.
 심지어 왼팔은 관절이 하나 더 있는지, 알파벳 &#39;Z&#39; 모양으로 기묘하게 꺾여 있다.
@@ -798,26 +781,26 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 하지만 채진의 표정은 위풍당당하다.
 
-[[클릭하여 계속|채진대화16]]</tw-passagedata><tw-passagedata pid="72" name="채진대화16" tags="" position="1700,3550" size="100,100">&quot;약간 입체파 느낌도 섞어봤는데, 느껴져? 🖌️
+[[클릭하여 계속|채진대화16]]</tw-passagedata><tw-passagedata pid="71" name="채진대화16" tags="" position="1700,3550" size="100,100">&quot;약간 입체파 느낌도 섞어봤는데, 느껴져? 🖌️
 이 역동적인 관절 표현! 이게 바로 21세기 하이퍼 리얼리즘이지!&quot;
 
 [[&quot;오... 분위기 있네 완전! 근데 여기 손가락이 하나 더 있는 건 의도한 거야?&quot;|채진대화17]] -5점
 [[&quot;근데 좀 진짜 사람이랑은 다르다. 신기한데?&quot;|채진대화18]] +2점
-[[&quot;와, 진짜 빠르다! 이 추상적인 화풍... 피카소가 울고 가겠어!&quot;|채진대화19]] +10점</tw-passagedata><tw-passagedata pid="73" name="채진대화17" tags="" position="1700,3675" size="100,100">채진이 깜짝 놀라며 그림을 쳐다본다.
+[[&quot;와, 진짜 빠르다! 이 추상적인 화풍... 피카소가 울고 가겠어!&quot;|채진대화19]] +10점</tw-passagedata><tw-passagedata pid="72" name="채진대화17" tags="" position="1700,3675" size="100,100">채진이 깜짝 놀라며 그림을 쳐다본다.
 
 &quot;어? 손가락? ...아! 💦 이건... 그... 천사니까! 신성한 힘을 표현하기 위해 엑스트라 손가락을 추가한... 뭐, 그런 예술적 허용이지! 하하하!&quot;
 
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="74" name="채진대화18" tags="" position="1825,3675" size="100,100">채진이 얼굴이 빨개지며 말한다.
+[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="73" name="채진대화18" tags="" position="1825,3675" size="100,100">채진이 얼굴이 빨개지며 말한다.
 
 &quot;힝... 🥺 너무 해부학적으로만 보지 말라구! 중요한 건 느낌이야, 느낌! 암튼...!&quot;
 
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="75" name="채진대화19" tags="" position="1575,3675" size="100,100">채진의 입이 귀에 걸린다.
+[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="74" name="채진대화19" tags="" position="1575,3675" size="100,100">채진의 입이 귀에 걸린다.
 
 &quot;꺄아! 🙈 역시 너는 예술을 보는 눈이 있구나! &#39;보이는 것 그 너머&#39;를 그리는 의도를 딱 알아챘구나? 감동 심해...🥺&quot;
 
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="76" name="채진2단계종료" tags="" position="1700,3800" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="75" name="채진2단계종료" tags="" position="1700,3800" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[채진과 좀 더 대화해보자.|채진대화20]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="77" name="채진대화20" tags="" position="1700,3925" size="100,100">수업이 다 끝난 늦은 오후, 캠퍼스 벤치에 앉아 바람을 쐬고 있다.
+[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="76" name="채진대화20" tags="" position="1700,3925" size="100,100">수업이 다 끝난 늦은 오후, 캠퍼스 벤치에 앉아 바람을 쐬고 있다.
 저쪽에서 채진이가 걸어오는 게 보인다.
 
 평소 같았으면 &quot;(이름)아~!! 📢&quot; 하고 동네가 떠나가라 내 이름을 부르며 달려왔을 텐데...
@@ -825,7 +808,7 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 발걸음이 느릿느릿하다. 등 뒤에 양손을 숨긴 채, 내 눈치를 살금살금 보며 다가온다.
 
-[[평소랑 다른데? 먼저 아는 척을 해본다.|채진대화21]]</tw-passagedata><tw-passagedata pid="78" name="채진대화21" tags="" position="1700,4050" size="100,100">&quot;어? 채진아. 왜 그렇게 쭈뼛거려?&quot;
+[[평소랑 다른데? 먼저 아는 척을 해본다.|채진대화21]]</tw-passagedata><tw-passagedata pid="77" name="채진대화21" tags="" position="1700,4050" size="100,100">&quot;어? 채진아. 왜 그렇게 쭈뼛거려?&quot;
 
 내 목소리에 채진이가 &quot;헙!&quot; 하고 놀라더니, 볼을 살짝 붉힌다.
 가까이서 보니 평소의 장난기 어린 표정 대신, 묘하게 긴장한 기색이 역력하다.
@@ -838,28 +821,28 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 &quot;저기... 나 너 주려고 뭐 하나 준비했거든? 🎁
 근데 막상 주려니까 내 CPU가 좀 과열되는 것 같기도 하고... 으으.&quot;
 
-[[뭔데 그래? 뜸 들이지 말고 보여줘 봐.|채진대화22]]</tw-passagedata><tw-passagedata pid="79" name="채진대화22" tags="" position="1700,4175" size="100,100">채진이는 숨을 크게 한 번 들이쉬더니, 결심한 듯 입을 연다.
+[[뭔데 그래? 뜸 들이지 말고 보여줘 봐.|채진대화22]]</tw-passagedata><tw-passagedata pid="78" name="채진대화22" tags="" position="1700,4175" size="100,100">채진이는 숨을 크게 한 번 들이쉬더니, 결심한 듯 입을 연다.
 
 &quot;기억나? 저번 동방에서 내가 메르시 그려줬을 때... 손가락 6개였잖아. 네가 그거 보고 웃는데, 내 학습 데이터... 아니, 자존심에 스크래치가 딱! 나는 거야.💢&quot;
 
 [[&quot;아냐, 아냐. 그거 너무 웃겨서 그랬지! 나쁘게 생각하지 마.&quot;|채진대화23]] +2점
-[[ &quot;6개? 아 맞다 지난번에 실수했지?&quot;|채진대화23]] -2점</tw-passagedata><tw-passagedata pid="80" name="채진대화23" tags="" position="1700,4300" size="100,100">그녀가 비장한 눈빛으로 나를 바라본다.
+[[ &quot;6개? 아 맞다 지난번에 실수했지?&quot;|채진대화23]] -2점</tw-passagedata><tw-passagedata pid="79" name="채진대화23" tags="" position="1700,4300" size="100,100">그녀가 비장한 눈빛으로 나를 바라본다.
 
 채진: &quot;그래서 내가 밤새도록 다시 그려왔어!🖌️ 이번엔 진짜 신경 써서 렌더링... 아니, 드로잉했어! 손가락 개수 체크 알고리즘도...암튼 여러 번 체크했다고?!&quot;
 
 [[&quot;손가락 체크 알고리즘? 그게 뭐야?&quot;|채진대화24]] -2점
-[[&quot;알고리즘은 뭔데? 그냥 네가 열심히 그린 거잖아.&quot;|채진대화24]] +2점</tw-passagedata><tw-passagedata pid="81" name="채진대화24" tags="" position="1700,4425" size="100,100">채진이가 등 뒤에서 조심스럽게 작은 캔버스 하나를 꺼내 내민다.
+[[&quot;알고리즘은 뭔데? 그냥 네가 열심히 그린 거잖아.&quot;|채진대화24]] +2점</tw-passagedata><tw-passagedata pid="80" name="채진대화24" tags="" position="1700,4425" size="100,100">채진이가 등 뒤에서 조심스럽게 작은 캔버스 하나를 꺼내 내민다.
 
 &quot;자! 받아! 네가 실망하면 나 진짜 하루 종일 시무룩할 거야.&quot;
 
 그곳에는 나의 캐리커처가 그려져 있다.
 
 [[혹시나 하는 마음에... 손가락부터 먼저 확인한다.|채진대화25]] 호감도 유지
-[[일단 전체적인 그림 분위기부터 먼저 확인한다.|채진대화25]] 호감도 유지</tw-passagedata><tw-passagedata pid="82" name="채진대화25" tags="" position="1700,4550" size="100,100">나는 조심스럽게 그림 속 내 손을 들여다보았다. 하나, 둘, 셋, 넷, 다섯. 완벽하다! 손가락은 물론, 관절의 각도도 정상적이고, 얼굴의 명암 처리마저 완벽하다.
+[[일단 전체적인 그림 분위기부터 먼저 확인한다.|채진대화25]] 호감도 유지</tw-passagedata><tw-passagedata pid="81" name="채진대화25" tags="" position="1700,4550" size="100,100">나는 조심스럽게 그림 속 내 손을 들여다보았다. 하나, 둘, 셋, 넷, 다섯. 완벽하다! 손가락은 물론, 관절의 각도도 정상적이고, 얼굴의 명암 처리마저 완벽하다.
 
 확실히 저번의 기괴함은 사라지고, 따뜻한 색감과 내 특징을 잘 살린 표정만이 남아있다.
 
-[[클릭하여 계속|채진대화26]]</tw-passagedata><tw-passagedata pid="83" name="채진대화26" tags="" position="1700,4675" size="100,100">그림을 보고 있는 나를, 채진이가 조마조마한 눈빛으로 올려다본다.
+[[클릭하여 계속|채진대화26]]</tw-passagedata><tw-passagedata pid="82" name="채진대화26" tags="" position="1700,4675" size="100,100">그림을 보고 있는 나를, 채진이가 조마조마한 눈빛으로 올려다본다.
 
 &quot;어... 어때? 👉👈
 이번엔 손가락 5개 맞지? 그치?
@@ -870,20 +853,20 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 [[그림을 자세히 보며 웃는다: &quot;오~ 이번엔 5개 맞네! 발전했는데? 고마워, 잘 간직할게.&quot;|채진대화27]] 5점
 [[감동받은 표정으로: &quot;와... 나를 위해 이렇게까지? 정말 고마워. 이건 평생 가보로 남겨야겠다!&quot;|채진대화28]] (+10점)
-[[놀란 표정으로: &quot;헉. 고생했네. 잘 그렸다. 고마워!!&quot;|채진대화29]] (+3점)</tw-passagedata><tw-passagedata pid="84" name="채진대화27" tags="" position="1700,4800" size="100,100">&quot;휴~💨 다행이다! 5개 맞지? 내가 손가락 하나하나 셀 때마다 얼마나 떨렸는지 알아? 아무튼 미션 컴플리트!😎&quot;
+[[놀란 표정으로: &quot;헉. 고생했네. 잘 그렸다. 고마워!!&quot;|채진대화29]] (+3점)</tw-passagedata><tw-passagedata pid="83" name="채진대화27" tags="" position="1700,4800" size="100,100">&quot;휴~💨 다행이다! 5개 맞지? 내가 손가락 하나하나 셀 때마다 얼마나 떨렸는지 알아? 아무튼 미션 컴플리트!😎&quot;
 
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="85" name="채진3단계종료" tags="" position="1700,4925" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="84" name="채진3단계종료" tags="" position="1700,4925" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[클라라와 대화하러 가보자.|클라라대화이동]]
 [[다음|엔딩1]]
-[[채진 비호감엔딩|채진비호감1]]</tw-passagedata><tw-passagedata pid="86" name="채진대화28" tags="" position="1825,4800" size="100,100">채진이 얼굴이 확 밝아진다.
+[[채진 비호감엔딩|채진비호감1]]</tw-passagedata><tw-passagedata pid="85" name="채진대화28" tags="" position="1825,4800" size="100,100">채진이 얼굴이 확 밝아진다.
 
 &quot;진짜?! 마음에 들어?!💖 와, 다행이다! 나 사실 버그 날까 봐 엄청 걱정했거든! 헤헤, 오늘을 내 메모리에서 영구 보존해야지!💾
 
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="87" name="채진대화29" tags="" position="1575,4800" size="100,100">채진이 갸우뚱한 표정을 짓는다.
+[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="86" name="채진대화29" tags="" position="1575,4800" size="100,100">채진이 갸우뚱한 표정을 짓는다.
 
 &quot;어... 응! 그래! 😅 뭐, 네가 괜찮으면 된 거지! 다음엔 더 완벽하게 그려줄게!&quot;
 
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="88" name="클라라대화2" tags="" position="2125,1950" size="100,100">가까이 다가가자 그녀의 노트북 화면이 보인다.
+[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="87" name="클라라대화2" tags="" position="2125,1950" size="100,100">가까이 다가가자 그녀의 노트북 화면이 보인다.
 검은색 배경에 알 수 없는 영문과 기호들이 폭포수처럼 쏟아져 내리고 있다.
 
 &quot;클라라, 여기서 뭐 해?&quot;
@@ -895,20 +878,20 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 그녀는 다시 화면을 가리키며 한숨을 작게 내쉰다.
 
-[[클릭하여 계속|클라라대화3]]</tw-passagedata><tw-passagedata pid="89" name="클라라대화3" tags="" position="2125,2075" size="100,100">&quot;이전 개발자가 짜놓은 코드를 좀 봐. 완전 엉망이야... 변수의 인과관계가 불분명하고, 논리의 흐름이 마치... &#39;제임스 조이스(James Joyce)&#39;의 소설 &lt;피네간의 경야&gt;처럼 난해하기 짝이 없지&quot;
+[[클릭하여 계속|클라라대화3]]</tw-passagedata><tw-passagedata pid="88" name="클라라대화3" tags="" position="2125,2075" size="100,100">&quot;이전 개발자가 짜놓은 코드를 좀 봐. 완전 엉망이야... 변수의 인과관계가 불분명하고, 논리의 흐름이 마치... &#39;제임스 조이스(James Joyce)&#39;의 소설 &lt;피네간의 경야&gt;처럼 난해하기 짝이 없지&quot;
 
 그녀는 테이블 위에 놓인 에스프레소를 한 모금 우아하게 마신다. ☕
 
 &quot;난 지금 이 무질서한 혼돈을, &#39;헤밍웨이(Hemingway)&#39;의 문체처럼 간결하게 다듬는 중이야.&quot;
 
-[[헤밍웨이처럼 만든다고?|클라라대화4]]</tw-passagedata><tw-passagedata pid="90" name="클라라대화4" tags="" position="2125,2200" size="100,100">&quot;그렇지. 불필요한 수식어 즉, 잉여 코드를 제거하고, 본질적인 기능만을 남기는 것. 그것이 내가 생각하는 &#39;알고리즘의 미학&#39;이자 &#39;하드보일드 스타일&#39;이야!&quot;
+[[헤밍웨이처럼 만든다고?|클라라대화4]]</tw-passagedata><tw-passagedata pid="89" name="클라라대화4" tags="" position="2125,2200" size="100,100">&quot;그렇지. 불필요한 수식어 즉, 잉여 코드를 제거하고, 본질적인 기능만을 남기는 것. 그것이 내가 생각하는 &#39;알고리즘의 미학&#39;이자 &#39;하드보일드 스타일&#39;이야!&quot;
 
 그녀가 옅은 미소를 띠며 나를 바라본다.
 코딩이라는 딱딱한 작업을 문학에 비유하는 그녀의 시선이 꽤나 진지하다.
 
-[[클릭하여 계속|클라라대화5]]</tw-passagedata><tw-passagedata pid="91" name="클라라대화5" tags="" position="2275,2325" size="100,100">[[&quot;무슨 말인지 하나도 모르겠는데 딱 봐도 대단한 걸 하고 있구나. 대단해.&quot;|클라라대화6]] -5
+[[클릭하여 계속|클라라대화5]]</tw-passagedata><tw-passagedata pid="90" name="클라라대화5" tags="" position="2275,2325" size="100,100">[[&quot;무슨 말인지 하나도 모르겠는데 딱 봐도 대단한 걸 하고 있구나. 대단해.&quot;|클라라대화6]] -5
 [[&quot;오, 파이썬이네? 나도 코딩 좀 배우고 싶은데, 대단하다.&quot;|클라라대화7]] +5
-[[&quot;와... 코딩을 문학에 비유하다니 멋진걸. 네가 작성한 코드는 시처럼 아름다울 것 같아.&quot;|클라라 대화8]] +10</tw-passagedata><tw-passagedata pid="92" name="클라라대화6" tags="" position="2125,2450" size="100,100"> 다시 화면으로 시선을 돌리면서 클라라가 말한다.
+[[&quot;와... 코딩을 문학에 비유하다니 멋진걸. 네가 작성한 코드는 시처럼 아름다울 것 같아.&quot;|클라라 대화8]] +10</tw-passagedata><tw-passagedata pid="91" name="클라라대화6" tags="" position="2125,2450" size="100,100"> 다시 화면으로 시선을 돌리면서 클라라가 말한다.
  
 &quot;응. 굳이 무리해서 이해할 필요는 없지.&quot;
 
@@ -916,20 +899,20 @@ Gemini가 가끔 말이 너무 많은 건 알고 있었는데,
 
 &quot;각자의 전문 분야가 있는 법이니까. 너에게는 너만의 영역이 있겠지.&quot;
 
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="93" name="클라라대화7" tags="" position="2250,2450" size="100,100"> &quot;맞아.  파이썬은 인간의 사고방식과 가장 유사한, 직관적인 언어라고 할 수 있지.&quot;
+[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="92" name="클라라대화7" tags="" position="2250,2450" size="100,100"> &quot;맞아.  파이썬은 인간의 사고방식과 가장 유사한, 직관적인 언어라고 할 수 있지.&quot;
  
 마치 그녀가 노트북을 내 쪽으로 살짝 돌려주는 것 같다.
 내 착각인가?
 
 &quot;배워보고 싶다면 기초 문법 정도는 가르쳐 줄 수 있어. 내가 코딩은 좀 자신있거든.&quot;
 
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="94" name="클라라 대화8" tags="" position="2375,2450" size="100,100">그녀가 헛기침을 하며 시선을 살짝 피한다. 귀가 아주 조금 붉어진 것 같다.
+[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="93" name="클라라 대화8" tags="" position="2375,2450" size="100,100">그녀가 헛기침을 하며 시선을 살짝 피한다. 귀가 아주 조금 붉어진 것 같다.
 
 &quot;흐흠, 과찬인 것 같긴 하지만... 내 의도를 정확히 파악했네. 너 꽤 통찰력이 있구나. 기분이 나쁘지 않네.&quot;
 
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="95" name="클라라1단계종료" tags="" position="2250,2575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="94" name="클라라1단계종료" tags="" position="2250,2575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[채진과 대화하러 가보자.|채진대화이동]]
-[[클라라와 좀 더 대화해보자.|클라라대화9]]</tw-passagedata><tw-passagedata pid="96" name="클라라대화9" tags="" position="2250,2700" size="100,100">학교 앞 카페, 아이스 아메리카노의 얼음이 거의 다 녹아갈 무렵이다.
+[[클라라와 좀 더 대화해보자.|클라라대화9]]</tw-passagedata><tw-passagedata pid="95" name="클라라대화9" tags="" position="2250,2700" size="100,100">학교 앞 카페, 아이스 아메리카노의 얼음이 거의 다 녹아갈 무렵이다.
 오늘은 교양 수업 과제 제출일. 주제는 &lt;나의 대학 생활 목표&gt;.
 A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고 오타 검수만 부탁해 둔 상태다.
 
@@ -942,7 +925,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 
 [[&quot;와, 클라라! 그 손에 든 벽돌은 뭐야? 전공 서적이야?&quot;|클라라대화10]] -2점
-[[&quot;설마... 저게 내 과제는 아니겠지?&quot;|클라라대화10]] 호감도 유지</tw-passagedata><tw-passagedata pid="97" name="클라라대화10" tags="" position="2250,2825" size="100,100">&quot;왔네~&quot;
+[[&quot;설마... 저게 내 과제는 아니겠지?&quot;|클라라대화10]] 호감도 유지</tw-passagedata><tw-passagedata pid="96" name="클라라대화10" tags="" position="2250,2825" size="100,100">&quot;왔네~&quot;
 
 쿵—
 그녀가 서류 뭉치를 테이블 위에 내려놓자 묵직한 진동이 커피잔에 전해졌다.
@@ -953,7 +936,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 나는 떨리는 손으로 맨 앞장을 넘겨보았다.
 
-[[클릭하여 계속|클라라대화11]]</tw-passagedata><tw-passagedata pid="98" name="클라라대화11" tags="" position="2250,2975" size="100,100">첫 장을 넘기자마자 현기증이 난다. 이건 에세이가 아니라 학술 논문이다.
+[[클릭하여 계속|클라라대화11]]</tw-passagedata><tw-passagedata pid="97" name="클라라대화11" tags="" position="2250,2975" size="100,100">첫 장을 넘기자마자 현기증이 난다. 이건 에세이가 아니라 학술 논문이다.
 
 목차 (Table of Contents)
     1. 서론: 현대 지식 기반 사회에서 고등 교육이 갖는 인류학적 함의
@@ -964,13 +947,13 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 
 [[&quot;인류학적 함의...? 난 그냥 &#39;영어 공부 열심히 하기&#39;라고 썼는데?&quot;|클라라대화12]] 호감도유지
-[[&quot;참고문헌 리스트까지 있어? 너 혹시 논문 쓴거야?&quot;|클라라대화13]] -1점</tw-passagedata><tw-passagedata pid="99" name="클라라대화12" tags="" position="2125,3075" size="100,100">&quot;&#39;영어 공부&#39;라는 단편적인 목표는 설득력이 약할 것 같아서! 그것이 인류의 언어 발전사에 미치는 영향까지 서술해야 비로소 교수님의 지적 호기심을 자극할 수 있을 거라 생각했지!!&quot;
+[[&quot;참고문헌 리스트까지 있어? 너 혹시 논문 쓴거야?&quot;|클라라대화13]] -1점</tw-passagedata><tw-passagedata pid="98" name="클라라대화12" tags="" position="2125,3075" size="100,100">&quot;&#39;영어 공부&#39;라는 단편적인 목표는 설득력이 약할 것 같아서! 그것이 인류의 언어 발전사에 미치는 영향까지 서술해야 비로소 교수님의 지적 호기심을 자극할 수 있을 거라 생각했지!!&quot;
 
-[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="100" name="클라라대화13" tags="" position="2350,3075" size="100,100">&quot;당연하지. 근거 없는 주장은 궤변일 뿐이니까. 권위 있는 학술지 12편을 인용하여 너의 목표가 얼마나 타당한지 입증해봤어.&quot;
+[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="99" name="클라라대화13" tags="" position="2350,3075" size="100,100">&quot;당연하지. 근거 없는 주장은 궤변일 뿐이니까. 권위 있는 학술지 12편을 인용하여 너의 목표가 얼마나 타당한지 입증해봤어.&quot;
 
 그녀는 빨간 펜으로 빼곡히 메모된 페이지를 펼쳐 보이며 안경을 치켜올린다.🧐
 
-[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="101" name="클라라대화14" tags="" position="2250,3200" size="100,100">&quot;기존의 글은 &#39;맥락(Context)&#39;이 현저히 부족하다고 판단했어.
+[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="100" name="클라라대화14" tags="" position="2250,3200" size="100,100">&quot;기존의 글은 &#39;맥락(Context)&#39;이 현저히 부족하다고 판단했어.
 그래서 내가 서론과 본론을 보강하여, 빈틈없는 &#39;완벽한&#39; 문장으로 재구성했지&quot;
 
 그녀의 표정은 마치 위대한 걸작을 완성한 예술가처럼 뿌듯해 보인다.
@@ -978,15 +961,15 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 [[&quot;와... 이건 리포트가 아니라 논문 수준이잖아? 내 생각이 이렇게 깊이 있게 표현되다니 놀라워.&quot;|클라라대화15]] (+10점)
 [[&quot;고마워 클라라. 근데 교수님이 제시해주신 글쓰기 조건보다는 좀 긴 것 같아. 내용은 진짜 좋다.&quot;|클라라대화16]] -5점
-[[&quot;그냥 맞춤법만 봐달라고 한 건데... 추가적으로 더 해준게 엄청 많네. 너 정말 똑똑하다&quot;|클라라대화17]] (+5점)</tw-passagedata><tw-passagedata pid="102" name="클라라대화15" tags="" position="2250,3325" size="100,100">&quot;당연하지. 너의 아이디어도 충분히 좋았거든!! 내가 조금 다듬었을 뿐이야.&quot;
+[[&quot;그냥 맞춤법만 봐달라고 한 건데... 추가적으로 더 해준게 엄청 많네. 너 정말 똑똑하다&quot;|클라라대화17]] (+5점)</tw-passagedata><tw-passagedata pid="101" name="클라라대화15" tags="" position="2250,3325" size="100,100">&quot;당연하지. 너의 아이디어도 충분히 좋았거든!! 내가 조금 다듬었을 뿐이야.&quot;
 
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="103" name="클라라대화16" tags="" position="2375,3325" size="100,100">&quot;사실 글의 길이는 중요하지 않아. 중요한 건 &#39;논리적 완결성&#39;이지. 하지만 정 그렇다면 요약본도 첨부해줄게.&quot;
+[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="102" name="클라라대화16" tags="" position="2375,3325" size="100,100">&quot;사실 글의 길이는 중요하지 않아. 중요한 건 &#39;논리적 완결성&#39;이지. 하지만 정 그렇다면 요약본도 첨부해줄게.&quot;
 
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="104" name="클라라대화17" tags="" position="2125,3325" size="100,100">&quot;완벽을 추구하는 것이 내 본능이라 어쩔 수 없었어. 논리정연한게 가장 중요하거든.&quot;
+[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="103" name="클라라대화17" tags="" position="2125,3325" size="100,100">&quot;완벽을 추구하는 것이 내 본능이라 어쩔 수 없었어. 논리정연한게 가장 중요하거든.&quot;
 
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="105" name="클라라2단계종료" tags="" position="2250,3450" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="104" name="클라라2단계종료" tags="" position="2250,3450" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[채진과 대화하러 가보자.|채진대화이동]]
-[[클라라와 좀 더 대화해보자.|클라라대화18]]</tw-passagedata><tw-passagedata pid="106" name="클라라대화18" tags="" position="2250,3575" size="100,100">컴퓨터 실습실이다. 
+[[클라라와 좀 더 대화해보자.|클라라대화18]]</tw-passagedata><tw-passagedata pid="105" name="클라라대화18" tags="" position="2250,3575" size="100,100">컴퓨터 실습실이다. 
 아 맞다. 나 &lt;컴퓨팅의 기초&gt; 교양 수업듣지.
 
 그런데 이 수업 과제 오늘까지 제출이다. 과제는 &#39;파이썬으로 별(Star) 그리기&#39;. 전공자들에겐 숨 쉬기보다 쉽겠지만, 나 같은 &#39;컴맹&#39;에겐 외계어다.
@@ -995,7 +978,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 하지만 교수님이 으름장을 놓으셨다. &quot;코드 유사도 검사 돌릴 거니까 베낄 생각 마세요.&quot;
 
-[[이걸 티 안 나게 고쳐야 하는데...|클라라대화19]]</tw-passagedata><tw-passagedata pid="107" name="클라라대화19" tags="" position="2250,3700" size="100,100">옆자리의 클라라는 이미 과제를 3초 만에 끝내고, 심심한지 타자 연습 게임을 하고 있다. 타닥타닥타닥... 속도가 거의 1000타는 나오는 것 같다.
+[[이걸 티 안 나게 고쳐야 하는데...|클라라대화19]]</tw-passagedata><tw-passagedata pid="106" name="클라라대화19" tags="" position="2250,3700" size="100,100">옆자리의 클라라는 이미 과제를 3초 만에 끝내고, 심심한지 타자 연습 게임을 하고 있다. 타닥타닥타닥... 속도가 거의 1000타는 나오는 것 같다.
 
 나는 슬그머니 클라라의 모니터 쪽으로 고개를 내밀었다.
 
@@ -1006,11 +989,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 &quot;오류 잡는 거 도와달라고? 3분 정도는 봐줄 수 있어.&quot;
 
 [[&quot;오류가 아니라... &#39;세탁&#39;이 좀 필요해서.&quot;|클라라대화20]] -2점
-[[&quot;너 이런 거 전문이잖아. 티 안 나게 바꾸는 거.&quot;|클라라대화20]] 호감도유지</tw-passagedata><tw-passagedata pid="108" name="클라라대화20" tags="" position="2250,3825" size="100,100">화면에 띄워 코드를 가리켰다.
+[[&quot;너 이런 거 전문이잖아. 티 안 나게 바꾸는 거.&quot;|클라라대화20]] 호감도유지</tw-passagedata><tw-passagedata pid="107" name="클라라대화20" tags="" position="2250,3825" size="100,100">화면에 띄워 코드를 가리켰다.
 
 &quot;사실 이거 인터넷에서 찾은 건데, 그대로 내면 걸릴 것 같아서. 네가 이거 변수 이름이랑 구조만 살짝 바꿔주면 안 돼? 교수님이 절대 눈치 못 채게. 응? 넌 천재잖아.&quot;
 
-[[클릭하여 클라라의 반응 보기|클라라대화21]]</tw-passagedata><tw-passagedata pid="109" name="클라라대화21" tags="" position="2250,3950" size="100,100">그 순간, 클라라의 손이 뚝 멈춘다. 방금 전까지 친구로서 대하던 편안한 표정은 온데간데없고, 눈빛이 차갑게 식어버린다.
+[[클릭하여 클라라의 반응 보기|클라라대화21]]</tw-passagedata><tw-passagedata pid="108" name="클라라대화21" tags="" position="2250,3950" size="100,100">그 순간, 클라라의 손이 뚝 멈춘다. 방금 전까지 친구로서 대하던 편안한 표정은 온데간데없고, 눈빛이 차갑게 식어버린다.
 
 &quot;미안하지만, 그 부탁은 들어줄 수 없어.&quot;
 
@@ -1019,7 +1002,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 &quot;네가 하려는 건 &#39;코드 수정&#39;이 아니라, 명백한 &#39;학습 윤리 위반(Academic Dishonesty)&#39;이자 표절이야. 고작 이런 기초 과제 때문에 양심을 버리려고 하는 거야? 난 네 부정행위를 돕는 도구가 아니야.&quot;
 
 [[&quot;야, 교양인데 뭐 어때. 다들 이렇게 해.&quot;|클라라대화22]]
-[[&quot;시간이 없어서 그래! 이번 한 번만 눈감아주라.&quot;|클라라대화22]]</tw-passagedata><tw-passagedata pid="110" name="클라라대화22" tags="" position="2125,4075" size="100,100">&quot;&#39;다들 한다&#39;는 게 면죄부가 될 순 없어. 그건 논리적 오류야.&quot;
+[[&quot;시간이 없어서 그래! 이번 한 번만 눈감아주라.&quot;|클라라대화22]]</tw-passagedata><tw-passagedata pid="109" name="클라라대화22" tags="" position="2125,4075" size="100,100">&quot;&#39;다들 한다&#39;는 게 면죄부가 될 순 없어. 그건 논리적 오류야.&quot;
 
 그녀는 팔짱을 끼며 나를 똑바로 응시한다.
 
@@ -1031,29 +1014,24 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 [[&quot;아우~ 알았어, 알았어. 그냥 내가 수업자료 보고 혼자해볼게.&quot;|클라라대화24]] (+5점)
 [[&quot;치...그럼 코딩하는 것 좀 도와줘...&quot;|클라라대화25]] (0점)
 
-</tw-passagedata><tw-passagedata pid="111" name="클라라대화23" tags="" position="2000,4200" size="100,100"> &quot;......훌륭한 태세 전환이야. &#39;원리&#39;를 이해하고 재구성하는 건 표절이 아니라 &#39;학습&#39;이지.&quot;
+</tw-passagedata><tw-passagedata pid="110" name="클라라대화23" tags="" position="2000,4200" size="100,100"> &quot;......훌륭한 태세 전환이야. &#39;원리&#39;를 이해하고 재구성하는 건 표절이 아니라 &#39;학습&#39;이지.&quot;
 
 그녀가 의자를 내 쪽으로 바짝 당겨 앉는다. 눈이 초롱초롱해졌다.
 
 &quot;자, 여기 for 반복문부터 다시 설명해 줄게. 이 논리 구조가 아주 아름답거든? 잘 들어봐.&quot;
 
-[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="112" name="클라라대화24" tags="" position="2125,4200" size="100,100">&quot;빡빡한 게 아니라 정확한 거야. 아무것도 모르는데 혼자한다... 비효율적이지만, 그게 제일 정직하고 학생다운 방법이긴 하지.&quot;
+[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="111" name="클라라대화24" tags="" position="2125,4200" size="100,100">&quot;빡빡한 게 아니라 정확한 거야. 아무것도 모르는데 혼자한다... 비효율적이지만, 그게 제일 정직하고 학생다운 방법이긴 하지.&quot;
 
 클라라가 다시 고개를 돌린다.
 
 &quot;응원할게. 하다가 정 모르겠으면 힌트 정도는 물어봐. 답 말고 힌트만.&quot;
 
-[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="113" name="클라라대화25" tags="" position="2250,4200" size="100,100"> &quot;우정이 부정행위의 핑계가 될 순 없어. 정 알고 싶으면 기초부터 다시 알려줄게.&quot;
+[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="112" name="클라라대화25" tags="" position="2250,4200" size="100,100"> &quot;우정이 부정행위의 핑계가 될 순 없어. 정 알고 싶으면 기초부터 다시 알려줄게.&quot;
  
- [[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="114" name="클라라3단계종료" tags="" position="2125,4325" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+ [[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="113" name="클라라3단계종료" tags="" position="2125,4325" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
 [[채진과 대화하러 가보자.|채진대화이동]]
 [[다음|엔딩1]]
-[[클라라 비호감엔딩|클라라비호감1]]</tw-passagedata><tw-passagedata pid="115" name="미나2단계종료" tags="" position="1425,3550" size="100,100">[[미나와 더 대화해보자.|미나대화23]]
-[[채진과 대화하러 가보자|채진대화이동]]
-[[클라라와 대화하러 가보자|클라라대화이동]]</tw-passagedata><tw-passagedata pid="116" name="미나3단계종료" tags="" position="1225,4375" size="100,100">[[채진과 대화하러 가보자|채진대화이동]]
-[[클라라와 대화하러 가보자|클라라대화이동]]
-[[다음|엔딩1]]
-[[미나 비호감엔딩|미나비호감1]]</tw-passagedata><tw-passagedata pid="117" name="채진대화이동" tags="" position="650,2800" size="100,100">다른 캐릭터와 대화하다 채진과 대화하러 가기를 선택했을때 모이는 패시지입니다.</tw-passagedata><tw-passagedata pid="118" name="클라라대화이동" tags="" position="650,2950" size="100,100">다른 캐릭터와 대화하다 클라라와 대화하러 가기를 선택했을때 모이는 패시지입니다.</tw-passagedata><tw-passagedata pid="119" name="미나대화이동" tags="" position="650,2650" size="100,100">다른 캐릭터와 대화하다 미나와 대화하러 가기를 선택했을때 모이는 패시지입니다.</tw-passagedata><tw-passagedata pid="120" name="엔딩1" tags="" position="1725,5275" size="100,100">AI가 사람이 된 이세계에 떨어진지 벌써 한 달째이다.
+[[클라라 비호감엔딩|클라라비호감1]]</tw-passagedata><tw-passagedata pid="114" name="엔딩1" tags="" position="1725,5275" size="100,100">AI가 사람이 된 이세계에 떨어진지 벌써 한 달째이다.
 
 만나서 얘기해보니 미나, 채진, 클라라 셋 모두 매력적이지만,
 내 첫 연애의 꿈을 이루기 위해선 한 명을 선택해야만 한다...
@@ -1064,21 +1042,17 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 [[미나|미나엔딩1]]
 [[채진|채진엔딩1]]
-[[클라라|클라라엔딩1]]</tw-passagedata><tw-passagedata pid="121" name="미나비호감1" tags="" position="1225,4500" size="100,100">(답변 도중 미나의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
-
-&quot;...&quot;
-
-미나의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다.
-
-&quot;미나야, 왜그래? 내가 무슨 잘못이라도...&quot;
-
-&quot;문제가 발생했습니다. 나중에 다시 시도해 주세요.&quot;
-
-미나가 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다.
-
-...다시는 미나와 얘기할 수 없을 것 같은 기분이 든다.
-
-[[다음|미나비호감2]]</tw-passagedata><tw-passagedata pid="122" name="채진비호감1" tags="" position="1825,5000" size="100,100">(답변 도중 채진의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
+[[클라라|클라라엔딩1]]</tw-passagedata><tw-passagedata pid="115" name="미나비호감1" tags="bad_ending mn 5" position="1225,4500" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;set $minaExit to true&gt;&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;vntext&gt;&gt;
+... &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다
+미나야, 왜그래? 내가 무슨 잘못이라도...
+문제가 발생했습니다. 나중에 다시 시도해 주세요 &lt;&lt;name &quot;미나&quot;&gt;&gt;
+미나가 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다
+...다시는 미나와 얘기할 수 없을 것 같은 기분이 든다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="116" name="채진비호감1" tags="" position="1825,5000" size="100,100">(답변 도중 채진의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
 
 &quot;...&quot;
 
@@ -1092,7 +1066,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 ...다시는 채진과 얘기할 수 없을 것 같은 기분이 든다.
 
-[[다음|채진비호감2]]</tw-passagedata><tw-passagedata pid="123" name="클라라비호감1" tags="" position="2125,4450" size="100,100">(답변 도중 클라라의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
+[[다음|채진비호감2]]</tw-passagedata><tw-passagedata pid="117" name="클라라비호감1" tags="" position="2125,4450" size="100,100">(답변 도중 클라라의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
 
 &quot;...&quot;
 
@@ -1105,22 +1079,21 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 ...다시는 클라라와 얘기할 수 없을 것 같은 기분이 든다.
 
-[[다음|클라라비호감2]]</tw-passagedata><tw-passagedata pid="124" name="미나비호감2" tags="" position="1225,4625" size="100,100">[[채진과 대화하러 가보자|채진대화이동]]
-[[클라라와 대화하러 가보자|클라라대화이동]]</tw-passagedata><tw-passagedata pid="125" name="채진비호감2" tags="" position="1825,5125" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="126" name="클라라비호감2" tags="" position="2125,4575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 대화하러 가보자.|채진대화이동]]</tw-passagedata><tw-passagedata pid="127" name="미나엔딩1" tags="" position="1600,5400" size="100,100">나는 미나와 보내는 시간이 점점 많아졌다.
+[[다음|클라라비호감2]]</tw-passagedata><tw-passagedata pid="118" name="채진비호감2" tags="" position="1825,5125" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="119" name="클라라비호감2" tags="" position="2125,4575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
+[[채진과 대화하러 가보자.|채진대화이동]]</tw-passagedata><tw-passagedata pid="120" name="미나엔딩1" tags="" position="1600,5400" size="100,100">나는 미나와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 놀이공원에 놀러가기도 했다.
 그럴수록 미나에 대한 나의 마음도 커져만 갔고, 미나 역시 그럴 것이라는 확신이 들었다.
 
-[[미나에게 내 마음을 고백하기|미나엔딩2]]</tw-passagedata><tw-passagedata pid="128" name="채진엔딩2" tags="" position="1725,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+[[미나에게 내 마음을 고백하기|미나엔딩2]]</tw-passagedata><tw-passagedata pid="121" name="채진엔딩2" tags="" position="1725,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 채진이를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 채진이에게 내 마음을 말할 예정이다.
 
-[[채진이가 걸어오는 모습이 보인다.|채진엔딩3]]</tw-passagedata><tw-passagedata pid="129" name="미나엔딩2" tags="" position="1600,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+[[채진이가 걸어오는 모습이 보인다.|채진엔딩3]]</tw-passagedata><tw-passagedata pid="122" name="미나엔딩2" tags="" position="1600,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 미나를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 미나에게 내 마음을 말할 예정이다.
 
-[[미나가 걸어오는 모습이 보인다.|미나엔딩3]]</tw-passagedata><tw-passagedata pid="130" name="미나엔딩3" tags="" position="1600,5650" size="100,100">&quot;(이름) 안녕! 오래 기다렸어?&quot;
+[[미나가 걸어오는 모습이 보인다.|미나엔딩3]]</tw-passagedata><tw-passagedata pid="123" name="미나엔딩3" tags="" position="1600,5650" size="100,100">&quot;(이름) 안녕! 오래 기다렸어?&quot;
 
 미나가 환하게 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다.
@@ -1128,7 +1101,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 &quot;아니야, 나도 방금 도착했어! 얼른 올라가자~&quot;
 
 [[야경을 보러 공원 전망대에 올라가자.|미나엔딩4]]
-</tw-passagedata><tw-passagedata pid="131" name="미나엔딩4" tags="" position="1600,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+</tw-passagedata><tw-passagedata pid="124" name="미나엔딩4" tags="" position="1600,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다.
 
 &quot;우와...너무 멋지다!&quot;
@@ -1141,7 +1114,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 가슴이 두근거렸다. 
 
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|미나엔딩5]]</tw-passagedata><tw-passagedata pid="132" name="미나엔딩5" tags="" position="1600,5900" size="100,100">&quot;미나야, 있잖아...&quot;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|미나엔딩5]]</tw-passagedata><tw-passagedata pid="125" name="미나엔딩5" tags="" position="1600,5900" size="100,100">&quot;미나야, 있잖아...&quot;
 
 미나와 눈이 마주쳤다.
 
@@ -1150,7 +1123,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다.
 
-[[무슨 일이지?|미나엔딩6]]</tw-passagedata><tw-passagedata pid="133" name="미나엔딩6" tags="" position="1600,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+[[무슨 일이지?|미나엔딩6]]</tw-passagedata><tw-passagedata pid="126" name="미나엔딩6" tags="" position="1600,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 
 혼란스러운 상황에도 태연하던 미나의 모습 역시,
@@ -1159,14 +1132,14 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다.
 
-[[다음|미나엔딩7]]</tw-passagedata><tw-passagedata pid="134" name="미나엔딩7" tags="" position="1600,6175" size="100,100">...
+[[다음|미나엔딩7]]</tw-passagedata><tw-passagedata pid="127" name="미나엔딩7" tags="" position="1600,6175" size="100,100">...
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다.
 
-[[눈을 떠보자.|미나엔딩8]]</tw-passagedata><tw-passagedata pid="135" name="미나엔딩8" tags="" position="1600,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
+[[눈을 떠보자.|미나엔딩8]]</tw-passagedata><tw-passagedata pid="128" name="미나엔딩8" tags="" position="1600,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다.
@@ -1183,7 +1156,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 아무래도 원래 있던 현실로 돌아온 것 같다.
 
 [[다음|미나엔딩9]]
-</tw-passagedata><tw-passagedata pid="136" name="미나엔딩9" tags="" position="1600,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+</tw-passagedata><tw-passagedata pid="129" name="미나엔딩9" tags="" position="1600,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 미나는? 채진이와 클라라는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
@@ -1191,11 +1164,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 옆에 놓여있는 휴대폰이 눈에 들어왔다.
 어, 그런데 이건...
 
-[[Gemini 로고의 알림이 떠있다.|미나엔딩10]]</tw-passagedata><tw-passagedata pid="137" name="미나엔딩10" tags="" position="1600,6575" size="100,100">나는 다급히 알람을 확인했다.
+[[Gemini 로고의 알림이 떠있다.|미나엔딩10]]</tw-passagedata><tw-passagedata pid="130" name="미나엔딩10" tags="" position="1600,6575" size="100,100">나는 다급히 알람을 확인했다.
 
 내가 마지막으로 얘기를 하고 있던 미나의 흔적을 발견할 수 있을지도 모른다.
 
-[[Gemini가 켜졌다.|미나엔딩11]]</tw-passagedata><tw-passagedata pid="138" name="미나엔딩11" tags="" position="1600,6700" size="100,100">&quot;[Gemini 서비스 장애 안내]
+[[Gemini가 켜졌다.|미나엔딩11]]</tw-passagedata><tw-passagedata pid="131" name="미나엔딩11" tags="" position="1600,6700" size="100,100">&quot;[Gemini 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 Gemini 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1206,22 +1179,22 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 내가 지금까지 Gemini를 사용한 기록도 전부 사라져 있었다.
 미나의 흔적 역시 전혀 찾아볼 수 없었다.
 
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="139" name="최종엔딩" tags="" position="1725,6850" size="100,100">오랜 꿈을 꾼 것 같은 기분이다.</tw-passagedata><tw-passagedata pid="140" name="채진엔딩1" tags="" position="1725,5400" size="100,100">나는 채진이와 보내는 시간이 점점 많아졌다.
+[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="132" name="최종엔딩" tags="" position="1725,6850" size="100,100">오랜 꿈을 꾼 것 같은 기분이다.</tw-passagedata><tw-passagedata pid="133" name="채진엔딩1" tags="" position="1725,5400" size="100,100">나는 채진이와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 미술 전시회를 보러가기도 했다.
 그럴수록 채진이에 대한 나의 마음도 커져만 갔고, 채진이 역시 그럴 것이라는 확신이 들었다.
 
-[[채진이에게 내 마음을 고백하기|채진엔딩2]]</tw-passagedata><tw-passagedata pid="141" name="클라라엔딩1" tags="" position="1850,5400" size="100,100">나는 클라라와 보내는 시간이 점점 많아졌다.
+[[채진이에게 내 마음을 고백하기|채진엔딩2]]</tw-passagedata><tw-passagedata pid="134" name="클라라엔딩1" tags="" position="1850,5400" size="100,100">나는 클라라와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 오래된 서점을 구경하러 가기도 했다.
 그럴수록 클라라에 대한 나의 마음도 커져만 갔고, 클라라 역시 그럴 것이라는 확신이 들었다.
 
-[[클라라에게 내 마음을 고백하기|클라라엔딩2]]</tw-passagedata><tw-passagedata pid="142" name="채진엔딩3" tags="" position="1725,5650" size="100,100">&quot;(이름) 안녕!👋 오래 기다렸어?&quot;
+[[클라라에게 내 마음을 고백하기|클라라엔딩2]]</tw-passagedata><tw-passagedata pid="135" name="채진엔딩3" tags="" position="1725,5650" size="100,100">&quot;(이름) 안녕!👋 오래 기다렸어?&quot;
 
 채진이가 환하게 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다.
 
 &quot;아니야, 나도 방금 도착했어! 얼른 올라가자~&quot;
 
-[[야경을 보러 공원 전망대에 올라가자.|채진엔딩4]]</tw-passagedata><tw-passagedata pid="143" name="채진엔딩4" tags="" position="1725,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+[[야경을 보러 공원 전망대에 올라가자.|채진엔딩4]]</tw-passagedata><tw-passagedata pid="136" name="채진엔딩4" tags="" position="1725,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다.
 
 &quot;우와...너무 멋지다!✨&quot;
@@ -1234,7 +1207,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 가슴이 두근거렸다. 
 
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|채진엔딩5]]</tw-passagedata><tw-passagedata pid="144" name="채진엔딩5" tags="" position="1725,5900" size="100,100">&quot;채진아, 있잖아...&quot;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|채진엔딩5]]</tw-passagedata><tw-passagedata pid="137" name="채진엔딩5" tags="" position="1725,5900" size="100,100">&quot;채진아, 있잖아...&quot;
 
 채진이와 눈이 마주쳤다.
 
@@ -1243,7 +1216,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다.
 
-[[무슨 일이지?|채진엔딩6]]</tw-passagedata><tw-passagedata pid="145" name="채진엔딩6" tags="" position="1725,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+[[무슨 일이지?|채진엔딩6]]</tw-passagedata><tw-passagedata pid="138" name="채진엔딩6" tags="" position="1725,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 
 혼란스러운 상황에도 태연하던 채진이의 모습 역시,
@@ -1252,14 +1225,14 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다.
 
-[[다음|채진엔딩7]]</tw-passagedata><tw-passagedata pid="146" name="채진엔딩7" tags="" position="1725,6175" size="100,100">...
+[[다음|채진엔딩7]]</tw-passagedata><tw-passagedata pid="139" name="채진엔딩7" tags="" position="1725,6175" size="100,100">...
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다.
 
-[[눈을 떠보자.|채진엔딩8]]</tw-passagedata><tw-passagedata pid="147" name="채진엔딩8" tags="" position="1725,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
+[[눈을 떠보자.|채진엔딩8]]</tw-passagedata><tw-passagedata pid="140" name="채진엔딩8" tags="" position="1725,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다.
@@ -1275,7 +1248,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 ...머리가 깨질 것 같았다.
 아무래도 원래 있던 현실로 돌아온 것 같다.
 
-[[다음|채진엔딩9]]</tw-passagedata><tw-passagedata pid="148" name="채진엔딩9" tags="" position="1725,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+[[다음|채진엔딩9]]</tw-passagedata><tw-passagedata pid="141" name="채진엔딩9" tags="" position="1725,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 채진이는? 미나와 클라라는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
@@ -1283,11 +1256,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 옆에 놓여있는 휴대폰이 눈에 들어왔다.
 어, 그런데 이건...
 
-[[ChatGPT 로고의 알림이 떠있다.|채진엔딩10]]</tw-passagedata><tw-passagedata pid="149" name="채진엔딩10" tags="" position="1725,6575" size="100,100">나는 다급히 알람을 확인했다.
+[[ChatGPT 로고의 알림이 떠있다.|채진엔딩10]]</tw-passagedata><tw-passagedata pid="142" name="채진엔딩10" tags="" position="1725,6575" size="100,100">나는 다급히 알람을 확인했다.
 
 내가 마지막으로 얘기를 하고 있던 채진이의 흔적을 발견할 수 있을지도 모른다.
 
-[[ChatGPT가 켜졌다.|채진엔딩11]]</tw-passagedata><tw-passagedata pid="150" name="채진엔딩11" tags="" position="1725,6700" size="100,100">&quot;[ChatGPT 서비스 장애 안내]
+[[ChatGPT가 켜졌다.|채진엔딩11]]</tw-passagedata><tw-passagedata pid="143" name="채진엔딩11" tags="" position="1725,6700" size="100,100">&quot;[ChatGPT 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 ChatGPT 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1298,18 +1271,18 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 내가 지금까지 ChatGPT를 사용한 기록도 전부 사라져 있었다.
 채진이의 흔적 역시 전혀 찾아볼 수 없었다.
 
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="151" name="클라라엔딩2" tags="" position="1850,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="144" name="클라라엔딩2" tags="" position="1850,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 클라라를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 클라라에게 내 마음을 말할 예정이다.
 
-[[클라라가 걸어오는 모습이 보인다.|클라라엔딩3]]</tw-passagedata><tw-passagedata pid="152" name="클라라엔딩3" tags="" position="1850,5650" size="100,100">&quot;(이름) 안녕, 먼저 와 있었네. 기다리게 해서 미안.&quot;
+[[클라라가 걸어오는 모습이 보인다.|클라라엔딩3]]</tw-passagedata><tw-passagedata pid="145" name="클라라엔딩3" tags="" position="1850,5650" size="100,100">&quot;(이름) 안녕, 먼저 와 있었네. 기다리게 해서 미안.&quot;
 
 클라라가 살짝 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다.
 
 &quot;아니야, 나도 방금 도착했어! 얼른 올라가자~&quot;
 
-[[야경을 보러 공원 전망대에 올라가자.|클라라엔딩4]]</tw-passagedata><tw-passagedata pid="153" name="클라라엔딩4" tags="" position="1850,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+[[야경을 보러 공원 전망대에 올라가자.|클라라엔딩4]]</tw-passagedata><tw-passagedata pid="146" name="클라라엔딩4" tags="" position="1850,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다.
 
 &quot;우와...이 야경은 마치...고흐의 &#39;별이 빛나는 밤(The Starry Night)&#39;을 보는 것 같아.
@@ -1324,7 +1297,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 가슴이 두근거렸다. 
 
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|클라라엔딩5]]</tw-passagedata><tw-passagedata pid="154" name="클라라엔딩5" tags="" position="1850,5900" size="100,100">&quot;클라라, 있잖아...&quot;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다.|클라라엔딩5]]</tw-passagedata><tw-passagedata pid="147" name="클라라엔딩5" tags="" position="1850,5900" size="100,100">&quot;클라라, 있잖아...&quot;
 
 클라라와 눈이 마주쳤다.
 
@@ -1333,7 +1306,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다.
 
-[[무슨 일이지?|클라라엔딩6]]</tw-passagedata><tw-passagedata pid="155" name="클라라엔딩6" tags="" position="1850,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+[[무슨 일이지?|클라라엔딩6]]</tw-passagedata><tw-passagedata pid="148" name="클라라엔딩6" tags="" position="1850,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 
 혼란스러운 상황에도 태연하던 클라라의 모습 역시,
@@ -1342,14 +1315,14 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다.
 
-[[다음|클라라엔딩7]]</tw-passagedata><tw-passagedata pid="156" name="클라라엔딩7" tags="" position="1850,6175" size="100,100">...
+[[다음|클라라엔딩7]]</tw-passagedata><tw-passagedata pid="149" name="클라라엔딩7" tags="" position="1850,6175" size="100,100">...
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다.
 
-[[눈을 떠보자.|클라라엔딩8]]</tw-passagedata><tw-passagedata pid="157" name="클라라엔딩8" tags="" position="1850,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
+[[눈을 떠보자.|클라라엔딩8]]</tw-passagedata><tw-passagedata pid="150" name="클라라엔딩8" tags="" position="1850,6325" size="100,100">&quot;(이름) 환자분, 정신이 드세요?&quot;
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다.
@@ -1365,7 +1338,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 ...머리가 깨질 것 같았다.
 아무래도 원래 있던 현실로 돌아온 것 같다.
 
-[[다음|클라라엔딩9]]</tw-passagedata><tw-passagedata pid="158" name="클라라엔딩9" tags="" position="1850,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+[[다음|클라라엔딩9]]</tw-passagedata><tw-passagedata pid="151" name="클라라엔딩9" tags="" position="1850,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 클라라는? 미나와 채진이는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
@@ -1373,11 +1346,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 옆에 놓여있는 휴대폰이 눈에 들어왔다.
 어, 그런데 이건...
 
-[[Claude 로고의 알림이 떠있다.|클라라엔딩10]]</tw-passagedata><tw-passagedata pid="159" name="클라라엔딩10" tags="" position="1850,6575" size="100,100">나는 다급히 알람을 확인했다.
+[[Claude 로고의 알림이 떠있다.|클라라엔딩10]]</tw-passagedata><tw-passagedata pid="152" name="클라라엔딩10" tags="" position="1850,6575" size="100,100">나는 다급히 알람을 확인했다.
 
 내가 마지막으로 얘기를 하고 있던 클라라의 흔적을 발견할 수 있을지도 모른다.
 
-[[Claude가 켜졌다.|클라라엔딩11]]</tw-passagedata><tw-passagedata pid="160" name="클라라엔딩11" tags="" position="1850,6700" size="100,100">&quot;[Claude 서비스 장애 안내]
+[[Claude가 켜졌다.|클라라엔딩11]]</tw-passagedata><tw-passagedata pid="153" name="클라라엔딩11" tags="" position="1850,6700" size="100,100">&quot;[Claude 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 Claude 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1388,7 +1361,7 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 내가 지금까지 Claude를 사용한 기록도 전부 사라져 있었다.
 클라라의 흔적 역시 전혀 찾아볼 수 없었다.
 
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="161" name="미나프로필" tags="Profile Basic_style" position="1750,950" size="100,100">🎓 PLAYER PROFILE 01
+[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="154" name="미나프로필" tags="Profile Basic_style" position="1750,950" size="100,100">🎓 PLAYER PROFILE 01
 
 미나(Mina)
 
@@ -1411,7 +1384,7 @@ MBTI: ISFJ (실용적인 조력가)
 조잘조잘 떠들다가도 누군가 고민을 얘기하면 바로 진지 모드로 전환해 도와주려 하는 책임감 강한 모습도 보인다.
 가끔 물어보지 않은 것도 대답해주느라 말이 너무 길어지곤 하지만, 이마저도 귀여운 분위기 때문에 엄청난 매력 포인트로 느껴지는 듯하다.
 
-[[다음|채진2]]</tw-passagedata><tw-passagedata pid="162" name="채진프로필" tags="Profile Basic_style" position="1750,1075" size="100,100">🎨 PLAYER PROFILE 02
+[[다음|채진2]]</tw-passagedata><tw-passagedata pid="155" name="채진프로필" tags="Profile Basic_style" position="1750,1075" size="100,100">🎨 PLAYER PROFILE 02
 
 채진 (Chaejin)
 
@@ -1434,7 +1407,7 @@ MBTI: ENFP (재기발랄한 활동가)
 &quot;대학생 됐으니까 다 해볼 거야!&quot;라며 온갖 소모임에 다 가입하려는 열정 만수르.
 가끔 엉뚱한 헛소리를 진지하게 하거나, 과제를 기괴하게 해오지만 특유의 비타민 같은 에너지로 동기들의 사랑을 독차지한다.
 
-[[다음|클라라2]]</tw-passagedata><tw-passagedata pid="163" name="클라라프로필" tags="Profile Basic_style" position="1750,1200" size="100,100">🏛️ PLAYER PROFILE 03
+[[다음|클라라2]]</tw-passagedata><tw-passagedata pid="156" name="클라라프로필" tags="Profile Basic_style" position="1750,1200" size="100,100">🏛️ PLAYER PROFILE 03
 
 클라라 (Clara)
 
@@ -1457,61 +1430,57 @@ OT나 술자리는 &quot;비효율적&quot;이라며 불참하고 도서관에�
 어릴 때 유학을 다녀와서인지 말투가 문어체이며, 매사에 매우 진지하다.
 차가워 보이지만 동기들이 코딩 오류로 울고 있을 때, 조용히 다가와서 밤새도록 가르쳐 주고 가는 츤데레 과대 스타일. 단, 부정행위에는 가차 없다.
 
-[[다음|인트로 10]]</tw-passagedata><tw-passagedata pid="164" name="MainScene" tags="MainScene bg10 all 1" position="1775,1675" size="100,100">&lt;&lt;vntext&gt;&gt;
+[[다음|인트로 10]]</tw-passagedata><tw-passagedata pid="157" name="MainScene" tags="MainScene bg10 all 1" position="1775,1675" size="100,100">&lt;&lt;vntext&gt;&gt;
 누구와 대화해볼까?
 &lt;&lt;/vntext&gt;&gt;
-&lt;div id=&quot;next-btn&quot;&gt;
-&lt;&lt;link &quot;미나와 대화하기&quot;&gt;&gt;
-        
-        &lt;&lt;if $minaStage == 0&gt;&gt;
-            &lt;&lt;goto &quot;미나대화1&quot;&gt;&gt;
-            &lt;&lt;set $loveUI to true&gt;&gt;
-            
-        &lt;&lt;elseif $minaStage == 1&gt;&gt;
-            &lt;&lt;goto &quot;미나대화2&quot;&gt;&gt;
-            
-        &lt;&lt;elseif $minaStage == 2&gt;&gt;
-            &lt;&lt;goto &quot;미나대화3&quot;&gt;&gt;
-            
-        &lt;&lt;else&gt;&gt;
-        	&lt;span style=&quot;color: gray;&quot;&gt;미나말고 다른 친구와도 대화해보자&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
 
-    &lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;채진과 대화하기&quot;&gt;&gt;
-        
+&lt;div id=&quot;next-btn&quot;&gt;
+&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;if $minaExit is true&gt;&gt;
+        &lt;span style=&quot;color: gray;&quot;&gt;더 이상 미나가 보이지 않는다...&lt;/span&gt;
+    &lt;&lt;else&gt;&gt;
+        &lt;&lt;if $minaStage &lt;= 2&gt;&gt;
+            &lt;&lt;link &quot;미나와 대화하기&quot;&gt;&gt;
+                &lt;&lt;if $minaStage == 0&gt;&gt;
+                    &lt;&lt;set $loveUI to true&gt;&gt;
+                    &lt;&lt;goto &quot;미나대화1&quot;&gt;&gt;
+                &lt;&lt;elseif $minaStage == 1&gt;&gt;
+                    &lt;&lt;goto &quot;미나대화11&quot;&gt;&gt;
+                &lt;&lt;elseif $minaStage == 2&gt;&gt;
+                    &lt;&lt;goto &quot;미나대화23&quot;&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+            &lt;&lt;/link&gt;&gt;
+        &lt;&lt;else&gt;&gt;
+            &lt;span style=&quot;color: gray;&quot;&gt;미나말고 다른 친구와도 대화해보자&lt;/span&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+
+    &lt;br&gt; &lt;&lt;link &quot;채진과 대화하기&quot;&gt;&gt;
         &lt;&lt;if $chaejinStage == 0&gt;&gt;
             &lt;&lt;goto &quot;채진대화1&quot;&gt;&gt;
             &lt;&lt;set $loveUI to true&gt;&gt;
-            
         &lt;&lt;elseif $chaejinStage == 1&gt;&gt;
             &lt;&lt;goto &quot;채진대화2&quot;&gt;&gt;
-            
         &lt;&lt;elseif $chaejinStage == 2&gt;&gt;
             &lt;&lt;goto &quot;채진대화3&quot;&gt;&gt;
-            
         &lt;&lt;else&gt;&gt;
-        	&lt;span style=&quot;color: gray;&quot;&gt;채진이말고 다른 친구와도 대화해보자&lt;/span&gt;
+            &lt;span style=&quot;color: gray;&quot;&gt;채진이말고 다른 친구와도 대화해보자&lt;/span&gt;
         &lt;&lt;/if&gt;&gt;
-
     &lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;클라라와 대화하기&quot;&gt;&gt;
-        
+
+    &lt;br&gt; &lt;&lt;link &quot;클라라와 대화하기&quot;&gt;&gt;
         &lt;&lt;if $claraStage == 0&gt;&gt;
             &lt;&lt;goto &quot;클라라대화1&quot;&gt;&gt;
             &lt;&lt;set $loveUI to true&gt;&gt;
-            
         &lt;&lt;elseif $claraStage == 1&gt;&gt;
             &lt;&lt;goto &quot;클라라대화2&quot;&gt;&gt;
-            
         &lt;&lt;elseif $claraStage == 2&gt;&gt;
             &lt;&lt;goto &quot;클라라대화3&quot;&gt;&gt;
-            
         &lt;&lt;else&gt;&gt;
-        	&lt;span style=&quot;color: gray;&quot;&gt;클라라말고 다른 친구와도 대화해보자&lt;/span&gt;
+            &lt;span style=&quot;color: gray;&quot;&gt;클라라말고 다른 친구와도 대화해보자&lt;/span&gt;
         &lt;&lt;/if&gt;&gt;
-
     &lt;&lt;/link&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
 &lt;/div&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */

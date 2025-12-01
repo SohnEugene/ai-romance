@@ -79,7 +79,8 @@ input, textarea {
         inset 0 -2px 10px rgba(216, 150, 255, 0.2);
 
     /* 패딩을 줄여서 글자가 들어갈 공간 확보 */
-    padding: 0vh 2vw;
+    padding: 2.2vh 1.8vw;
+  	padding-bottom: 60px
     box-sizing: border-box;
 
     text-align: left;
@@ -88,9 +89,8 @@ input, textarea {
     /* 글자 크기와 줄 간격을 조금 더 타이트하게 조정 */
     font-size: clamp(14px, 1.1rem, 18px);
     line-height: 1.4;
+	overflow: hidden !important; /* 스크롤 제거 */
 
-    /* 내용이 넘칠 때만 스크롤 표시 */
-    overflow-y: auto;
 }
 
 /* 패시지 내부의 불필요한 문단 여백 제거 */
@@ -285,6 +285,45 @@ progress::-webkit-progress-value {
     /* 배경색 제거 (대화창 배경과 통일감을 위해) */
     background-color: transparent; 
     color: #000; /* 글자색 검정 */
+  
+  	/* 텍스트 박스 자체 스크롤 허용 */
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 1px; /* 스크롤바 공간 */
+}
+
+/* 이름표 영역 (하단 바) */
+#name-zone {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45px; /* 이름표 높이 */
+    
+    /* 스타일 */
+    background-color: rgba(255, 255, 255, 0.4); /* 연한 반투명 */
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 0 0 13px 13px; /* 패시지 둥근 모서리에 맞춤 */
+    
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    box-sizing: border-box;
+    
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+/* 링크 버튼 컨테이너 (이름표 바로 위에 고정) */
+#next-btn {
+    position: absolute;
+    bottom: 55px; /* 이름표 높이(45px) + 간격(10px) */
+    z-index: 20;
+    
+
 }
 
 /* 현재 타이핑 중인 줄 */
@@ -296,8 +335,8 @@ progress::-webkit-progress-value {
 .next-icon {
     display: inline-block;
     margin-left: 8px;
-    font-size: 0.8em;
-    animation: blink-icon 1s infinite;
+    font-size: 1em;
+    animation: blink-icon 1.5s infinite;
     cursor: pointer;
 }
 

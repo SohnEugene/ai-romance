@@ -8,11 +8,52 @@ SugarCube.Config.passages.onProcess = function(p) {
 SugarCube.Macro.add('vntext', {
     tags: null,
     handler: function () {
+        // 1. 내용 가져오기
         let content = this.payload[0].contents.trim();
-        let lines = content.split('\n').filter(line => line.trim() !== '');
+      
+      	// 정규표현식으로 $로 시작하는 단어를 찾아서 SugarCube 엔진에 값을 물어봅니다.
+        content = content.replace(/(\$[a-zA-Z0-9_\.]+)/g, function(match) {
+            try {
+                // SugarCube의 스크립트 엔진을 통해 변수 값을 가져옴
+                let result = SugarCube.Scripting.evalTwineScript(match);
+                return result !== undefined ? result : match;
+            } catch (e) {
+                return match; // 에러 나면 그냥 원래 텍스트($name) 출력
+            }
+        });
         
+        // 2. 텍스트 분석 (Parsing)
+        // 줄바꿈으로 나눈 뒤, 각 줄에서 <<name ...>> 패턴을 추출합니다.
+        let linesData = content.split('\n').filter(line => line.trim() !== '').map(line => {
+            let text = line.trim();
+            let speaker = null;
+
+            // 정규표현식: <<name "..." >> 또는 <<name $... >> 찾기
+            // match[1]에 이름 데이터가 잡힘
+            const nameMatch = text.match(/<<name\s+(.+?)>>/);
+
+            if (nameMatch) {
+                let rawName = nameMatch[1]; // 예: "미나" 또는 $name
+                
+                // 태그를 텍스트에서 제거
+                text = text.replace(nameMatch[0], '').trim();
+
+                // 변수($name)인지 문자열("미나")인지 확인하여 값 변환
+                try {
+                    speaker = SugarCube.Scripting.evalTwineScript(rawName);
+                } catch (e) {
+                    speaker = rawName.replace(/['"]/g, ''); // 따옴표 제거
+                }
+            }
+            
+            // 텍스트 내용과 화자 정보를 객체로 리턴
+            return { text: text, speaker: speaker };
+        });
+
+        // 3. 출력 박스 생성
         let $container = $('<div id="typewriter-box"></div>').appendTo(this.output);
         
+        // 4. 상태 변수
         let lineIndex = 0;      
         let charIndex = 0;      
         let currentText = "";   
@@ -20,6 +61,7 @@ SugarCube.Macro.add('vntext', {
         let isTyping = false;   
         let $currentLineObj = null;
 
+        // 5. 한 글자씩 타이핑
         function typeNextChar() {
             if (charIndex < currentText.length) {
                 $currentLineObj.text(currentText.substring(0, charIndex + 1));
@@ -29,54 +71,86 @@ SugarCube.Macro.add('vntext', {
             }
         }
 
+        // 6. 줄 시작
         function startTypingLine() {
+            // 마지막 줄까지 다 봤으면 종료
+            if (lineIndex >= linesData.length) {
+                $(document).off('.vntext'); 
+                $('#next-btn').fadeIn(); // 링크 표시
+                return;
+            }
+
+            // 화면 초기화
             $container.empty();
+
+            // 현재 줄의 데이터 가져오기
+            let currentData = linesData[lineIndex];
+            currentText = currentData.text;
+            let currentSpeaker = currentData.speaker;
+
+            // 이름표 UI 갱신
+            if (currentSpeaker) {
+                $("#name-text").text(currentSpeaker);
+                $("#name-zone").show();
+            } else {
+                $("#name-zone").hide(); // 이름이 없으면(지문) 숨김
+            }
+
             isTyping = true;
-            currentText = lines[lineIndex].trim();
             charIndex = 0;
             $currentLineObj = $('<div class="typing-line"></div>').appendTo($container);
+
+            // 타이핑 시작
             timerId = setInterval(typeNextChar, 30);
         }
 
+        // 7. 줄 완성
         function stopTyping() {
             if (timerId) clearInterval(timerId);
             isTyping = false;
+            
             $currentLineObj.text(currentText);
-            $currentLineObj.append('<span class="next-icon"></span>');
+            $currentLineObj.append('<span class="next-icon">🍀</span>');
+            
             lineIndex++; 
         }
 
+        // 8. 클릭 핸들러
         const clickHandler = function (ev) {
-            // 메뉴가 열려있으면 작동 중지
             if ($("#pause-screen").is(":visible")) return;
             if ($(ev.target).is('a, button, input, textarea, .ui-dialog-body')) return;
 
             if (isTyping) {
-                stopTyping();
-                return;
-            }
-
-            if (lineIndex < lines.length) {
-                startTypingLine();
+                stopTyping(); // 스킵
             } else {
-                $(document).off('.vntext'); 
-                $('#next-btn').fadeIn();
+                // 마지막 줄까지 다 본 상태에서 클릭하면 종료 처리 (링크 띄우기)
+                if (lineIndex < linesData.length) {
+                    startTypingLine();
+                } else {
+                    $(document).off('.vntext'); 
+                    $('.next-icon').remove();
+                    $('#next-btn').fadeIn();
+                }
             }
         };
 
+        // 9. 초기 실행
         setTimeout(() => {
             $('#next-btn').hide(); 
             $(document).on('click.vntext', clickHandler);
             startTypingLine(); 
         }, 100);
 
+        // 10. 종료 처리
         $(document).one(':passageend', function () {
             $(document).off('.vntext');
             if (timerId) clearInterval(timerId);
+            $("#name-zone").hide();
         });
     }
 });
 
+// ... (이하 blur, awake 등 나머지 코드는 그대로 유지) ...
 /* =========================================
    [매크로] 특수 연출 (Blur, Awake, Glitch)
    ========================================= */
@@ -147,22 +221,6 @@ SugarCube.Macro.add("glitch", {
 /* [페이지 전환 시 처리 로직] */
 $(document).on(":passagedisplay", function(ev) {
     ensureOverlays();
-
-    // passage 내부의 불필요한 <br> 태그 제거
-    const $passage = $(ev.content);
-
-    // 연속된 <br> 태그를 하나로 줄임
-    $passage.find('br + br').remove();
-
-    // passage 맨 앞의 <br> 제거
-    $passage.contents().filter(function() {
-        return this.nodeType === 1 && this.tagName === 'BR';
-    }).first().remove();
-
-    // passage 맨 뒤의 <br> 제거
-    $passage.contents().filter(function() {
-        return this.nodeType === 1 && this.tagName === 'BR';
-    }).last().remove();
 
     // A. Awake 효과 처리 (깨어나는 중이라면)
     if (SugarCube.setup.isAwaking) {
