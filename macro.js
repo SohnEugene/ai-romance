@@ -148,6 +148,22 @@ SugarCube.Macro.add("glitch", {
 $(document).on(":passagedisplay", function(ev) {
     ensureOverlays();
 
+    // passage 내부의 불필요한 <br> 태그 제거
+    const $passage = $(ev.content);
+
+    // 연속된 <br> 태그를 하나로 줄임
+    $passage.find('br + br').remove();
+
+    // passage 맨 앞의 <br> 제거
+    $passage.contents().filter(function() {
+        return this.nodeType === 1 && this.tagName === 'BR';
+    }).first().remove();
+
+    // passage 맨 뒤의 <br> 제거
+    $passage.contents().filter(function() {
+        return this.nodeType === 1 && this.tagName === 'BR';
+    }).last().remove();
+
     // A. Awake 효과 처리 (깨어나는 중이라면)
     if (SugarCube.setup.isAwaking) {
         SugarCube.setup.isAwaking = false; // 플래그 초기화
