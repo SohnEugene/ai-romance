@@ -1,3 +1,8 @@
+// 패시지 텍스트 전처리 (앞뒤 공백 제거)
+SugarCube.Config.passages.onProcess = function(p) {
+    return p.text.trim();
+};
+
 /* vntext 매크로 정의 */
 
 SugarCube.Macro.add('vntext', {
@@ -37,7 +42,7 @@ SugarCube.Macro.add('vntext', {
             if (timerId) clearInterval(timerId);
             isTyping = false;
             $currentLineObj.text(currentText);
-            $currentLineObj.append('<span class="next-icon">🖌️</span>');
+            $currentLineObj.append('<span class="next-icon"></span>');
             lineIndex++; 
         }
 
@@ -55,7 +60,6 @@ SugarCube.Macro.add('vntext', {
                 startTypingLine();
             } else {
                 $(document).off('.vntext'); 
-                $('.next-icon').remove();
                 $('#next-btn').fadeIn();
             }
         };
@@ -83,12 +87,12 @@ function ensureOverlays() {
         $("body").append('<div id="blackout-overlay"></div>');
     }
     if ($("#glitch-overlay").length === 0) {
-        $("body").append('<div id="glitch-overlay"></div>');
+        $("body").append('<div id="glitch-overlay">🖱️</div>');
     }
 }
 
 // 1. <<blur "이동할패시지">>
-// - 화면이 3초간 어두워지고 흐려짐. 이동 후에도 어두운 상태 유지.
+// - 화면이 3초간 어두워지고 흐려짐. 이동 후에 천천히 blur 해제.
 SugarCube.Macro.add("blur", {
     handler: function() {
         ensureOverlays();
@@ -106,7 +110,7 @@ SugarCube.Macro.add("blur", {
 });
 
 // 2. <<awake "이동할패시지">>
-// - 이동한 패시지에서 3초간 천천히 밝아지고 선명해짐.
+// - 이동한 패시지에서 5초간 천천히 밝아지고 선명해짐.
 SugarCube.Macro.add("awake", {
     handler: function() {
         var destination = this.args[0];
@@ -120,6 +124,7 @@ SugarCube.Macro.add("awake", {
 
 // 3. <<glitch "이동할패시지(선택)">>
 // - 화면이 3초간 지직거림. 인자가 있으면 이동하고, 없으면 효과만 줌.
+// 지금 잘 안됨
 SugarCube.Macro.add("glitch", {
     handler: function() {
         ensureOverlays();
@@ -153,10 +158,10 @@ $(document).on(":passagedisplay", function(ev) {
         
         // 2) 아주 잠깐 뒤에 트랜지션을 주며 효과 해제 (눈 뜨는 연출)
         setTimeout(function() {
-            // 검은 막: 3초 동안 서서히 사라짐
+            // 검은 막: 5초 동안 서서히 사라짐
             $("#blackout-overlay").css("transition", "opacity 5s ease-out").removeClass("active");
             
-            // 블러: 3초 동안 서서히 선명해짐
+            // 블러: 5초 동안 서서히 선명해짐
             $("#story").css("transition", "filter 5s ease-out").removeClass("blur-active");
         }, 50);
     } 
@@ -164,10 +169,10 @@ $(document).on(":passagedisplay", function(ev) {
     // B. 일반적인 경우 (Awake가 아님)
     else {
         setTimeout(function() {
-            // 검은 막: 3초 동안 서서히 사라짐
+            // 검은 막: 2초 동안 서서히 사라짐
             $("#blackout-overlay").css("transition", "opacity 2s ease-out").removeClass("active");
             
-            // 블러: 3초 동안 서서히 선명해짐
+            // 블러: 2초 동안 서서히 선명해짐
             $("#story").css("transition", "filter 2s ease-out").removeClass("blur-active");
         }, 50);
         
