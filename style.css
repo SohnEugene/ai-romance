@@ -58,7 +58,7 @@ input, textarea {
 
 .passage {
     /* 높이를 30vh로 유지하되, 최소 높이를 보장 */
-    height: 30vh;
+    height: 20vh;
     min-height: 200px; /* 너무 작아지는 것 방지 */
 
     width: 90%;
@@ -66,8 +66,8 @@ input, textarea {
 
     /* 배경과 테두리를 함께 처리 */
     background:
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(230, 210, 255, 0.95)) padding-box,
-        linear-gradient(135deg, #ff69b4, #d896ff) border-box;
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(230, 210, 255, 0.6)) padding-box,
+        linear-gradient(135deg, rgba(255, 105, 180, 0.6), rgba(216, 150, 255, 0.6)) border-box;
     border: 5px solid transparent;
     border-radius: 15px;
     position: relative;
@@ -302,8 +302,8 @@ progress::-webkit-progress-value {
     height: 45px; /* 이름표 높이 */
     
     /* 스타일 */
-    background-color: rgba(255, 255, 255, 0.4); /* 연한 반투명 */
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.3); /* 연한 반투명 */
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 0 0 13px 13px; /* 패시지 둥근 모서리에 맞춤 */
     
     display: flex;
