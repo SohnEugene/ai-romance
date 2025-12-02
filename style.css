@@ -2,8 +2,9 @@
 
 /* 배경 및 기본 설정 */
 body {
-    /* 기본 배경색 (이미지가 없을 때 보임) */
-    background-color: #000;
+    /* 기본 배경색 (이미지가 없을 때 보임) - 핑크-보라 그라데이션 */
+    background: linear-gradient(135deg, #ff69b4 0%, #d896ff 50%, #b19cd9 100%);
+    background-color: #ff69b4; /* 폴백 */
 
     background-size: cover;             /* 화면 꽉 채우기 */
     background-position: center;        /* 중앙 정렬 */
@@ -351,23 +352,93 @@ progress::-webkit-progress-value {
 /* 1. 스토리 컨테이너 정렬 변경 (하단 -> 중앙) */
 body[data-tags~="Basic_style"] #story {
     align-items: center; /* 세로 중앙 정렬 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    padding-right: 5vw; /* 오른쪽 여백 */
 }
 
 /* 2. 패시지 상자 스타일 원상복구 (VN 스타일 해제) */
 body[data-tags~="Basic_style"] .passage {
-    height: auto;           /* 고정 높이(30vh) 해제 */
-    min-height: 0;
-    width: 50%;             /* 너비 적당히 조절 */
-    max-width: 800px;
-    
-    background: transparent; /* 핑크색 배경 제거 */
-    border: none;           /* 테두리 제거 */
-    border-radius: 0;
-    
-    padding: 0;             /* 패딩 제거 */
-    color: #eee;            /* 글자색 흰색으로 (배경이 검정이므로) */
-    font-size: 100%;        /* 폰트 크기 기본으로 */
+    height: auto;           /* 내용에 맞춰 높이 조정 */
+    width: 60%;             /* 너비 살짝 더 증가 */
+    max-width: 880px;       /* 최대 너비도 증가 */
+    margin-right: 0;        /* 오른쪽 정렬 유지 */
+
+    /* 핑크-보라 그라데이션 배경 (다른 패시지와 동일) */
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(250, 240, 255, 0.9)) padding-box,
+        linear-gradient(135deg, rgba(255, 105, 180, 0.8), rgba(216, 150, 255, 0.8)) border-box;
+    border: 5px solid transparent;
+    border-radius: 15px;
+
+    /* 보라색 glow 효과 */
+    box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.5),
+        0 0 40px rgba(216, 150, 255, 0.4),
+        inset 0 -2px 10px rgba(216, 150, 255, 0.2);
+
+    padding: 40px 50px;     /* 패딩 추가로 여유 공간 확보 */
+    color: #000;            /* 글자색 검정 (흰 배경이므로) */
+    font-size: 1.3rem;      /* 폰트 크기 증가 */
+    line-height: 1.8;       /* 줄 간격 넓힘 */
     overflow: visible;      /* 스크롤 제거 */
+    box-sizing: border-box;
+
+    /* 부드러운 등장 애니메이션 */
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 프로필 페이지의 패시지 박스는 이미지 위에 표시 */
+body[data-tags~="Profile"] .passage {
+    position: relative;
+    z-index: 10;            /* 이미지보다 위에 표시 */
+}
+
+/* 프로필 페이지용 캐릭터 이미지 (왼쪽) */
+body[data-tags~="Profile"] #character-image {
+    display: none; /* 기존 중앙 이미지 숨김 */
+}
+
+/* 프로필 전용 왼쪽 캐릭터 이미지 */
+body[data-tags~="Profile"]::before {
+    content: '';
+    position: fixed;
+    left: 15vw;             /* 미나 기준 위치 */
+    bottom: 0;              /* 화면 아래와 정렬 */
+    width: 40vw;            /* 미나 기준 너비 */
+    max-width: 600px;       /* 미나 기준 최대 너비 */
+    height: 95vh;           /* 미나 기준 높이 */
+    background-size: contain;
+    background-position: bottom center; /* 아래쪽 기준으로 정렬 */
+    background-repeat: no-repeat;
+    z-index: 5;             /* 패시지 박스(z-index: 10)보다 아래 */
+    pointer-events: none;
+}
+
+/* 미나 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="미나"])::before {
+    background-image: url('assets/mn/1.png');
+}
+
+/* 채진 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="채진"])::before {
+    background-image: url('assets/cg/1.png');
+}
+
+/* 클라라 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="클라라"])::before {
+    background-image: url('assets/ry/1.png');
+}
+
+/* 페이드인 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 세이브/로드 메뉴 (Pause Screen) */
