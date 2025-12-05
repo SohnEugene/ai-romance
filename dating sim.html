@@ -106,7 +106,879 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="dating sim" startnode="27" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="82938AA5-1CE1-4EEE-8D3B-9D32129576D7" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="1" color="orange"></tw-tag><tw-tag name="2" color="yellow"></tw-tag><tw-tag name="3" color="yellow"></tw-tag><tw-tag name="4" color="yellow"></tw-tag><tw-tag name="5" color="yellow"></tw-tag><tw-tag name="bg1" color="blue"></tw-tag><tw-tag name="bg2" color="blue"></tw-tag><tw-tag name="mina" color="yellow"></tw-tag><tw-tag name="cyring" color="purple"></tw-tag><tw-tag name="cg" color="blue"></tw-tag><tw-tag name="cd" color="yellow"></tw-tag><tw-tag name="mn" color="blue"></tw-tag><tw-tag name="ry" color="blue"></tw-tag><tw-tag name="Intro" color="green"></tw-tag><tw-tag name="Profile" color="red"></tw-tag><tw-tag name="bg10" color="purple"></tw-tag><tw-tag name="bg11" color="purple"></tw-tag><tw-tag name="bg12" color="purple"></tw-tag><tw-tag name="all" color="purple"></tw-tag><tw-tag name="bad_Ending" color="blue"></tw-tag><tw-tag name="bg8" color="blue"></tw-tag><tw-tag name="bg6" color="blue"></tw-tag><tw-tag name="bg7" color="blue"></tw-tag><tw-tag name="bg4" color="blue"></tw-tag><tw-passagedata pid="1" name="인트로1" tags="Intro bg10" position="725,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+	<tw-storydata name="dating sim" startnode="27" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="82938AA5-1CE1-4EEE-8D3B-9D32129576D7" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* AI Romance - Responsive Styles */
+
+/* 배경 및 기본 설정 */
+body {
+    /* 기본 배경색 (이미지가 없을 때 보임) - 핑크-보라 그라데이션 */
+    background: linear-gradient(135deg, #ff69b4 0%, #d896ff 50%, #b19cd9 100%);
+    background-color: #ff69b4; /* 폴백 */
+
+    background-size: cover;             /* 화면 꽉 채우기 */
+    background-position: center;        /* 중앙 정렬 */
+    background-repeat: no-repeat;       /* 반복 안 함 */
+    transition: background-image 0.5s ease-in-out; /* 배경 변경 시 부드러운 전환 효과 */
+
+    /* 기존 레이아웃 설정 */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+
+    /* 화면 크기에 따라 기본 폰트 사이즈 조절 */
+    font-size: clamp(14px, 1.5vw, 18px);
+    
+    /* 텍스트 드래그 및 더블클릭 선택 방지 */
+    -webkit-user-select: none; /* 크롬, 사파리 */
+    -moz-user-select: none;    /* 파이어폭스 */
+    -ms-user-select: none;     /* 인터넷 익스플로러/엣지 */
+    user-select: none;         /* 표준 브라우저 */
+}
+
+/* 입력창(이름 입력 등)은 텍스트 선택/입력이 가능해야 함 */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+/* story 컨테이너: 화면 하단 정렬 */
+#story {
+    width: 100%;
+    height: 100vh; /* 전체 높이 사용 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 하단 정렬 */
+    pointer-events: none; /* 배경 클릭 가능하게 하기 위해 컨테이너 클릭 통과 */
+}
+
+/* 텍스트 영역 레이아웃 */
+#passages {
+    width: 100%;
+    max-width: 1000px; /* 너무 넓어지지 않게 제한 */
+    margin: 0 auto;    /* 중앙 정렬 */
+    margin-bottom: 2vh; /* 바닥에서 살짝 띄움 */
+    position: relative;
+    z-index: 10;
+    pointer-events: auto; /* 텍스트 박스는 클릭 가능해야 함 */
+}
+
+.passage {
+    /* 높이를 30vh로 유지하되, 최소 높이를 보장 */
+    height: 20vh;
+    min-height: 200px; /* 너무 작아지는 것 방지 */
+
+    width: 90%;
+    margin: 0 auto;
+
+    /* 배경과 테두리를 함께 처리 */
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(230, 210, 255, 0.6)) padding-box,
+        linear-gradient(135deg, rgba(255, 105, 180, 0.6), rgba(216, 150, 255, 0.6)) border-box;
+    border: 5px solid transparent;
+    border-radius: 15px;
+    position: relative;
+
+    /* 빛나는 효과 (box-shadow) */
+    box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.4),
+        0 0 40px rgba(216, 150, 255, 0.3),
+        inset 0 -2px 10px rgba(216, 150, 255, 0.2);
+
+    /* 패딩을 줄여서 글자가 들어갈 공간 확보 */
+    padding: 2.2vh 1.8vw;
+  	padding-bottom: 60px
+    box-sizing: border-box;
+
+    text-align: left;
+    color: #000;
+
+    /* 글자 크기와 줄 간격을 조금 더 타이트하게 조정 */
+    font-size: clamp(14px, 1.1rem, 18px);
+    line-height: 1.4;
+	overflow: hidden !important; /* 스크롤 제거 */
+
+}
+
+/* 패시지 내부의 불필요한 문단 여백 제거 */
+.passage p {
+    margin-top: 0;
+    margin-bottom: 0.5em; /* 문단 사이 간격을 최소화 */
+    padding: 0;
+}
+
+/* 제목(h1~h6)이나 수평선(hr)이 있을 경우 여백 감소 */
+.passage h1, .passage h2, .passage h3 { margin: 0.2em 0; }
+.passage hr { margin: 0.5em 0; }
+/* 스크롤바 디자인 (미관상 숨기거나 얇게 처리) */
+.passage::-webkit-scrollbar {
+    width: 1px;
+}
+.passage::-webkit-scrollbar-thumb {
+    background-color: #ff69b4;
+    border-radius: 4px;
+}
+
+.passage > br:first-child {
+    display: none;
+}
+
+/* 배경 이미지 설정 */
+body:has(.passage[data-tags~="bg1"]) {
+    background-image: url('assets/background/bg1.png');
+}
+
+body:has(.passage[data-tags~="bg2"]) {
+    background-image: url('assets/background/bg2.png');
+}
+
+body:has(.passage[data-tags~="bg3"]) {
+    background-image: url('assets/background/bg3.png');
+}
+
+body:has(.passage[data-tags~="bg4"]) {
+    background-image: url('assets/background/bg4.png');
+}
+
+body:has(.passage[data-tags~="bg5"]) {
+    background-image: url('assets/background/bg5.png');
+}
+
+body:has(.passage[data-tags~="bg6"]) {
+    background-image: url('assets/background/bg6.png');
+}
+
+body:has(.passage[data-tags~="bg7"]) {
+    background-image: url('assets/background/bg7.png');
+}
+
+body:has(.passage[data-tags~="bg8"]) {
+    background-image: url('assets/background/bg8.png');
+}
+
+body:has(.passage[data-tags~="bg9"]) {
+    background-image: url('assets/background/bg9.png');
+}
+
+body:has(.passage[data-tags~="bg10"]) {
+    background-image: url('assets/background/bg10.png');
+}
+
+body:has(.passage[data-tags~="bg11"]) {
+    background-image: url('assets/background/bg11.png');
+}
+
+body:has(.passage[data-tags~="bg12"]) {
+    background-image: url('assets/background/bg12.png');
+}
+
+body:has(.passage[data-tags~="bg13"]) {
+    background-image: url('assets/background/bg13.png');
+}
+
+body:has(.passage[data-tags~="bg14"]) {
+    background-image: url('assets/background/bg14.png');
+}
+
+body:has(.passage[data-tags~="bg15"]) {
+    background-image: url('assets/background/bg15.png');
+}
+
+body:has(.passage[data-tags~="bg16"]) {
+    background-image: url('assets/background/bg16.png');
+}
+
+body:has(.passage[data-tags~="bg17"]) {
+    background-image: url('assets/background/bg17.png');
+}
+
+body:has(.passage[data-tags~="bg18"]) {
+    background-image: url('assets/background/bg18.png');
+}
+
+/* 캐릭터 이미지 (중앙 하단 고정) */
+#character-image {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* 화면 높이에 맞춰 이미지 크기 조절 */
+    height: 90vh; 
+    width: auto; /* 비율 유지 */
+    max-width: 100%;
+    
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* 호감도 UI */
+#right-sidebar {
+    position: fixed;
+    /* px 대신 vh, vw 단위를 사용하여 화면 비율에 따라 위치 조정 */
+    top: 3vh; 
+    right: 3vw;
+    
+    /* 너비를 화면 너비의 20%로 설정 (최소/최대 크기 제한) */
+    width: 20vw; 
+    min-width: 180px;
+    max-width: 250px;
+
+    padding: 1.5vh 1.5vw;
+    
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff69b4;
+    border-radius: 10px;
+    z-index: 100;
+    color: white;
+    font-family: sans-serif;
+    
+    /* UI 내용물이 넘치지 않도록 박스 크기 계산 */
+    box-sizing: border-box;
+}
+
+.sidebar-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1.5vh;
+    border-bottom: 1px solid #555;
+    padding-bottom: 1vh;
+}
+
+.char-box {
+    margin-bottom: 1.5vh;
+}
+
+.char-name {
+    display: inline-block;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.char-score {
+    float: right;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+/* 게이지 바 */
+progress {
+    width: 100%;
+    height: 1.5vh; /* 높이도 화면 비율에 맞춤 */
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #ff69b4;
+    border-radius: 5px;
+    transition: width 0.5s;
+}
+
+#typewriter-box {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 1.2em;
+    line-height: 1.4; /* 줄 간격 좁힘 */
+    /* min-height: 100px; */
+    white-space: pre-wrap;
+    padding: 10px; /* 패딩 축소 */
+    /* 배경색 제거 (대화창 배경과 통일감을 위해) */
+    background-color: transparent; 
+    color: #000; /* 글자색 검정 */
+  
+  	/* 텍스트 박스 자체 스크롤 허용 */
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 1px; /* 스크롤바 공간 */
+}
+
+/* 이름표 영역 (하단 바) */
+#name-zone {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45px; /* 이름표 높이 */
+    
+    /* 스타일 */
+    background-color: rgba(255, 255, 255, 0.3); /* 연한 반투명 */
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0 0 13px 13px; /* 패시지 둥근 모서리에 맞춤 */
+    
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    box-sizing: border-box;
+    
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+/* 링크 버튼 컨테이너 (이름표 바로 위에 고정) */
+#next-btn {
+    position: absolute;
+    bottom: 55px; /* 이름표 높이(45px) + 간격(10px) */
+    z-index: 20;
+    
+
+}
+
+/* 현재 타이핑 중인 줄 */
+.typing-line {
+    margin: 0;
+}
+
+/* 문장 끝에 붙는 붓 아이콘 애니메이션 */
+.next-icon {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 1em;
+    animation: blink-icon 1.5s infinite;
+    cursor: pointer;
+}
+
+/* 아이콘 깜빡임 키프레임 */
+@keyframes blink-icon {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.3; transform: translateY(-2px); }
+}
+
+/* 기본 Twine 스타일로 복구 */
+
+/* 1. 스토리 컨테이너 정렬 변경 (하단 -> 중앙) */
+body[data-tags~="Basic_style"] #story {
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    padding-right: 5vw; /* 오른쪽 여백 */
+}
+
+/* 2. 패시지 상자 스타일 원상복구 (VN 스타일 해제) */
+body[data-tags~="Basic_style"] .passage {
+    height: auto;           /* 내용에 맞춰 높이 조정 */
+    width: 60%;             /* 너비 살짝 더 증가 */
+    max-width: 880px;       /* 최대 너비도 증가 */
+    margin-right: 0;        /* 오른쪽 정렬 유지 */
+
+    /* 핑크-보라 그라데이션 배경 (다른 패시지와 동일) */
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(250, 240, 255, 0.9)) padding-box,
+        linear-gradient(135deg, rgba(255, 105, 180, 0.8), rgba(216, 150, 255, 0.8)) border-box;
+    border: 5px solid transparent;
+    border-radius: 15px;
+
+    /* 보라색 glow 효과 */
+    box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.5),
+        0 0 40px rgba(216, 150, 255, 0.4),
+        inset 0 -2px 10px rgba(216, 150, 255, 0.2);
+
+    padding: 40px 50px;     /* 패딩 추가로 여유 공간 확보 */
+    color: #000;            /* 글자색 검정 (흰 배경이므로) */
+    font-size: 1.3rem;      /* 폰트 크기 증가 */
+    line-height: 1.8;       /* 줄 간격 넓힘 */
+    overflow: visible;      /* 스크롤 제거 */
+    box-sizing: border-box;
+
+    /* 부드러운 등장 애니메이션 */
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 프로필 페이지의 패시지 박스는 이미지 위에 표시 */
+body[data-tags~="Profile"] .passage {
+    position: relative;
+    z-index: 10;            /* 이미지보다 위에 표시 */
+}
+
+/* 프로필 페이지용 캐릭터 이미지 (왼쪽) */
+body[data-tags~="Profile"] #character-image {
+    display: none; /* 기존 중앙 이미지 숨김 */
+}
+
+/* 프로필 전용 왼쪽 캐릭터 이미지 */
+body[data-tags~="Profile"]::before {
+    content: '';
+    position: fixed;
+    left: 15vw;             /* 미나 기준 위치 */
+    bottom: 0;              /* 화면 아래와 정렬 */
+    width: 40vw;            /* 미나 기준 너비 */
+    max-width: 600px;       /* 미나 기준 최대 너비 */
+    height: 95vh;           /* 미나 기준 높이 */
+    background-size: contain;
+    background-position: bottom center; /* 아래쪽 기준으로 정렬 */
+    background-repeat: no-repeat;
+    z-index: 5;             /* 패시지 박스(z-index: 10)보다 아래 */
+    pointer-events: none;
+}
+
+/* 미나 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="미나"])::before {
+    background-image: url('assets/mn/1.png');
+}
+
+/* 채진 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="채진"])::before {
+    background-image: url('assets/cg/1.png');
+}
+
+/* 클라라 프로필 이미지 */
+body[data-tags~="Profile"]:has(.passage[data-tags~="클라라"])::before {
+    background-image: url('assets/ry/1.png');
+}
+
+/* 페이드인 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 세이브/로드 메뉴 (Pause Screen) */
+
+/* 전체 화면을 덮는 오버레이 */
+#pause-screen {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* 반투명 검은 배경 */
+    z-index: 100000; /* 최상단 노출 */
+    
+    /* 내용물 중앙 정렬 (Flexbox) */
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    color: #fff;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 버튼 컨테이너 (세로 배치) */
+.pause-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+    width: 200px;
+}
+
+/* 저장/불러오기 메인 버튼 */
+.pause-main-btn {
+    padding: 15px 0;
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;3
+    border-radius: 5px;
+}
+
+.pause-main-btn:hover {
+    background: #ff69b4;
+    border-color: #ff69b4;
+}
+
+/* 슬롯 컨테이너 (가로 배치) */
+.slot-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 80%;
+    justify-content: center;
+}
+
+/* 개별 슬롯 박스 */
+.save-slot {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #555;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* 슬롯 마우스 오버 */
+.save-slot:hover {
+    border-color: #aaa;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 선택된 슬롯 (강조) */
+.save-slot.selected {
+    border-color: #ff69b4;
+    background: rgba(255, 105, 180, 0.2);
+    box-shadow: 0 0 15px #ff69b4;
+}
+
+/* 슬롯 내부 텍스트 */
+.slot-id { font-weight: bold; margin-bottom: 5px; }
+.slot-info { font-size: 0.8rem; color: #ccc; }
+.slot-empty { color: #666; font-style: italic; }
+
+/* 안내 메시지 영역 */
+#pause-message {
+    margin-top: 20px;
+    height: 20px;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+/* 기본 UI 숨기기 & 전체 레이아웃 보정 */
+
+/* SugarCube 기본 사이드바 숨김 */
+#ui-bar {
+    display: none !important;
+}
+
+/* 사이드바가 사라진 만큼 본문 영역을 왼쪽으로 당김 */
+#story {
+    margin-left: 0 !important;
+}
+
+/* 모바일 등에서 생길 수 있는 여백 제거 */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 일시정지 시 게임 화면 잠금 */
+
+/* 'paused' 클래스가 붙으면 게임 내용물 클릭 불가 */
+#story.paused {
+    pointer-events: none; /* 마우스 클릭 차단 */
+}
+/* 메뉴 화면은 클릭이 가능해야 함 */
+#pause-screen {
+    pointer-events: auto;
+}
+/* =========================================
+   [통합] 특수 연출 효과 (Visual Effects)
+   ========================================= */
+
+/* 1. 검은 막 (Blackout Overlay) */
+#blackout-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 99990; 
+    background-color: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#blackout-overlay.active {
+    opacity: 1;
+    pointer-events: all; /* 시야 차단 시 클릭도 차단 */
+}
+
+/* 2. 스토리 본문 (텍스트 영역) */
+#story {
+    transition: opacity 1s ease-in;
+    opacity: 1;
+}
+
+/* [핵심] HTML 태그에 이 클래스가 있으면 텍스트를 강제로 숨김 (깜빡임 방지) */
+html.story-hidden #story {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important; /* 렌더링 단계에서 아예 제외 */
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">// 패시지 텍스트 전처리 (앞뒤 공백 제거)
+SugarCube.Config.passages.onProcess = function(p) {
+    return p.text.trim();
+};
+
+/* vntext 매크로 정의 */
+
+SugarCube.Macro.add('vntext', {
+    tags: null,
+    handler: function () {
+        // 1. 내용 가져오기
+        let content = this.payload[0].contents.trim();
+      
+      	// 정규표현식으로 $로 시작하는 단어를 찾아서 SugarCube 엔진에 값을 물어봅니다.
+        content = content.replace(/(\$[a-zA-Z0-9_\.]+)/g, function(match) {
+            try {
+                // SugarCube의 스크립트 엔진을 통해 변수 값을 가져옴
+                let result = SugarCube.Scripting.evalTwineScript(match);
+                return result !== undefined ? result : match;
+            } catch (e) {
+                return match; // 에러 나면 그냥 원래 텍스트($name) 출력
+            }
+        });
+        
+        // 2. 텍스트 분석 (Parsing)
+        // 줄바꿈으로 나눈 뒤, 각 줄에서 <<name ...>> 패턴을 추출합니다.
+        let linesData = content.split('\n\n').filter(line => line.trim() !== '').map(line => {
+            let text = line.trim();
+            let speaker = null;
+
+            // 정규표현식: <<name "..." >> 또는 <<name $... >> 찾기
+            // match[1]에 이름 데이터가 잡힘
+            const nameMatch = text.match(/<<name\s+(.+?)>>/);
+
+            if (nameMatch) {
+                let rawName = nameMatch[1]; // 예: "미나" 또는 $name
+                
+                // 태그를 텍스트에서 제거
+                text = text.replace(nameMatch[0], '').trim();
+
+                // 변수($name)인지 문자열("미나")인지 확인하여 값 변환
+                try {
+                    speaker = SugarCube.Scripting.evalTwineScript(rawName);
+                } catch (e) {
+                    speaker = rawName.replace(/['"]/g, ''); // 따옴표 제거
+                }
+            }
+            
+            // 텍스트 내용과 화자 정보를 객체로 리턴
+            return { text: text, speaker: speaker };
+        });
+
+        // 3. 출력 박스 생성
+        let $container = $('<div id="typewriter-box"></div>').appendTo(this.output);
+        
+        // 4. 상태 변수
+        let lineIndex = 0;      
+        let charIndex = 0;      
+        let currentText = "";   
+        let timerId = null;     
+        let isTyping = false;   
+        let $currentLineObj = null;
+
+        // 5. 한 글자씩 타이핑
+        function typeNextChar() {
+            if (charIndex < currentText.length) {
+                $currentLineObj.text(currentText.substring(0, charIndex + 1));
+                charIndex++;
+            } else {
+                stopTyping(); 
+            }
+        }
+
+        // 6. 줄 시작
+        function startTypingLine() {
+            // 마지막 줄까지 다 봤으면 종료
+            if (lineIndex >= linesData.length) {
+                $(document).off('.vntext'); 
+                $('#next-btn').fadeIn(); // 링크 표시
+                return;
+            }
+
+            // 화면 초기화
+            $container.empty();
+
+            // 현재 줄의 데이터 가져오기
+            let currentData = linesData[lineIndex];
+            currentText = currentData.text;
+            let currentSpeaker = currentData.speaker;
+
+            // 이름표 UI 갱신
+            if (currentSpeaker) {
+                $("#name-text").text(currentSpeaker);
+                $("#name-zone").show();
+            } else {
+                $("#name-zone").hide(); // 이름이 없으면(지문) 숨김
+            }
+
+            isTyping = true;
+            charIndex = 0;
+            $currentLineObj = $('<div class="typing-line"></div>').appendTo($container);
+
+            // 타이핑 시작
+            timerId = setInterval(typeNextChar, 30);
+        }
+
+        // 7. 줄 완성
+        function stopTyping() {
+            if (timerId) clearInterval(timerId);
+            isTyping = false;
+            
+            $currentLineObj.text(currentText);
+            $currentLineObj.append('<span class="next-icon">🍀</span>');
+            
+            lineIndex++; 
+        }
+
+        // 8. 클릭 핸들러
+        const clickHandler = function (ev) {
+            if ($("#pause-screen").is(":visible")) return;
+            if ($(ev.target).is('a, button, input, textarea, .ui-dialog-body')) return;
+
+            if (isTyping) {
+                stopTyping(); // 스킵
+            } else {
+                // 마지막 줄까지 다 본 상태에서 클릭하면 종료 처리 (링크 띄우기)
+                if (lineIndex < linesData.length) {
+                    startTypingLine();
+                } else {
+                    $(document).off('.vntext'); 
+                    $('.next-icon').remove();
+                    $('#next-btn').fadeIn();
+                }
+            }
+        };
+
+        // 9. 초기 실행
+        setTimeout(() => {
+            $('#next-btn').hide(); 
+            $(document).on('click.vntext', clickHandler);
+            startTypingLine(); 
+        }, 100);
+
+        // 10. 종료 처리
+        $(document).one(':passageend', function () {
+            $(document).off('.vntext');
+            if (timerId) clearInterval(timerId);
+            $("#name-zone").hide();
+        });
+    }
+});
+/* ===========================================================
+   [매크로] 특수 연출 (Blur & Awake) - 깜빡임 방지 최종판
+   =========================================================== */
+
+function ensureOverlays() {
+    if ($("#blackout-overlay").length === 0) $("body").append('<div id="blackout-overlay"></div>');
+}
+
+// 전역 플래그
+window.effectState = null;
+
+/* -----------------------------------------------------------
+   1. <<blur "이동할패시지">>
+   - 현재 화면 암전 -> (이동 직전 텍스트 숨김) -> 이동 -> (다음 화면) 배경 보임 -> 텍스트 보임
+   ----------------------------------------------------------- */
+SugarCube.Macro.add("blur", {
+    handler: function() {
+        ensureOverlays();
+        var destination = this.args[0];
+        
+        window.effectState = 'blur';
+
+        // 1) 3초 동안 화면 암전 (클릭 차단)
+        $("#blackout-overlay").css("transition", "opacity 3s ease-in").addClass("active");
+        
+        // 2) 3초 뒤 페이지 이동
+        setTimeout(function() {
+            // [중요] 이동하기 직전에 '텍스트 숨김 모드' 발동
+            // 다음 페이지가 로딩될 때 아예 안 보이게 함
+            $("html").addClass("story-hidden");
+            
+            if (destination) SugarCube.Engine.play(destination);
+        }, 3000);
+    }
+});
+
+/* -----------------------------------------------------------
+   2. <<awake "이동할패시지">>
+   - (이동 직전 암전 & 텍스트 숨김) -> 이동 -> (다음 화면) 배경 보임 -> 텍스트 보임
+   ----------------------------------------------------------- */
+SugarCube.Macro.add("awake", {
+    handler: function() {
+        ensureOverlays();
+        var destination = this.args[0];
+        
+        window.effectState = 'awake';
+
+        // [중요] 이동하기 전에 미리 화면을 깜깜하게 만들고 텍스트를 숨김
+        // transition: none으로 즉시 적용하여 플레이어는 이동 과정을 못 봄
+        $("#blackout-overlay").css("transition", "none").addClass("active").css("opacity", "1");
+        $("html").addClass("story-hidden");
+
+        if (destination) SugarCube.Engine.play(destination);
+    }
+});
+
+
+/* =========================================
+   [페이지 전환 후 처리 로직]
+   ========================================= */
+$(document).on(":passagedisplay", function(ev) {
+    ensureOverlays();
+    
+    var $overlay = $("#blackout-overlay");
+
+    // 시나리오 A: <<blur>>를 통해 넘어온 경우
+    if (window.effectState === 'blur') {
+        window.effectState = null;
+
+        // 검은 막은 유지(active), 텍스트는 이미 안 보임(story-hidden)
+
+        // 1. 연출 시작 (0.1초 딜레이)
+        setTimeout(function() {
+            // [단계 1] 2초 동안 검은 막 사라짐 (배경 보임)
+            $overlay.css("transition", "opacity 2s ease-out").removeClass("active").css("opacity", "0");
+            
+            // [단계 2] 2초 뒤에 텍스트 등장
+            setTimeout(function() {
+                // 숨김 모드 해제 (CSS transition에 의해 부드럽게 나타남)
+                $("html").removeClass("story-hidden");
+            }, 2000);
+
+        }, 100);
+    }
+
+    // 시나리오 B: <<awake>>를 통해 넘어온 경우
+    else if (window.effectState === 'awake') {
+        window.effectState = null;
+
+        // 이미 검은 막(active) 상태, 텍스트 숨김(story-hidden) 상태임
+
+        // 1. 연출 시작
+        setTimeout(function() {
+            // CSS 초기화
+            $overlay.css("opacity", "");
+
+            // [단계 1] 5초 동안 검은 막 사라짐 (천천히 눈 뜸)
+            $overlay.css("transition", "opacity 5s ease-out").removeClass("active");
+
+            // [단계 2] 5초 뒤에 텍스트 등장
+            setTimeout(function() {
+                $("html").removeClass("story-hidden");
+            }, 5000);
+
+        }, 100);
+    }
+
+    // 시나리오 C: 일반 이동
+    else {
+        // 혹시라도 숨김 모드가 남아있다면 즉시 해제
+        $("html").removeClass("story-hidden");
+        
+        if ($overlay.hasClass("active")) {
+            $overlay.css("transition", "none").removeClass("active").css("opacity", "0");
+            setTimeout(function(){ $overlay.css("transition", ""); }, 100);
+        }
+    }
+});</script><tw-tag name="1" color="orange"></tw-tag><tw-tag name="2" color="yellow"></tw-tag><tw-tag name="3" color="yellow"></tw-tag><tw-tag name="4" color="yellow"></tw-tag><tw-tag name="5" color="yellow"></tw-tag><tw-tag name="6" color="yellow"></tw-tag><tw-tag name="7" color="yellow"></tw-tag><tw-tag name="bg1" color="blue"></tw-tag><tw-tag name="bg2" color="blue"></tw-tag><tw-tag name="mina" color="yellow"></tw-tag><tw-tag name="cyring" color="purple"></tw-tag><tw-tag name="cg" color="blue"></tw-tag><tw-tag name="cd" color="yellow"></tw-tag><tw-tag name="mn" color="blue"></tw-tag><tw-tag name="ry" color="blue"></tw-tag><tw-tag name="Intro" color="green"></tw-tag><tw-tag name="Profile" color="red"></tw-tag><tw-tag name="bg10" color="purple"></tw-tag><tw-tag name="bg11" color="purple"></tw-tag><tw-tag name="bg12" color="purple"></tw-tag><tw-tag name="all" color="purple"></tw-tag><tw-tag name="bad_Ending" color="blue"></tw-tag><tw-tag name="bg8" color="blue"></tw-tag><tw-tag name="bg6" color="blue"></tw-tag><tw-tag name="bg7" color="blue"></tw-tag><tw-tag name="bg4" color="blue"></tw-tag><tw-tag name="bg9" color="blue"></tw-tag><tw-tag name="bg3" color="blue"></tw-tag><tw-tag name="bg5" color="blue"></tw-tag><tw-tag name="bg13" color="purple"></tw-tag><tw-tag name="bg134" color="red"></tw-tag><tw-tag name="bg14" color="purple"></tw-tag><tw-tag name="bg15" color="purple"></tw-tag><tw-tag name="black" color="green"></tw-tag><tw-tag name="white" color="blue"></tw-tag><tw-tag name="ru" color="blue"></tw-tag><tw-passagedata pid="1" name="인트로1" tags="Intro bg10" position="725,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 오늘은 내가 한국대학교 정보문화학과에 입학한지 한 달째 되는 날
 부스스한 머리를 감추기 위해 모자를 쓰고 기숙사를 나섰다
 
@@ -205,6 +1077,7 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="인트로4" tags="Intro bg11" position="1100,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 결국, 나는 가장 확실한 조언자를 찾기로 했다
 세상의 모든 데이터를 학습하고, 완벽한 해답을 제시할 수 있는 존재, AI
+
 &#39;좋아, 인공지능에게 물어보자. 어떻게 하면 연애를 할 수 있을까?&#39;
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
@@ -223,7 +1096,7 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 	&lt;&lt;link &quot;다음&quot;&gt;&gt;
    	 	&lt;&lt;blur &quot;인트로7&quot;&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="인트로7" tags="Intro" position="1475,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="인트로7" tags="Intro black" position="1475,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 ..................
 시간이 얼마나 지났을까?
 
@@ -336,7 +1209,8 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 &lt;div id=&quot;next-btn&quot;&gt;
 [[먼저 반갑게 인사해보자|미나대화2][$love.mina += 5]]
 [[AI가 먼저 인사를 해주기도 하려나? 좀 더 기다려보자|미나대화3]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="채진대화1" tags="" position="1725,1825" size="100,100">캠퍼스의 가로수길을 걷고 있다. 따스한 햇살이 내리쬐는 평화로운 날씨다.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="채진대화1" tags="cg 1 bg9" position="1725,1825" size="100,100">&lt;&lt;vntext&gt;&gt;
+캠퍼스의 가로수길을 걷고 있다. 따스한 햇살이 내리쬐는 평화로운 날씨다.
 아직도 조금은 혼란스럽지만 그래도 익숙한 길이라 발이 이끄는 대로 걸어가본다
 
 저 멀리서, 이 평화로운 풍경과는 다소 어울리지 않는 형광색 물체가 이쪽으로 빠르게 다가오고 있다
@@ -345,16 +1219,21 @@ OT도, MT도 빼먹지 않고 다녀왔지만 이렇다 할 일은 없었고, �
 
 그녀는 혼자서 무언가 신이 났는지 콧노래를 흥얼거리며 방방 뛰고 있다.
 나를 발견하기 10미터 전이다
-
-[[먼저 손을 흔들어 아는 척을 한다|채진대화2]]  +5점
-[[못 본 척하고 가만히 있어 본다|채진대화2]]  -5점</tw-passagedata><tw-passagedata pid="23" name="클라라대화1" tags="" position="2125,1825" size="100,100">캠퍼스의 소란스러운 광장을 지나, 인적이 드문 벤치 쪽으로 발걸음을 옮겼다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[먼저 손을 흔들어 아는 척을 한다|채진대화2][$love.chaejin += 5]]
+[[못 본 척하고 가만히 있어 본다|채진대화2][$love.chaejin -= 5]]
+&lt;/div&gt;0</tw-passagedata><tw-passagedata pid="23" name="클라라대화1" tags="bg9 ry 1" position="2125,1825" size="100,100">&lt;&lt;vntext&gt;&gt;
+캠퍼스의 소란스러운 광장을 지나, 인적이 드문 벤치 쪽으로 발걸음을 옮겼다.
 그곳에 마치 다른 세상에 있는 듯한 분위기를 풍기는 한 사람이 앉아 있다
 
 클라라다. 그녀는 다리를 꼬고 앉아 무릎 위의 노트북에 시선을 고정하고 있다
 
 타닥, 타닥... 키보드를 두드리는 소리가 마치 피아노 연주처럼 일정한 리듬을 타고 들려온다. 차원이 다른 우아함이다
-
-[[방해되지 않게 조심스럽게 다가간다|클라라대화2]]</tw-passagedata><tw-passagedata pid="24" name="미나대화2" tags="bg8 mn 2" position="1250,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[방해되지 않게 조심스럽게 다가간다|클라라대화2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="미나대화2" tags="bg8 mn 2" position="1250,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
 안녕! 미나 맞지?
 나도 모르게 긴장을 했는지, 목소리가 생각보다 조금 크게 나와버렸다
 
@@ -776,54 +1655,73 @@ $name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&l
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|MainScene][$minaStage+=1]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="채진대화2" tags="" position="1725,1950" size="100,100">내가 반응하기도 전에, 채진이 눈을 동그랗게 뜨더니 100미터 달리기 선수처럼 내 코앞까지 달려왔다
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="채진대화2" tags="cg bg9 2" position="1725,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
+내가 반응하기도 전에, 채진이 눈을 동그랗게 뜨더니 100미터 달리기 선수처럼 내 코앞까지 달려왔다
 
 우와!✨그녀의 목소리에 주변 참새들이 후다닥 날아간다. 채진은 숨을 헐떡이면서도 얼굴 가득 웃음을 띠고 있다
 
 여기서 딱 마주치다니 이거 완전 럭키비키잖아?!🍀오늘 안 그래도 너 보고 싶어서 AI 타로점 봤는데 &#39;귀인&#39;을 만난다고 했거든! 대박!
 
 정신이 하나도 없다. 일단 대답을 해야 한다
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[럭키비키? 그게 뭐야? (의아해하며)|채진대화3]]
-[[오~ 완전 럭키비키네! (장단을 맞추며)|채진대화4]] +5점</tw-passagedata><tw-passagedata pid="56" name="채진대화3" tags="" position="1600,2075" size="100,100">럭키비키? 그게 무슨 주문 같은 거야?
+[[오~ 완전 럭키비키네! (장단을 맞추며)|채진대화4][$love.chaejin += 5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="56" name="채진대화3" tags="cg 3 bg9" position="1600,2075" size="100,100">&lt;&lt;vntext&gt;&gt;
+럭키비키? 그게 무슨 주문 같은 거야?
 
 채진이 놀란다
 
 헙! 밈 공부 좀 해야겠다~🤭 운이 좋다는 뜻이야! 긍정적 사고! 원영적 사고! 아무튼 너 봐서 완전 행운이라는 거지!
-
-[[그렇구나|채진대화5]] </tw-passagedata><tw-passagedata pid="57" name="채진대화4" tags="" position="1725,2075" size="100,100">그러게! 여기서 딱 마주치다니 완전 럭키비키다, 그치?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[그렇구나|채진대화5]] 
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="57" name="채진대화4" tags="bg9 cg 2" position="1725,2075" size="100,100">그러게! 여기서 딱 마주치다니 완전 럭키비키다, 그치?
 
 채진이 방방 뛴다
 
 꺄악!😆 역시 센스쟁이! 통한다니까!⚡찌릿찌릿!
 
-[[하하하|채진대화5]] </tw-passagedata><tw-passagedata pid="58" name="채진대화5" tags="" position="1675,2225" size="100,100">채진은 제자리에서 한 바퀴 빙글 돌며 하늘을 가리켰다. 물감 냄새가 확 풍기지만, 싫지 않은 달달한 냄새도 섞여 있다
+[[하하하|채진대화5]] </tw-passagedata><tw-passagedata pid="58" name="채진대화5" tags="bg9 cg 2" position="1675,2225" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진은 제자리에서 한 바퀴 빙글 돌며 하늘을 가리켰다. 물감 냄새가 확 풍기지만, 싫지 않은 달달한 냄새도 섞여 있다
 
 오늘 날씨 완전 꿀이지 않아?🌈 구름 한 점 없는 게 딱 물감 짜놓은 캔버스 같아! 아, 너 가방 멘 거 보니까... 혹시 도서관 가는 거야?
 
 그녀가 눈을 반짝이며 내 대답을 기다린다. 꼬리가 있다면 살랑살랑 흔들고 있을 것 같은 기세다
 
 나랑 같이 가자! 🏃‍♀️💨 나도 크로키 북 챙겨 왔거든!
-
-[[그래! 날씨도 좋은데 너 보니까 더 힘이 난다! 같이 가자!|채진대화6]] +10
-[[옷에 물감 묻은 거 보니 평소에도 참 열심히 작업하나 보네. 좋아 같이 가자|채진대화7]] +6점
-[[너 작업해야하는 거 아니었어? 시간되면 따라오고|채진대화8]] -5점</tw-passagedata><tw-passagedata pid="59" name="채진대화6" tags="" position="1675,2350" size="100,100">꺄아! 역시 너랑은 텐션이 맞아! 💖 당장 출발!!
-
-[[다음|채진1단계종료]]</tw-passagedata><tw-passagedata pid="60" name="채진대화7" tags="" position="1825,2350" size="100,100">헤헤, 티 나? 🎨 열정의 흔적이랄까~? 얼른 가자!
-
-[[다음|채진1단계종료]]</tw-passagedata><tw-passagedata pid="61" name="채진대화8" tags="" position="2000,2350" size="100,100"> ㅎㅎ 괜찮아~! 🤫 쉿! 조용히 따라갈게~
- 
-[[다음|채진1단계종료]]</tw-passagedata><tw-passagedata pid="62" name="채진대화9" tags="" position="1825,2625" size="100,100">평소에 내가 자주 가던 동아리방으로 향하는 길이다. 어디든 익숙한 곳이 제일 편한 법이지.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[그래! 날씨도 좋은데 너 보니까 더 힘이 난다! 같이 가자!|채진대화6][$love.chaejin += 10]]
+[[옷에 물감 묻은 거 보니 평소에도 참 열심히 작업하나 보네. 좋아 같이 가자|채진대화7][$love.chaejin += 6]]
+[[너 작업해야하는 거 아니었어? 시간되면 따라오고|채진대화8][$love.chaejin -= 5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name="채진대화6" tags="bg9 cg 2" position="1675,2350" size="100,100">&lt;&lt;vntext&gt;&gt;
+꺄아! 역시 너랑은 텐션이 맞아! 💖 당장 출발!!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="60" name="채진대화7" tags="bg9 cg 1" position="1825,2350" size="100,100">&lt;&lt;vntext&gt;&gt;
+헤헤, 티 나? 🎨 열정의 흔적이랄까~? 얼른 가자!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="채진대화8" tags="bg9 cg 1" position="2000,2350" size="100,100">&lt;&lt;vntext&gt;&gt;
+ ㅎㅎ 괜찮아~! 🤫 쉿! 조용히 따라갈게~
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="62" name="채진대화9" tags="bg2" position="1825,2625" size="100,100">&lt;&lt;vntext&gt;&gt;
+평소에 내가 자주 가던 동아리방으로 향하는 길이다. 어디든 익숙한 곳이 제일 편한 법이지.
 동방 문 앞에 다다르자, 안쪽에서 심상치 않은 소리가 새어 나온다
 
 타다닥! 탁! 타다다닥!
 기관총을 쏘는 듯한 격렬한 키보드 타건음. 그리고 익숙한 목소리가 복도를 울린다
 
 아 거기로 들어가지 말라니까!! 힐각 안 나온다고!!🚑 야 겐지!!! 돌아와!!!
-
-[[심상치 않다... 조심스럽게 문을 연다|채진대화10]]</tw-passagedata><tw-passagedata pid="63" name="채진1단계종료" tags="" position="1850,2500" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 좀 더 대화해보자.|채진대화9]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="64" name="인트로5" tags="Intro bg11" position="1225,325" size="100,100">&lt;&lt;vntext&gt;&gt;
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[심상치 않다... 조심스럽게 문을 연다|채진대화10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name="인트로5" tags="Intro bg11" position="1225,325" size="100,100">&lt;&lt;vntext&gt;&gt;
 &quot;잠시만 기다려주세요...&quot;
 화면 하단에는 조그만 커서가 깜빡거리며 AI의 답변이 곧 쏟아져 나올 것임을 예고하고 있었다
 
@@ -835,31 +1733,41 @@ $name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&l
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
 [[다음|인트로6]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="채진대화10" tags="" position="1825,2775" size="100,100">평소에 내가 자주 가던 동아리방으로 향하는 길이다. 어디든 익숙한 곳이 제일 편한 법이지.
-동방 문 앞에 다다르자, 안쪽에서 심상치 않은 소리가 새어 나온다
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name="채진대화10" tags="bg3 cg 1" position="1825,2775" size="100,100">&lt;&lt;vntext&gt;&gt;
+문을 열자마자 형형색색의 RGB 조명이 번쩍이는 게이밍 키보드가 보인다
+그 앞에는 헤드셋을 쓴 채진이 모니터 안으로 빨려 들어갈 듯 거북목을 하고 있다
 
-타다닥! 탁! 타다다닥!
-기관총을 쏘는 듯한 격렬한 키보드 타건음. 그리고 익숙한 목소리가 복도를 울린다
+살려줘살려줘살려줘... 아! 부활! 그렇지! ✨ 영웅은 죽지 않아요~!
 
-아 거기로 들어가지 말라니까!! 힐각 안 나온다고!!🚑 야 겐지!!! 돌아와!!!
-
-[[심상치 않다... 조심스럽게 문을 연다|채진대화11]]</tw-passagedata><tw-passagedata pid="66" name="채진대화11" tags="" position="1825,2900" size="100,100">잠시 후, 패배(DEFEAT)...하는 게임 음성과 함께 채진이 책상을 쾅 내려쳤다.
+그녀는 나를 보지도 못하고 화면에 열중해 있다
+나는 조용히 그녀의 뒤로 다가가 소파에 털썩 앉았다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로.|채진대화11]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="채진대화11" tags="bg3 cg 4" position="1825,2900" size="100,100">&lt;&lt;vntext&gt;&gt;
+잠시 후, 패배(DEFEAT)...하는 게임 음성과 함께 채진이 책상을 쾅 내려쳤다.
 그제야 그녀가 헤드셋을 벗으며 뒤를 돌아본다
 
 으아앙!!💢 우리 팀 겐지 진짜 AI 아니야? 학습이 덜 된 모델처럼 던진다구!
 
 그녀가 나를 발견하곤 금세 표정을 바꾸며 베시시 웃는다.
 앗, 왔어?👋 방금 봤어? 나 진짜 힐량 1등 찍었는데 팀운이 망했어ㅠㅠ
-
-[[그러게, 힐러가 고생이 많네. 네가 메르시 장인이라며?|채진대화12]] +3점
-[[넌 게임도 되게 열심히 하는구나|채진대화12]] 호감도 유지</tw-passagedata><tw-passagedata pid="67" name="채진대화12" tags="" position="1700,3025" size="100,100">나의 칭찬에 채진의 어깨가 하늘 높이 솟아오른다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[그러게, 힐러가 고생이 많네. 네가 메르시 장인이라며?|채진대화12][$love.chaejin+=3]]
+[[넌 게임도 되게 열심히 하는구나|채진대화12]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="66" name="채진대화12" tags="bg3 cg 2" position="1700,3025" size="100,100">&lt;&lt;vntext&gt;&gt;
+나의 칭찬에 채진의 어깨가 하늘 높이 솟아오른다.
 
 당연하지!🩺 나 완전 &#39;전투 천사&#39; 그 자체라니깐? 부활 각 보는 센스가 남다르다구. 엔비디아 최신 그래픽카드 급 연산 속도로 전장을 읽는달까?😎
 
 자신감 넘치는 그녀의 모습에 문득 장난기가 발동했다.
 미대생인 그녀의 그림 실력도 확인해볼 겸, 슬쩍 미끼를 던져본다
-
-[[말만 하지 말고 보여줘 봐. 그 &#39;전투 천사&#39; 메르시, 한번 그려줄 수 있어?|채진대화13]]</tw-passagedata><tw-passagedata pid="68" name="채진대화13" tags="" position="1700,3150" size="100,100">그림? 에이~ 너 부탁인데 당근이지!🥕지금 바로 출력... 아니, 그려 줄게!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[말만 하지 말고 보여줘 봐. 그 &#39;전투 천사&#39; 메르시, 한번 그려줄 수 있어?|채진대화13]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="67" name="채진대화13" tags="bg3 cg 2" position="1700,3150" size="100,100">&lt;&lt;vntext&gt;&gt;
+그림? 에이~ 너 부탁인데 당근이지!🥕지금 바로 출력... 아니, 그려 줄게!
 
 채진이 가방에서 주섬주섬 스케치북과 4B 연필을 꺼냈다. 준비 자세를 취하는가 싶더니...
 사각사각사각사각—!!
@@ -867,45 +1775,67 @@ $name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&l
 사람의 손놀림이라고는 믿기지 않는 속도다. 마치 손에 터보 엔진이 달린 것처럼 연필이 종이 위를 춤춘다. 정확히 3초가 지났다
 
 끝!✨ 완성했어!!
-
-[[벌써? 농담하지 말고 보여줘 봐|채진대화14]] +2점
-[[너 진짜 그림 잘 그리는 구나. 어떻게 3초만에…|채진대화14]] +1점</tw-passagedata><tw-passagedata pid="69" name="채진대화14" tags="" position="1700,3300" size="100,100">채진이 짜잔~!! 하는 효과음과 함께 스케치북을 내 코앞에 들이밀었다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[벌써? 농담하지 말고 보여줘 봐|채진대화14][$love.chaejin+=2]]
+[[너 진짜 그림 잘 그리는 구나. 어떻게 3초만에…|채진대화14][$love.chaejin+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="68" name="채진대화14" tags="bg3 cg 6" position="1700,3300" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이 짜잔~!! 하는 효과음과 함께 스케치북을 내 코앞에 들이밀었다
 
 어때? 완전 고퀄리티지?😎빛의 굴절이랑 텍스처 질감까지 완벽하게 구현했다구!
 
 그림은... 확실히 엄청난 퀄리티다. 사진을 그대로 박은 듯한 명암 표현, 완벽한 비율. 하지만, 자세히 볼수록 무언가 이상하다
-
-[[뭔가 이상한 것 같은데?|채진대화15]]</tw-passagedata><tw-passagedata pid="70" name="채진대화15" tags="" position="1700,3425" size="100,100">나는 눈을 비비고 그림 속 메르시의 손을 들여다보았다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[뭔가 이상한 것 같은데?|채진대화15]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="69" name="채진대화15" tags="bg3 cg 6" position="1700,3425" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 눈을 비비고 그림 속 메르시의 손을 들여다보았다
 
 지팡이를 쥐고 있는 손가락이... 하나, 둘, 셋... 여섯 개다. 심지어 왼팔은 관절이 하나 더 있는지, 알파벳 Z 모양으로 기묘하게 꺾여 있다. 얼굴은 메르시인데, 눈동자의 초점이 미묘하게 서로 다른 곳을 보고 있어 섬뜩함마저 느껴진다
 
 하지만 채진의 표정은 위풍당당하다
-
-[[클릭하여 계속|채진대화16]]</tw-passagedata><tw-passagedata pid="71" name="채진대화16" tags="" position="1700,3550" size="100,100">약간 입체파 느낌도 섞어봤는데, 느껴져?🖌️이 역동적인 관절 표현! 이게 바로 21세기 하이퍼 리얼리즘이지!
-
-[[오... 분위기 있네 완전! 근데 여기 손가락이 하나 더 있는 건 의도한 거야?|채진대화17]] -5점
-[[근데 좀 진짜 사람이랑은 다르다. 신기한데?|채진대화18]] +2점
-[[와, 진짜 빠르다! 이 추상적인 화풍... 피카소가 울고 가겠어!|채진대화19]] +10점</tw-passagedata><tw-passagedata pid="72" name="채진대화17" tags="" position="1700,3675" size="100,100">채진이 깜짝 놀라며 그림을 쳐다본다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|채진대화16]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="70" name="채진대화16" tags="bg3 cg 2" position="1700,3550" size="100,100">&lt;&lt;vntext&gt;&gt;
+약간 입체파 느낌도 섞어봤는데, 느껴져?🖌️이 역동적인 관절 표현! 이게 바로 21세기 하이퍼 리얼리즘이지!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[오... 분위기 있네 완전! 근데 여기 손가락이 하나 더 있는 건 의도한 거야?|채진대화17][$love.chaejin-=5]]
+[[근데 좀 진짜 사람이랑은 다르다. 신기한데?|채진대화18][$love.chaejin+=2]]
+[[와, 진짜 빠르다! 이 추상적인 화풍... 피카소가 울고 가겠어!|채진대화19][$love.chaejin+=10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="71" name="채진대화17" tags="bg3 cg 3" position="1700,3675" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이 깜짝 놀라며 그림을 쳐다본다
 
 어? 손가락? ...아!💦 이건... 그... 천사니까! 신성한 힘을 표현하기 위해 엑스트라 손가락을 추가한... 뭐, 그런 예술적 허용이지! 하하하!
-
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="73" name="채진대화18" tags="" position="1825,3675" size="100,100">채진이 얼굴이 빨개지며 말한다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="72" name="채진대화18" tags="bg3 cg 5" position="1825,3675" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이 얼굴이 빨개지며 말한다
 
 힝...🥺 너무 해부학적으로만 보지 말라구! 중요한 건 느낌이야, 느낌! 암튼...!
-
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="74" name="채진대화19" tags="" position="1575,3675" size="100,100">채진의 입이 귀에 걸린다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="73" name="채진대화19" tags="bg3 cg 2" position="1575,3675" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진의 입이 귀에 걸린다
 
 꺄아!🙈 역시 너는 예술을 보는 눈이 있구나! &#39;보이는 것 그 너머&#39;를 그리는 의도를 딱 알아챘구나? 감동 심해...🥺
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="74" name="채진대화20" tags="bg9 cg 1" position="1700,3925" size="100,100">&lt;&lt;vntext&gt;&gt;
+수업이 다 끝난 늦은 오후, 캠퍼스 벤치에 앉아 바람을 쐬고 있다. 저쪽에서 채진이가 걸어오는 게 보인다
 
-[[다음|채진2단계종료]]</tw-passagedata><tw-passagedata pid="75" name="채진2단계종료" tags="" position="1700,3800" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 좀 더 대화해보자.|채진대화20]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="76" name="채진대화20" tags="" position="1700,3925" size="100,100">수업이 다 끝난 늦은 오후, 캠퍼스 벤치에 앉아 바람을 쐬고 있다. 저쪽에서 채진이가 걸어오는 게 보인다
-
-평소 같았으면 (이름)아~!! 📢하고 동네가 떠나가라 내 이름을 부르며 달려왔을 텐데... 지금은 뭔가 다르다
+평소 같았으면 $name아~!! 📢하고 동네가 떠나가라 내 이름을 부르며 달려왔을 텐데... 지금은 뭔가 다르다
 
 발걸음이 느릿느릿하다. 등 뒤에 양손을 숨긴 채, 내 눈치를 살금살금 보며 다가온다
-
-[[평소랑 다른데? 먼저 아는 척을 해본다|채진대화21]]</tw-passagedata><tw-passagedata pid="77" name="채진대화21" tags="" position="1700,4050" size="100,100">어? 채진아. 왜 그렇게 쭈뼛거려?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[평소랑 다른데? 먼저 아는 척을 해본다|채진대화21]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="75" name="채진대화21" tags="bg9 cg 3" position="1700,4050" size="100,100">&lt;&lt;vntext&gt;&gt;
+어? 채진아. 왜 그렇게 쭈뼛거려?
 
 내 목소리에 채진이가 헙! 하고 놀라더니, 볼을 살짝 붉힌다. 가까이서 보니 평소의 장난기 어린 표정 대신, 묘하게 긴장한 기색이 역력하다
 
@@ -914,48 +1844,74 @@ $name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&l
 그녀는 등 뒤에 숨긴 손을 꼼지락거린다
 
 저기... 나 너 주려고 뭐 하나 준비했거든?🎁근데 막상 주려니까 내 CPU가 좀 과열되는 것 같기도 하고... 으으
-
-[[뭔데 그래? 뜸 들이지 말고 보여줘 봐|채진대화22]]</tw-passagedata><tw-passagedata pid="78" name="채진대화22" tags="" position="1700,4175" size="100,100">채진이는 숨을 크게 한 번 들이쉬더니, 결심한 듯 입을 연다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[뭔데 그래? 뜸 들이지 말고 보여줘 봐|채진대화22]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="76" name="채진대화22" tags="bg9 cg 4" position="1700,4175" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이는 숨을 크게 한 번 들이쉬더니, 결심한 듯 입을 연다
 
 기억나? 저번 동방에서 내가 메르시 그려줬을 때... 손가락 6개였잖아. 네가 그거 보고 웃는데, 내 학습 데이터... 아니, 자존심에 스크래치가 딱! 나는 거야.💢
-
-[[아냐, 아냐. 그거 너무 웃겨서 그랬지! 나쁘게 생각하지 마|채진대화23]] +2점
-[[6개? 아 맞다 지난번에 실수했지?|채진대화23]] -2점</tw-passagedata><tw-passagedata pid="79" name="채진대화23" tags="" position="1700,4300" size="100,100">그녀가 비장한 눈빛으로 나를 바라본다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[아냐, 아냐. 그거 너무 웃겨서 그랬지! 나쁘게 생각하지 마|채진대화23][$love.chaejin += 2]]
+[[6개? 아 맞다 지난번에 실수했지?|채진대화23][$love.chaejin += 2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="77" name="채진대화23" tags="bg9 cg 1" position="1700,4300" size="100,100">&lt;&lt;vntext&gt;&gt;
+그녀가 비장한 눈빛으로 나를 바라본다
 
 그래서 내가 밤새도록 다시 그려왔어!🖌️ 이번엔 진짜 신경 써서 렌더링... 아니, 드로잉했어! 손가락 개수 체크 알고리즘도...암튼 여러 번 체크했다고!
-
-[[손가락 체크 알고리즘? 그게 뭐야?|채진대화24]] -2점
-[[알고리즘은 뭔데? 그냥 네가 열심히 그린 거잖아|채진대화24]] +2점</tw-passagedata><tw-passagedata pid="80" name="채진대화24" tags="" position="1700,4425" size="100,100">채진이가 등 뒤에서 조심스럽게 작은 캔버스 하나를 꺼내 내민다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[손가락 체크 알고리즘? 그게 뭐야?|채진대화24][$love.chaejin-=2]]
+[[알고리즘은 뭔데? 그냥 네가 열심히 그린 거잖아|채진대화24][love.chaejin+=2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="78" name="채진대화24" tags="bg9 cg 2" position="1700,4425" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이가 등 뒤에서 조심스럽게 작은 캔버스 하나를 꺼내 내민다
 
 자! 받아! 네가 실망하면 나 진짜 하루 종일 시무룩할 거야
 
 그곳에는 나의 캐리커처가 그려져 있다
-
-[[혹시나 하는 마음에... 손가락부터 먼저 확인한다|채진대화25]] 호감도 유지
-[[일단 전체적인 그림 분위기부터 먼저 확인한다|채진대화25]] 호감도 유지</tw-passagedata><tw-passagedata pid="81" name="채진대화25" tags="" position="1700,4550" size="100,100">나는 조심스럽게 그림 속 내 손을 들여다보았다. 하나, 둘, 셋, 넷, 다섯. 완벽하다! 손가락은 물론, 관절의 각도도 정상적이고, 얼굴의 명암 처리마저 완벽하다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[혹시나 하는 마음에... 손가락부터 먼저 확인한다|채진대화25]]
+[[일단 전체적인 그림 분위기부터 먼저 확인한다|채진대화25]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="79" name="채진대화25" tags="bg9 cg 7" position="1700,4550" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 조심스럽게 그림 속 내 손을 들여다보았다. 하나, 둘, 셋, 넷, 다섯. 완벽하다! 손가락은 물론, 관절의 각도도 정상적이고, 얼굴의 명암 처리마저 완벽하다
 
 확실히 저번의 기괴함은 사라지고, 따뜻한 색감과 내 특징을 잘 살린 표정만이 남아있다
-
-[[클릭하여 계속|채진대화26]]</tw-passagedata><tw-passagedata pid="82" name="채진대화26" tags="" position="1700,4675" size="100,100">그림을 보고 있는 나를, 채진이가 조마조마한 눈빛으로 올려다본다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|채진대화26]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="80" name="채진대화26" tags="bg9 cg 5" position="1700,4675" size="100,100">&lt;&lt;vntext&gt;&gt;
+그림을 보고 있는 나를, 채진이가 조마조마한 눈빛으로 올려다본다
 
 어... 어때? 👉👈이번엔 손가락 5개 맞지? 그치?나 진짜 열심히 그렸단 말이야... 네가 좋아했으면 좋겠어서
 
 평소의 뻔뻔함은 온데간데없고, 내 반응을 기다리는 그녀의 눈동자가 흔들린다. 이 순간만큼은 서툰 마음을 전하려는 소녀처럼 보인다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[(그림을 자세히 보며 웃는다) 오~ 이번엔 5개 맞네! 발전했는데? 고마워, 잘 간직할게|채진대화27][$love.chaejin+=5]]
+[[(감동받은 표정으로) 와... 나를 위해 이렇게까지? 정말 고마워. 이건 평생 가보로 남겨야겠다!|채진대화28][$love.chaejin+=10]]
+[[(놀란 표정으로) 헉. 고생했네. 잘 그렸다. 고마워!!|채진대화29][$love.chaejin+=3]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="81" name="채진대화27" tags="bg9 cg 2" position="1700,4800" size="100,100">&lt;&lt;vntext&gt;&gt;
+휴~💨 다행이다! 5개 맞지? 내가 손가락 하나하나 셀 때마다 얼마나 떨렸는지 알아? 아무튼 미션 컴플리트!😎
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="82" name="채진대화28" tags="bg9 cg 2" position="1825,4800" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이 얼굴이 확 밝아진다
 
-[[(그림을 자세히 보며 웃는다) 오~ 이번엔 5개 맞네! 발전했는데? 고마워, 잘 간직할게|채진대화27]] (+5점)
-[[(감동받은 표정으로) 와... 나를 위해 이렇게까지? 정말 고마워. 이건 평생 가보로 남겨야겠다!|채진대화28]] (+10점)
-[[(놀란 표정으로) 헉. 고생했네. 잘 그렸다. 고마워!!|채진대화29]] (+3점)</tw-passagedata><tw-passagedata pid="83" name="채진대화27" tags="" position="1700,4800" size="100,100">휴~💨 다행이다! 5개 맞지? 내가 손가락 하나하나 셀 때마다 얼마나 떨렸는지 알아? 아무튼 미션 컴플리트!😎
-
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="84" name="채진3단계종료" tags="" position="1700,4925" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]
-[[다음|엔딩1]]
-[[채진 비호감엔딩|채진비호감1]]</tw-passagedata><tw-passagedata pid="85" name="채진대화28" tags="" position="1825,4800" size="100,100">채진이 얼굴이 확 밝아진다.
 진짜?! 마음에 들어?!💖 와, 다행이다! 나 사실 버그 날까 봐 엄청 걱정했거든! 헤헤, 오늘을 내 메모리에서 영구 보존해야지!💾
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="83" name="채진대화29" tags="bg9 cg 3" position="1575,4800" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진이 갸우뚱한 표정을 짓는다
 
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="86" name="채진대화29" tags="" position="1575,4800" size="100,100">채진이 갸우뚱한 표정을 짓는다.
 어... 응! 그래!😅 뭐, 네가 괜찮으면 된 거지! 다음엔 더 완벽하게 그려줄게!
-
-[[다음|채진3단계종료]]</tw-passagedata><tw-passagedata pid="87" name="클라라대화2" tags="" position="2125,1950" size="100,100">가까이 다가가자 그녀의 노트북 화면이 보인다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$chaejinStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="84" name="클라라대화2" tags="bg9 ry 3" position="2125,1950" size="100,100">&lt;&lt;vntext&gt;&gt;
+가까이 다가가자 그녀의 노트북 화면이 보인다.
 검은색 배경에 알 수 없는 영문과 기호들이 폭포수처럼 쏟아져 내리고 있다
 
 클라라, 여기서 뭐 해?
@@ -965,40 +1921,58 @@ $name 안녕! 오늘 과제 성적 공개라고 했지? 어떻게 됐어? &lt;&l
 아, 반가워.. 잠시 이 코드의 구조를 재설계하고 있었어
 
 그녀는 다시 화면을 가리키며 한숨을 작게 내쉰다
-
-[[클릭하여 계속|클라라대화3]]</tw-passagedata><tw-passagedata pid="88" name="클라라대화3" tags="" position="2125,2075" size="100,100">이전 개발자가 짜놓은 코드를 좀 봐. 완전 엉망이야... 변수의 인과관계가 불분명하고, 논리의 흐름이 마치... &#39;제임스 조이스(James Joyce)&#39;의 소설 &lt;피네간의 경야&gt;처럼 난해하기 짝이 없지
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|클라라대화3]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="85" name="클라라대화3" tags="bg9 ry 3" position="2125,2075" size="100,100">&lt;&lt;vntext&gt;&gt;
+이전 개발자가 짜놓은 코드를 좀 봐. 완전 엉망이야... 변수의 인과관계가 불분명하고, 논리의 흐름이 마치... &#39;제임스 조이스(James Joyce)&#39;의 소설 &lt;피네간의 경야&gt;처럼 난해하기 짝이 없지
 
 그녀는 테이블 위에 놓인 에스프레소를 한 모금 우아하게 마신다
 
 난 지금 이 무질서한 혼돈을, &#39;헤밍웨이(Hemingway)&#39;의 문체처럼 간결하게 다듬는 중이야
-
-[[헤밍웨이처럼 만든다고?|클라라대화4]]</tw-passagedata><tw-passagedata pid="89" name="클라라대화4" tags="" position="2125,2200" size="100,100">그렇지. 불필요한 수식어 즉, 잉여 코드를 제거하고, 본질적인 기능만을 남기는 것. 그것이 내가 생각하는 &#39;알고리즘의 미학&#39;이자 &#39;하드보일드 스타일&#39;이야!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[헤밍웨이처럼 만든다고?|클라라대화4]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="86" name="클라라대화4" tags="bg9 ry 2" position="2125,2200" size="100,100">&lt;&lt;vntext&gt;&gt;
+그렇지. 불필요한 수식어 즉, 잉여 코드를 제거하고, 본질적인 기능만을 남기는 것. 그것이 내가 생각하는 &#39;알고리즘의 미학&#39;이자 &#39;하드보일드 스타일&#39;이야!
 
 그녀가 옅은 미소를 띠며 나를 바라본다. 코딩이라는 딱딱한 작업을 문학에 비유하는 그녀의 시선이 꽤나 진지하다
-
-[[클릭하여 계속|클라라대화5]]</tw-passagedata><tw-passagedata pid="90" name="클라라대화5" tags="" position="2275,2325" size="100,100">[[무슨 말인지 하나도 모르겠는데 딱 봐도 대단한 걸 하고 있구나. 대단해|클라라대화6]] -10
-[[오, 파이썬이네? 나도 코딩 좀 배우고 싶은데, 대단하다|클라라대화7]] +5
-[[와... 코딩을 문학에 비유하다니 멋진걸. 네가 작성한 코드는 시처럼 아름다울 것 같아|클라라 대화8]] +10</tw-passagedata><tw-passagedata pid="91" name="클라라대화6" tags="" position="2125,2450" size="100,100">다시 화면으로 시선을 돌리면서 클라라가 말한다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|클라라대화5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="87" name="클라라대화5" tags="bg9 ry" position="2275,2325" size="100,100">&lt;div id=&quot;next-btn&quot;&gt;
+[[무슨 말인지 하나도 모르겠는데 딱 봐도 대단한 걸 하고 있구나. 대단해|클라라대화6][$love.clara-=10]]
+[[오, 파이썬이네? 나도 코딩 좀 배우고 싶은데, 대단하다|클라라대화7][$love.clara+=5]]
+[[와... 코딩을 문학에 비유하다니 멋진걸. 네가 작성한 코드는 시처럼 아름다울 것 같아|클라라 대화8][$love.clara+=10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="88" name="클라라대화6" tags="bg9 ry 3" position="2125,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+다시 화면으로 시선을 돌리면서 클라라가 말한다
  
 응. 굳이 무리해서 이해할 필요는 없지
 
 타닥, 타닥. 다시 키보드 소리가 들려온다
 
 각자의 전문 분야가 있는 법이니까. 너에게는 너만의 영역이 있겠지
-
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="92" name="클라라대화7" tags="" position="2250,2450" size="100,100">맞아. 파이썬은 인간의 사고방식과 가장 유사한, 직관적인 언어라고 할 수 있지
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="89" name="클라라대화7" tags="bg9 ry 1" position="2250,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+맞아. 파이썬은 인간의 사고방식과 가장 유사한, 직관적인 언어라고 할 수 있지
  
 마치 그녀가 노트북을 내 쪽으로 살짝 돌려주는 것 같다. 내 착각인가?
 
 배워보고 싶다면 기초 문법 정도는 가르쳐 줄 수 있어. 내가 코딩은 좀 자신있거든
-
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="93" name="클라라 대화8" tags="" position="2375,2450" size="100,100">그녀가 헛기침을 하며 시선을 살짝 피한다. 귀가 아주 조금 붉어진 것 같다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="90" name="클라라 대화8" tags="bg9 ry 4" position="2375,2450" size="100,100">&lt;&lt;vntext&gt;&gt;
+그녀가 헛기침을 하며 시선을 살짝 피한다. 귀가 아주 조금 붉어진 것 같다
 
 흐흠, 과찬인 것 같긴 하지만... 내 의도를 정확히 파악했네. 너 꽤 통찰력이 있구나. 기분이 나쁘지 않네
-
-[[다음|클라라1단계종료]]</tw-passagedata><tw-passagedata pid="94" name="클라라1단계종료" tags="" position="2250,2575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 대화하러 가보자.|채진대화이동]]
-[[클라라와 좀 더 대화해보자.|클라라대화9]]</tw-passagedata><tw-passagedata pid="95" name="클라라대화9" tags="" position="2250,2700" size="100,100">학교 앞 카페, 아이스 아메리카노의 얼음이 거의 다 녹아갈 무렵이다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="91" name="클라라대화9" tags="bg8 ry 6" position="2250,2700" size="100,100">&lt;&lt;vntext&gt;&gt;
+학교 앞 카페, 아이스 아메리카노의 얼음이 거의 다 녹아갈 무렵이다.
 오늘은 교양 수업 과제 제출일. 주제는 &lt;나의 대학 생활 목표&gt;.
 A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고 오타 검수만 부탁해 둔 상태다
 
@@ -1006,49 +1980,73 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 카페 문이 열리고, 붉은색 코트를 입은 클라라가 들어온다. 그녀는 한 손에 커피를, 다른 한 손에는...
 
 엄청난 두께의 서류 뭉치를 들고 있다. 얼핏 봐도 족히 100페이지는 되어 보이는 두께다
-
-
-[[와, 클라라! 그 손에 든 벽돌은 뭐야? 전공 서적이야?|클라라대화10]] -2점
-[[설마... 저게 내 과제는 아니겠지?|클라라대화10]] 호감도 유지</tw-passagedata><tw-passagedata pid="96" name="클라라대화10" tags="" position="2250,2825" size="100,100">쿵—
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[와, 클라라! 그 손에 든 벽돌은 뭐야? 전공 서적이야?|클라라대화10][$love.clara-=2]]
+[[설마... 저게 내 과제는 아니겠지?|클라라대화10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="92" name="클라라대화10" tags="bg8 ry 2" position="2250,2825" size="100,100">&lt;&lt;vntext&gt;&gt;
+쿵—
 그녀가 서류 뭉치를 테이블 위에 내려놓자 묵직한 진동이 커피잔에 전해졌다
 
 이건 너가 부탁한 &lt;나의 대학 생활 목표&gt; 리포트 수정본(Ver 2.0)야!
 아까 잠깐 분석해본 결과, 단순 교정으로는 해결되지 않을 심각한 구조적 결함을 발견해서 말이야
 
 그녀의 표정은 뿌듯해보인다. 나는 떨리는 손으로 맨 앞장을 넘겨보았다
-
-[[클릭하여 계속|클라라대화11]]</tw-passagedata><tw-passagedata pid="97" name="클라라대화11" tags="" position="2250,2975" size="100,100">첫 장을 넘기자마자 현기증이 난다. 이건 에세이가 아니라 학술 논문이다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|클라라대화11]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="93" name="클라라대화11" tags="bg8 ry 2" position="2250,2975" size="100,100">&lt;&lt;vntext&gt;&gt;
+첫 장을 넘기자마자 현기증이 난다. 이건 에세이가 아니라 학술 논문이다
 
 목차 (Table of Contents)
     1. 서론: 현대 지식 기반 사회에서 고등 교육이 갖는 인류학적 함의
     2. 본론: 청년기 자아 실현과 대학 커리큘럼의 상관관계 (회귀분석 데이터를 중심으로)
     3. 결론: 4차 산업혁명 시대의 뉴-인재상과 나의 비전 선포
 
+
 ......
-
-
-[[인류학적 함의...? 난 그냥 &#39;영어 공부 열심히 하기&#39;라고 썼는데?|클라라대화12]] 호감도유지
-[[참고문헌 리스트까지 있어? 너 혹시 논문 쓴거야?|클라라대화13]] -5점</tw-passagedata><tw-passagedata pid="98" name="클라라대화12" tags="" position="2125,3075" size="100,100">&#39;영어 공부&#39;라는 단편적인 목표는 설득력이 약할 것 같아서! 그것이 인류의 언어 발전사에 미치는 영향까지 서술해야 비로소 교수님의 지적 호기심을 자극할 수 있을 거라 생각했지!!
-
-[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="99" name="클라라대화13" tags="" position="2350,3075" size="100,100">당연하지. 근거 없는 주장은 궤변일 뿐이니까. 권위 있는 학술지 12편을 인용하여 너의 목표가 얼마나 타당한지 입증해봤어
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[인류학적 함의...? 난 그냥 &#39;영어 공부 열심히 하기&#39;라고 썼는데?|클라라대화12]]
+[[참고문헌 리스트까지 있어? 너 혹시 논문 쓴거야?|클라라대화13][$love.clara-=5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="94" name="클라라대화12" tags="bg8 ry 2" position="2125,3075" size="100,100">&lt;&lt;vntext&gt;&gt;
+&#39;영어 공부&#39;라는 단편적인 목표는 설득력이 약할 것 같아서! 그것이 인류의 언어 발전사에 미치는 영향까지 서술해야 비로소 교수님의 지적 호기심을 자극할 수 있을 거라 생각했지!!
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|클라라대화14]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="95" name="클라라대화13" tags="bg8 ry 1" position="2350,3075" size="100,100">&lt;&lt;vntext&gt;&gt;
+당연하지. 근거 없는 주장은 궤변일 뿐이니까. 권위 있는 학술지 12편을 인용하여 너의 목표가 얼마나 타당한지 입증해봤어
 
 그녀는 빨간 펜으로 빼곡히 메모된 페이지를 펼쳐 보이며 안경을 치켜올린다.🧐
-
-[[클릭하여 계속|클라라대화14]]</tw-passagedata><tw-passagedata pid="100" name="클라라대화14" tags="" position="2250,3200" size="100,100">기존의 글은 &#39;맥락(Context)&#39;이 현저히 부족하다고 판단했어. 그래서 내가 서론과 본론을 보강하여, 빈틈없는 &#39;완벽한&#39; 문장으로 재구성했지
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음으로|클라라대화14]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="96" name="클라라대화14" tags="bg8 ry 2" position="2250,3200" size="100,100">&lt;&lt;vntext&gt;&gt;
+기존의 글은 &#39;맥락(Context)&#39;이 현저히 부족하다고 판단했어. 그래서 내가 서론과 본론을 보강하여, 빈틈없는 &#39;완벽한&#39; 문장으로 재구성했지
 
 그녀의 표정은 마치 위대한 걸작을 완성한 예술가처럼 뿌듯해 보인다. 또 그녀는 마치 이 엄청난 결과물에 대한 평가를 기다리고 있는 것 같다
-
-[[와... 이건 리포트가 아니라 논문 수준이잖아? 내 생각이 이렇게 깊이 있게 표현되다니 놀라워|클라라대화15]] (+10점)
-[[고마워 클라라. 근데 교수님이 제시해주신 글쓰기 조건보다는 좀 긴 것 같아. 내용은 진짜 좋다|클라라대화16]] -5점
-[[그냥 맞춤법만 봐달라고 한 건데... 추가적으로 더 해준게 엄청 많네. 너 정말 똑똑하다|클라라대화17]] (+5점)</tw-passagedata><tw-passagedata pid="101" name="클라라대화15" tags="" position="2250,3325" size="100,100">당연하지. 너의 아이디어도 충분히 좋았거든!! 내가 조금 다듬었을 뿐이야
-
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="102" name="클라라대화16" tags="" position="2375,3325" size="100,100">사실 글의 길이는 중요하지 않아. 중요한 건 &#39;논리적 완결성&#39;이지. 하지만 정 그렇다면 요약본도 첨부해줄게
-
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="103" name="클라라대화17" tags="" position="2125,3325" size="100,100">완벽을 추구하는 것이 내 본능이라 어쩔 수 없었어. 논리정연한게 가장 중요하거든
-
-[[다음|클라라2단계종료]]</tw-passagedata><tw-passagedata pid="104" name="클라라2단계종료" tags="" position="2250,3450" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 대화하러 가보자.|채진대화이동]]
-[[클라라와 좀 더 대화해보자.|클라라대화18]]</tw-passagedata><tw-passagedata pid="105" name="클라라대화18" tags="" position="2250,3575" size="100,100">컴퓨터 실습실이다. 
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[와... 이건 리포트가 아니라 논문 수준이잖아? 내 생각이 이렇게 깊이 있게 표현되다니 놀라워|클라라대화15][$love.clara+=10]]
+[[고마워 클라라. 근데 교수님이 제시해주신 글쓰기 조건보다는 좀 긴 것 같아. 내용은 진짜 좋다|클라라대화16][$love.clara-=5]]
+[[그냥 맞춤법만 봐달라고 한 건데... 추가적으로 더 해준게 엄청 많네. 너 정말 똑똑하다|클라라대화17][$love.clara+=5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="97" name="클라라대화15" tags="bg8 ry 2" position="2250,3325" size="100,100">&lt;&lt;vntext&gt;&gt;
+당연하지. 너의 아이디어도 충분히 좋았거든!! 내가 조금 다듬었을 뿐이야
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="98" name="클라라대화16" tags="bg8 ry 3" position="2375,3325" size="100,100">&lt;&lt;vntext&gt;&gt;
+사실 글의 길이는 중요하지 않아. 중요한 건 &#39;논리적 완결성&#39;이지. 하지만 정 그렇다면 요약본도 첨부해줄게
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="99" name="클라라대화17" tags="bg8 ry 1" position="2125,3325" size="100,100">&lt;&lt;vntext&gt;&gt;
+완벽을 추구하는 것이 내 본능이라 어쩔 수 없었어. 논리정연한게 가장 중요하거든
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="100" name="클라라대화18" tags="bg5" position="2250,3575" size="100,100">&lt;&lt;vntext&gt;&gt;
+컴퓨터 실습실이다. 
 아 맞다. 나 &lt;컴퓨팅의 기초&gt; 교양 수업듣지
 
 그런데 이 수업 과제 오늘까지 제출이다. 과제는 &#39;파이썬으로 별(Star) 그리기&#39;. 전공자들에겐 숨 쉬기보다 쉽겠지만, 나 같은 &#39;컴맹&#39;에겐 외계어다
@@ -1056,8 +2054,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 구글링 10분 만에 깃허브에서 정답 코드를 발견했다. 복사(Ctrl+C), 붙여넣기(Ctrl+V). 완벽하다
 
 하지만 교수님이 으름장을 놓으셨다. &quot;코드 유사도 검사 돌릴 거니까 베낄 생각 마세요.&quot;
-
-[[이걸 티 안 나게 고쳐야 하는데...|클라라대화19]]</tw-passagedata><tw-passagedata pid="106" name="클라라대화19" tags="" position="2250,3700" size="100,100">옆자리의 클라라는 이미 과제를 3초 만에 끝내고, 심심한지 타자 연습 게임을 하고 있다. 타닥타닥타닥... 속도가 거의 1000타는 나오는 것 같다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[이걸 티 안 나게 고쳐야 하는데...|클라라대화19]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="101" name="클라라대화19" tags="bg5 ry 1" position="2250,3700" size="100,100">&lt;&lt;vntext&gt;&gt;
+옆자리의 클라라는 이미 과제를 3초 만에 끝내고, 심심한지 타자 연습 게임을 하고 있다. 타닥타닥타닥... 속도가 거의 1000타는 나오는 것 같다
 
 나는 슬그머니 클라라의 모니터 쪽으로 고개를 내밀었다
 
@@ -1066,60 +2067,78 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 클라라가 안경을 고쳐 쓰며 무심하게 대답한다
 
 오류 잡는 거 도와달라고? 3분 정도는 봐줄 수 있어
-
-[[오류가 아니라... &#39;세탁&#39;이 좀 필요해서|클라라대화20]] -2점
-[[너 이런 거 전문이잖아. 티 안 나게 바꾸는 거|클라라대화20]] 호감도유지</tw-passagedata><tw-passagedata pid="107" name="클라라대화20" tags="" position="2250,3825" size="100,100">화면에 띄워 코드를 가리켰다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[오류가 아니라... &#39;세탁&#39;이 좀 필요해서|클라라대화20][$love.clara-=2]]
+[[너 이런 거 전문이잖아. 티 안 나게 바꾸는 거|클라라대화20]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="102" name="클라라대화20" tags="bg5 ry 1" position="2250,3825" size="100,100">&lt;&lt;vntext&gt;&gt;
+화면에 띄워 코드를 가리켰다
 
 사실 이거 인터넷에서 찾은 건데, 그대로 내면 걸릴 것 같아서. 네가 이거 변수 이름이랑 구조만 살짝 바꿔주면 안 돼? 교수님이 절대 눈치 못 채게. 응? 넌 천재잖아
-
-[[클릭하여 클라라의 반응 보기|클라라대화21]]</tw-passagedata><tw-passagedata pid="108" name="클라라대화21" tags="" position="2250,3950" size="100,100">그 순간, 클라라의 손이 뚝 멈춘다. 방금 전까지 친구로서 대하던 편안한 표정은 온데간데없고, 눈빛이 차갑게 식어버린다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[클라라의 반응 보기|클라라대화21]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="103" name="클라라대화21" tags="bg5 ry 3" position="2250,3950" size="100,100">&lt;&lt;vntext&gt;&gt;
+그 순간, 클라라의 손이 뚝 멈춘다. 방금 전까지 친구로서 대하던 편안한 표정은 온데간데없고, 눈빛이 차갑게 식어버린다
 
 미안하지만, 그 부탁은 들어줄 수 없어
 
 목소리에 감정이 하나도 없다. 마치 AI 스피커가 오류 메시지를 읽는 것 같다.
 
 네가 하려는 건 &#39;코드 수정&#39;이 아니라, 명백한 &#39;학습 윤리 위반(Academic Dishonesty)&#39;이자 표절이야. 고작 이런 기초 과제 때문에 양심을 버리려고 하는 거야? 난 네 부정행위를 돕는 도구가 아니야
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[야, 교양인데 뭐 어때. 다들 이렇게 해|클라라대화22]]
-[[시간이 없어서 그래! 이번 한 번만 눈감아주라|클라라대화22]]</tw-passagedata><tw-passagedata pid="109" name="클라라대화22" tags="" position="2125,4075" size="100,100">&#39;다들 한다&#39;는 게 면죄부가 될 순 없어. 그건 논리적 오류야
+[[시간이 없어서 그래! 이번 한 번만 눈감아주라|클라라대화22]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="104" name="클라라대화22" tags="bg5 ry 3" position="2125,4075" size="100,100">&lt;&lt;vntext&gt;&gt;
+&#39;다들 한다&#39;는 게 면죄부가 될 순 없어. 그건 논리적 오류야
 
 그녀는 팔짱을 끼며 나를 똑바로 응시한다
 
 스스로 코드를 짤 의지가 없다면, 대화는 여기서 종료할게. 내 친구가 표절자(Plagiarist)가 되는 건 보고 싶지 않거든
 
 (분위기가 싸해졌다. 이 꽉 막힌 모범생의 마음을 돌리고, 과제도 해결할 방법은 없을까?)
-
-[[네 말이 맞아. 내가 너무 급해서 잠시 멍청한 생각을 했다. 차라리... 이 코드가 &#39;왜&#39; 이렇게 돌아가는지 원리를 설명해 줄 수 있어? 내 힘으로 다시 짜볼게|클라라대화23]] (+10점)
-[[아우~ 알았어, 알았어. 그냥 내가 수업자료 보고 혼자해볼게|클라라대화24]] (+5점)
-[[치...그럼 코딩하는 것 좀 도와줘...|클라라대화25]] (-5점)</tw-passagedata><tw-passagedata pid="110" name="클라라대화23" tags="" position="2000,4200" size="100,100"> .....훌륭한 태세 전환이야. &#39;원리&#39;를 이해하고 재구성하는 건 표절이 아니라 &#39;학습&#39;이지
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[네 말이 맞아. 내가 너무 급해서 잠시 멍청한 생각을 했다. 차라리... 이 코드가 &#39;왜&#39; 이렇게 돌아가는지 원리를 설명해 줄 수 있어? 내 힘으로 다시 짜볼게|클라라대화23][$love.clara+=10]]
+[[아우~ 알았어, 알았어. 그냥 내가 수업자료 보고 혼자해볼게|클라라대화24][$love.clara+=5]]
+[[치...그럼 코딩하는 것 좀 도와줘...|클라라대화25][$love.clara-=5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="105" name="클라라대화23" tags="bg5 ry 2" position="2000,4200" size="100,100">&lt;&lt;vntext&gt;&gt;
+ .....훌륭한 태세 전환이야. &#39;원리&#39;를 이해하고 재구성하는 건 표절이 아니라 &#39;학습&#39;이지
 
 그녀가 의자를 내 쪽으로 바짝 당겨 앉는다. 눈이 초롱초롱해졌다
 
 자, 여기 for 반복문부터 다시 설명해 줄게. 이 논리 구조가 아주 아름답거든? 잘 들어봐
-
-[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="111" name="클라라대화24" tags="" position="2125,4200" size="100,100">빡빡한 게 아니라 정확한 거야. 아무것도 모르는데 혼자한다... 비효율적이지만, 그게 제일 정직하고 학생다운 방법이긴 하지
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="106" name="클라라대화24" tags="bg5 ry 2" position="2125,4200" size="100,100">&lt;&lt;vntext&gt;&gt;
+빡빡한 게 아니라 정확한 거야. 아무것도 모르는데 혼자한다... 비효율적이지만, 그게 제일 정직하고 학생다운 방법이긴 하지
 
 클라라가 다시 고개를 돌린다
 
 응원할게. 하다가 정 모르겠으면 힌트 정도는 물어봐. 답 말고 힌트만
-
-[[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="112" name="클라라대화25" tags="" position="2250,4200" size="100,100"> 우정이 부정행위의 핑계가 될 순 없어. 정 알고 싶으면 기초부터 다시 알려줄게
- 
- [[다음|클라라3단계종료]]</tw-passagedata><tw-passagedata pid="113" name="클라라3단계종료" tags="" position="2125,4325" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 대화하러 가보자.|채진대화이동]]
-[[다음|엔딩1]]
-[[클라라 비호감엔딩|클라라비호감1]]</tw-passagedata><tw-passagedata pid="114" name="엔딩1" tags="" position="1725,5275" size="100,100">AI가 사람이 된 이세계에 떨어진지 벌써 한 달째이다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="107" name="클라라대화25" tags="bg5 ry 3" position="2250,4200" size="100,100"> &lt;&lt;vntext&gt;&gt;
+ 우정이 부정행위의 핑계가 될 순 없어. 정 알고 싶으면 기초부터 다시 알려줄게
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|MainScene][$claraStage+=1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="108" name="엔딩1" tags="bg4" position="1725,5275" size="100,100">&lt;&lt;vntext&gt;&gt;
+AI가 사람이 된 이세계에 떨어진지 벌써 한 달째이다
 
 만나서 얘기해보니 미나, 채진, 클라라 셋 모두 매력적이지만,
 내 첫 연애의 꿈을 이루기 위해선 한 명을 선택해야만 한다...
 
 누구를 선택할까?
-
-(이미 배드엔딩이 나온 캐릭터는 선택지에서 취소선이 그어진채로 선택할 수 없게 구현해주시면 될 것 같습니다)
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[미나|미나엔딩1]]
 [[채진|채진엔딩1]]
-[[클라라|클라라엔딩1]]</tw-passagedata><tw-passagedata pid="115" name="미나비호감1" tags="bad_ending mn 5" position="1225,4500" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;set $minaExit to true&gt;&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;vntext&gt;&gt;
+[[클라라|클라라엔딩1]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="109" name="미나비호감1" tags="bad_ending mn 5 black" position="1225,4500" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;set $minaExit to true&gt;&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;vntext&gt;&gt;
 ... &lt;&lt;name &quot;미나&quot;&gt;&gt;
 미나의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다
 
@@ -1132,57 +2151,93 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 ...다시는 미나와 얘기할 수 없을 것 같은 기분이 든다
 &lt;&lt;/vntext&gt;&gt;
 &lt;div id=&quot;next-btn&quot;&gt;
-[[다음|MainScene]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="116" name="채진비호감1" tags="" position="1825,5000" size="100,100">(답변 도중 채진의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
+    &lt;&lt;if ($minaExit is true or $minaStage is 3) and 
+         ($chaejinExit is true or $chaejinStage is 3) and 
+         ($claraExit is true or $claraStage is 3)&gt;&gt;
+         
+        [[다음|엔딩1]]
 
-&quot;...&quot;
+    &lt;&lt;else&gt;&gt;
+        [[다음|MainScene]]
+    &lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="110" name="채진비호감1" tags="bad_ending cg 4 black" position="1725,5000" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;set $chaejinExit to true&gt;&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;vntext&gt;&gt;
+...
 
-채진의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다.
+채진의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다
 
-&quot;채진아, 왜그래? 내가 무슨 잘못이라도...&quot;
+채진아, 왜그래? 내가 무슨 잘못이라도...
 
-&quot;문제가 발생했습니다. 나중에 다시 시도해 주세요.&quot;
+문제가 발생했습니다. 나중에 다시 시도해 주세요.
 
-채진이 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다.
+채진이 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다
 
-...다시는 채진과 얘기할 수 없을 것 같은 기분이 든다.
+...다시는 채진과 얘기할 수 없을 것 같은 기분이 든다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+    &lt;&lt;if ($minaExit is true or $minaStage is 3) and 
+         ($chaejinExit is true or $chaejinStage is 3) and 
+         ($claraExit is true or $claraStage is 3)&gt;&gt;
+         
+        [[다음|엔딩1]]
 
-[[다음|채진비호감2]]</tw-passagedata><tw-passagedata pid="117" name="클라라비호감1" tags="" position="2125,4450" size="100,100">(답변 도중 클라라의 호감도가 특정 수치 이하로 내려갔을 때 나오는 엔딩입니다)
+    &lt;&lt;else&gt;&gt;
+        [[다음|MainScene]]
+    &lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="111" name="클라라비호감1" tags="bad_ending ry 3 black" position="2125,4450" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;set $chaejinExit to true&gt;&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;vntext&gt;&gt;
+...
 
-&quot;...&quot;
+클라라의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다
 
-클라라의 얼굴이 굳어지더니, 무거운 침묵이 이어졌다.
+클라라,, 왜그래? 내가 무슨 잘못이라도...
 
-&quot;클라라,, 왜그래? 내가 무슨 잘못이라도...&quot;
+문제가 발생했습니다. 나중에 다시 시도해 주세요
+클라라가 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다
 
-&quot;문제가 발생했습니다. 나중에 다시 시도해 주세요.&quot;
-클라라가 돌연 기계음 섞인 목소리로 차갑게 대답하더니, 눈앞에서 감쪽같이 사라져버렸다.
+...다시는 클라라와 얘기할 수 없을 것 같은 기분이 든다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+    &lt;&lt;if ($minaExit is true or $minaStage is 3) and 
+         ($chaejinExit is true or $chaejinStage is 3) and 
+         ($claraExit is true or $claraStage is 3)&gt;&gt;
+         
+        [[다음|엔딩1]]
 
-...다시는 클라라와 얘기할 수 없을 것 같은 기분이 든다.
-
-[[다음|클라라비호감2]]</tw-passagedata><tw-passagedata pid="118" name="채진비호감2" tags="" position="1825,5125" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[클라라와 대화하러 가보자.|클라라대화이동]]</tw-passagedata><tw-passagedata pid="119" name="클라라비호감2" tags="" position="2125,4575" size="100,100">[[미나와 대화하러 가보자.|미나대화이동]]
-[[채진과 대화하러 가보자.|채진대화이동]]</tw-passagedata><tw-passagedata pid="120" name="미나엔딩1" tags="" position="1600,5400" size="100,100">나는 미나와 보내는 시간이 점점 많아졌다.
+    &lt;&lt;else&gt;&gt;
+        [[다음|MainScene]]
+    &lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="112" name="미나엔딩1" tags="bg10" position="1600,5400" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 미나와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 놀이공원에 놀러가기도 했다.
 그럴수록 미나에 대한 나의 마음도 커져만 갔고, 미나 역시 그럴 것이라는 확신이 들었다
-
-[[미나에게 내 마음을 고백하기|미나엔딩2]]</tw-passagedata><tw-passagedata pid="121" name="채진엔딩2" tags="" position="1725,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나에게 내 마음을 고백하기|미나엔딩2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="113" name="채진엔딩2" tags="bg13" position="1725,5525" size="100,100">&lt;&lt;vntext&gt;&gt;
+마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 채진이를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 채진이에게 내 마음을 말할 예정이다
-
-[[채진이가 걸어오는 모습이 보인다|채진엔딩3]]</tw-passagedata><tw-passagedata pid="122" name="미나엔딩2" tags="" position="1600,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[채진이가 걸어오는 모습이 보인다|채진엔딩3]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="114" name="미나엔딩2" tags="bg13" position="1600,5525" size="100,100">&lt;&lt;vntext&gt;&gt;
+마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 미나를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 미나에게 내 마음을 말할 예정이다
-
-[[미나가 걸어오는 모습이 보인다|미나엔딩3]]</tw-passagedata><tw-passagedata pid="123" name="미나엔딩3" tags="" position="1600,5650" size="100,100">(이름) 안녕! 오래 기다렸어?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[미나가 걸어오는 모습이 보인다|미나엔딩3]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="115" name="미나엔딩3" tags="bg13 mn 2" position="1600,5650" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 안녕! 오래 기다렸어?
 
 미나가 환하게 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다
 
 아니야, 나도 방금 도착했어! 얼른 올라가자~
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[야경을 보러 공원 전망대에 올라가자|미나엔딩4]]
-</tw-passagedata><tw-passagedata pid="124" name="미나엔딩4" tags="" position="1600,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="116" name="미나엔딩4" tags="bg14 mn 2" position="1600,5775" size="100,100">&lt;&lt;vntext&gt;&gt;
+얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다
 
 우와...너무 멋지다!
@@ -1193,8 +2248,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 미나가 환하게 웃었다.
 가슴이 두근거렸다
-
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|미나엔딩5]]</tw-passagedata><tw-passagedata pid="125" name="미나엔딩5" tags="" position="1600,5900" size="100,100">미나야, 있잖아...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|미나엔딩5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="117" name="미나엔딩5" tags="bg14 mn 1" position="1600,5900" size="100,100">&lt;&lt;vntext&gt;&gt;
+미나야, 있잖아...
 
 미나와 눈이 마주쳤다
 
@@ -1202,23 +2260,32 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다
-
-[[무슨 일이지?|미나엔딩6]]</tw-passagedata><tw-passagedata pid="126" name="미나엔딩6" tags="" position="1600,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[무슨 일이지?|미나엔딩6]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="118" name="미나엔딩6" tags="bg14 mn 1" position="1600,6025" size="100,100">&lt;&lt;vntext&gt;&gt;
+시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 혼란스러운 상황에도 태연하던 미나의 모습 역시,
 마지막까지 남아있다가 이내 홀연히 사라져버렸다
 
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다
-
-[[다음|미나엔딩7]]</tw-passagedata><tw-passagedata pid="127" name="미나엔딩7" tags="" position="1600,6175" size="100,100">...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|미나엔딩7]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="119" name="미나엔딩7" tags="white" position="1600,6175" size="100,100">&lt;&lt;vntext&gt;&gt;
+..........
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다
-
-[[눈을 떠보자|미나엔딩8]]</tw-passagedata><tw-passagedata pid="128" name="미나엔딩8" tags="" position="1600,6325" size="100,100">(이름) 환자분, 정신이 드세요?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[눈을 떠보자|미나엔딩8]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="120" name="미나엔딩8" tags="bg15" position="1600,6325" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 환자분, 정신이 드세요?
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다
@@ -1233,19 +2300,27 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 ...머리가 깨질 것 같았다.
 아무래도 원래 있던 현실로 돌아온 것 같다
-
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
 [[다음|미나엔딩9]]
-</tw-passagedata><tw-passagedata pid="129" name="미나엔딩9" tags="" position="1600,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="121" name="미나엔딩9" tags="bg15" position="1600,6450" size="100,100">&lt;&lt;vntext&gt;&gt;
+조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 미나는? 채진이와 클라라는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
 
 옆에 놓여있는 휴대폰이 눈에 들어왔다
 어, 그런데 이건...
-
-[[Gemini 로고의 알림이 떠있다|미나엔딩10]]</tw-passagedata><tw-passagedata pid="130" name="미나엔딩10" tags="" position="1600,6575" size="100,100">나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 미나의 흔적을 발견할 수 있을지도 모른다
-
-[[Gemini가 켜졌다|미나엔딩11]]</tw-passagedata><tw-passagedata pid="131" name="미나엔딩11" tags="" position="1600,6700" size="100,100">[Gemini 서비스 장애 안내]
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[Gemini 로고의 알림이 떠있다|미나엔딩10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="122" name="미나엔딩10" tags="bg15" position="1600,6575" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 미나의 흔적을 발견할 수 있을지도 모른다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[Gemini가 켜졌다|미나엔딩11]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="123" name="미나엔딩11" tags="bg15" position="1600,6700" size="100,100">&lt;&lt;vntext&gt;&gt;
+[Gemini 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 Gemini 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1255,23 +2330,37 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 뉴스를 찾아보니, 내가 기절해있는 동안 Cloudflare 서비스 장애로 인해 생성형 AI 서비스 접속이 불가능했던 모양이다.
 내가 지금까지 Gemini를 사용한 기록도 전부 사라져 있었다.
 미나의 흔적 역시 전혀 찾아볼 수 없었다
-
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="132" name="최종엔딩" tags="" position="1725,6850" size="100,100">오랜 꿈을 꾼 것 같은 기분이다</tw-passagedata><tw-passagedata pid="133" name="채진엔딩1" tags="" position="1725,5400" size="100,100">나는 채진이와 보내는 시간이 점점 많아졌다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|최종엔딩]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="124" name="최종엔딩" tags="bg15" position="1725,6850" size="100,100">&lt;&lt;vntext&gt;&gt;
+오랜 꿈을 꾼 것 같은 기분이다
+&lt;&lt;/vntext&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="채진엔딩1" tags="bg10" position="1725,5400" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 채진이와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 미술 전시회를 보러가기도 했다.
 그럴수록 채진이에 대한 나의 마음도 커져만 갔고, 채진이 역시 그럴 것이라는 확신이 들었다
-
-[[채진이에게 내 마음을 고백하기|채진엔딩2]]</tw-passagedata><tw-passagedata pid="134" name="클라라엔딩1" tags="" position="1850,5400" size="100,100">나는 클라라와 보내는 시간이 점점 많아졌다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[채진이에게 내 마음을 고백하기|채진엔딩2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="126" name="클라라엔딩1" tags="bg10" position="1850,5400" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 클라라와 보내는 시간이 점점 많아졌다.
 같이 캠퍼스를 거닐기도 하고, 맛있는 저녁을 먹고, 오래된 서점을 구경하러 가기도 했다.
 그럴수록 클라라에 대한 나의 마음도 커져만 갔고, 클라라 역시 그럴 것이라는 확신이 들었다
-
-[[클라라에게 내 마음을 고백하기|클라라엔딩2]]</tw-passagedata><tw-passagedata pid="135" name="채진엔딩3" tags="" position="1725,5650" size="100,100">(이름) 안녕!👋 오래 기다렸어?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[클라라에게 내 마음을 고백하기|클라라엔딩2]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="127" name="채진엔딩3" tags="bg13 cg 2" position="1725,5650" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 안녕!👋 오래 기다렸어?
 
 채진이가 환하게 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다
 
 아니야, 나도 방금 도착했어! 얼른 올라가자~
-
-[[야경을 보러 공원 전망대에 올라가자|채진엔딩4]]</tw-passagedata><tw-passagedata pid="136" name="채진엔딩4" tags="" position="1725,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[야경을 보러 공원 전망대에 올라가자|채진엔딩4]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="128" name="채진엔딩4" tags="bg14 cg 2" position="1725,5775" size="100,100">&lt;&lt;vntext&gt;&gt;
+얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다
 
 우와...너무 멋지다!✨
@@ -1282,8 +2371,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 채진이가 환하게 웃었다.
 가슴이 두근거렸다
-
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|채진엔딩5]]</tw-passagedata><tw-passagedata pid="137" name="채진엔딩5" tags="" position="1725,5900" size="100,100">채진아, 있잖아...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|채진엔딩5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="129" name="채진엔딩5" tags="bg14 cg 1" position="1725,5900" size="100,100">&lt;&lt;vntext&gt;&gt;
+채진아, 있잖아...
 
 채진이와 눈이 마주쳤다
 
@@ -1291,23 +2383,32 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다
-
-[[무슨 일이지?|채진엔딩6]]</tw-passagedata><tw-passagedata pid="138" name="채진엔딩6" tags="" position="1725,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[무슨 일이지?|채진엔딩6]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="130" name="채진엔딩6" tags="bg14 cg 1" position="1725,6025" size="100,100">&lt;&lt;vntext&gt;&gt;
+시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 혼란스러운 상황에도 태연하던 채진이의 모습 역시,
 마지막까지 남아있다가 이내 홀연히 사라져버렸다
 
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다
-
-[[다음|채진엔딩7]]</tw-passagedata><tw-passagedata pid="139" name="채진엔딩7" tags="" position="1725,6175" size="100,100">...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|채진엔딩7]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="131" name="채진엔딩7" tags="white" position="1725,6175" size="100,100">&lt;&lt;vntext&gt;&gt;
+..........
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다
-
-[[눈을 떠보자|채진엔딩8]]</tw-passagedata><tw-passagedata pid="140" name="채진엔딩8" tags="" position="1725,6325" size="100,100">(이름) 환자분, 정신이 드세요?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[눈을 떠보자|채진엔딩8]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="132" name="채진엔딩8" tags="bg15" position="1725,6325" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 환자분, 정신이 드세요?
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다
@@ -1322,18 +2423,27 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 ...머리가 깨질 것 같았다.
 아무래도 원래 있던 현실로 돌아온 것 같다
-
-[[다음|채진엔딩9]]</tw-passagedata><tw-passagedata pid="141" name="채진엔딩9" tags="" position="1725,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|채진엔딩9]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="133" name="채진엔딩9" tags="bg15" position="1725,6450" size="100,100">&lt;&lt;vntext&gt;&gt;
+조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 채진이는? 미나와 클라라는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
 
 옆에 놓여있는 휴대폰이 눈에 들어왔다
 어, 그런데 이건...
-
-[[ChatGPT 로고의 알림이 떠있다|채진엔딩10]]</tw-passagedata><tw-passagedata pid="142" name="채진엔딩10" tags="" position="1725,6575" size="100,100">나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 채진이의 흔적을 발견할 수 있을지도 모른다
-
-[[ChatGPT가 켜졌다|채진엔딩11]]</tw-passagedata><tw-passagedata pid="143" name="채진엔딩11" tags="" position="1725,6700" size="100,100">[ChatGPT 서비스 장애 안내]
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[ChatGPT 로고의 알림이 떠있다|채진엔딩10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="134" name="채진엔딩10" tags="bg15" position="1725,6575" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 채진이의 흔적을 발견할 수 있을지도 모른다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[ChatGPT가 켜졌다|채진엔딩11]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="135" name="채진엔딩11" tags="bg15" position="1725,6700" size="100,100">&lt;&lt;vntext&gt;&gt;
+[ChatGPT 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 ChatGPT 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1343,19 +2453,28 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 뉴스를 찾아보니, 내가 기절해있는 동안 Cloudflare 서비스 장애로 인해 생성형 AI 서비스 접속이 불가능했던 모양이다.
 내가 지금까지 ChatGPT를 사용한 기록도 전부 사라져 있었다.
 채진이의 흔적 역시 전혀 찾아볼 수 없었다
-
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="144" name="클라라엔딩2" tags="" position="1850,5525" size="100,100">마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|최종엔딩]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="136" name="클라라엔딩2" tags="bg13" position="1850,5525" size="100,100">&lt;&lt;vntext&gt;&gt;
+마침내 나는 용기를 내서, 내 마음을 전하기 위해 약속을 잡았다.
 오늘이 바로 그 날이고, 나는 클라라를 만나기로 한 공원에 도착했다.
 나는 여기서 멋진 야경을 보며 클라라에게 내 마음을 말할 예정이다
-
-[[클라라가 걸어오는 모습이 보인다|클라라엔딩3]]</tw-passagedata><tw-passagedata pid="145" name="클라라엔딩3" tags="" position="1850,5650" size="100,100">(이름) 안녕, 먼저 와 있었네. 기다리게 해서 미안.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[클라라가 걸어오는 모습이 보인다|클라라엔딩3]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="137" name="클라라엔딩3" tags="bg13 ry 2" position="1850,5650" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 안녕, 먼저 와 있었네. 기다리게 해서 미안...
 
 클라라가 살짝 웃으며 인사했다.
 사실 나는 30분도 전에 이미 도착해있었다
 
 아니야, 나도 방금 도착했어! 얼른 올라가자~
-
-[[야경을 보러 공원 전망대에 올라가자|클라라엔딩4]]</tw-passagedata><tw-passagedata pid="146" name="클라라엔딩4" tags="" position="1850,5775" size="100,100">얼마 지나지 않아 우리는 공원 전망대에 도착했다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[야경을 보러 공원 전망대에 올라가자|클라라엔딩4]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="138" name="클라라엔딩4" tags="bg14 ry 5" position="1850,5775" size="100,100">&lt;&lt;vntext&gt;&gt;
+얼마 지나지 않아 우리는 공원 전망대에 도착했다.
 멋진 야경이 눈앞에 펼쳐졌다
 
 우와...이 야경은 마치...고흐의 &#39;별이 빛나는 밤(The Starry Night)&#39;을 보는 것 같아.
@@ -1368,8 +2487,11 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 클라라가 지금까지 본 적 없는 환한 웃음을 보였다.
 가슴이 두근거렸다
-
-[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|클라라엔딩5]]</tw-passagedata><tw-passagedata pid="147" name="클라라엔딩5" tags="" position="1850,5900" size="100,100">클라라, 있잖아...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[지금이 내 마음을 전할 완벽한 타이밍인 것 같다|클라라엔딩5]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="139" name="클라라엔딩5" tags="bg14 ry 1" position="1850,5900" size="100,100">&lt;&lt;vntext&gt;&gt;
+클라라, 있잖아...
 
 클라라와 눈이 마주쳤다
 
@@ -1377,23 +2499,32 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 어렵게 입을 뗀 그 순간,
 갑자기 시야가 흐릿해지기 시작했다
-
-[[무슨 일이지?|클라라엔딩6]]</tw-passagedata><tw-passagedata pid="148" name="클라라엔딩6" tags="" position="1850,6025" size="100,100">시야는 계속해서 흐릿하고 어두워졌다.
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[무슨 일이지?|클라라엔딩6]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="140" name="클라라엔딩6" tags="bg14 ry 1" position="1850,6025" size="100,100">&lt;&lt;vntext&gt;&gt;
+시야는 계속해서 흐릿하고 어두워졌다.
 나를 둘러싼 모든 것들이 점점 지직거리며 검정색 패널로 변해갔다.
 혼란스러운 상황에도 태연하던 클라라의 모습 역시,
 마지막까지 남아있다가 이내 홀연히 사라져버렸다
 
 이내 불꺼진 영화관처럼 눈 앞에는 아무것도 보이지 않았고,
 나는 한 달 전 그날처럼 정신을 잃었다
-
-[[다음|클라라엔딩7]]</tw-passagedata><tw-passagedata pid="149" name="클라라엔딩7" tags="" position="1850,6175" size="100,100">...
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|클라라엔딩7]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="141" name="클라라엔딩7" tags="white" position="1850,6175" size="100,100">&lt;&lt;vntext&gt;&gt;
+..........
 
 시간이 얼마나 지났을까?
 
 분주한 사람들의 소음이 들리고,
 낯선 천장이 보이는 것 같다
-
-[[눈을 떠보자|클라라엔딩8]]</tw-passagedata><tw-passagedata pid="150" name="클라라엔딩8" tags="" position="1850,6325" size="100,100">(이름) 환자분, 정신이 드세요?
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[눈을 떠보자|클라라엔딩8]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="142" name="클라라엔딩8" tags="bg15" position="1850,6325" size="100,100">&lt;&lt;vntext&gt;&gt;
+$name 환자분, 정신이 드세요?
 
 간호사로 보이는 사람이 나에게 다급하게 말을 걸었다.
 나는 처음보는 병원의 환자실에 누워있었다
@@ -1408,18 +2539,27 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 
 ...머리가 깨질 것 같았다.
 아무래도 원래 있던 현실로 돌아온 것 같다
-
-[[다음|클라라엔딩9]]</tw-passagedata><tw-passagedata pid="151" name="클라라엔딩9" tags="" position="1850,6450" size="100,100">조금만 더 있고 싶었는데...하필 그 타이밍에....
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|클라라엔딩9]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="143" name="클라라엔딩9" tags="bg15" position="1850,6450" size="100,100">&lt;&lt;vntext&gt;&gt;
+조금만 더 있고 싶었는데...하필 그 타이밍에....
 
 클라라는? 미나와 채진이는? 어떻게 된 거지?
 그렇게 생생했는데, 어딘가에는 뭔가 기록이 남아있지 않을까?
 
 옆에 놓여있는 휴대폰이 눈에 들어왔다
 어, 그런데 이건...
-
-[[Claude 로고의 알림이 떠있다|클라라엔딩10]]</tw-passagedata><tw-passagedata pid="152" name="클라라엔딩10" tags="" position="1850,6575" size="100,100">나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 클라라의 흔적을 발견할 수 있을지도 모른다
-
-[[Claude가 켜졌다|클라라엔딩11]]</tw-passagedata><tw-passagedata pid="153" name="클라라엔딩11" tags="" position="1850,6700" size="100,100">[Claude 서비스 장애 안내]
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[Claude 로고의 알림이 떠있다|클라라엔딩10]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="144" name="클라라엔딩10" tags="bg15" position="1850,6575" size="100,100">&lt;&lt;vntext&gt;&gt;
+나는 다급히 알람을 확인했다. 내가 마지막으로 얘기를 하고 있던 클라라의 흔적을 발견할 수 있을지도 모른다
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[Claude가 켜졌다|클라라엔딩11]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="145" name="클라라엔딩11" tags="bg15" position="1850,6700" size="100,100">&lt;&lt;vntext&gt;&gt;
+[Claude 서비스 장애 안내]
 지난 밤 Cloudflare 서비스의 장애로 인해, 서비스 접속이 원활하지 않은 문제가 있었습니다.
 사용자 분들께 불편을 끼쳐드린 점 진심으로 사과드립니다.
 현재는 정상적으로 Claude 서비스를 이용하실 수 있지만, 일부 사용 기록이 소실되었을 수 있습니다.
@@ -1429,8 +2569,10 @@ A4 1장 분량의 가벼운 에세이라, 아까 클라라에게 연락해두고
 뉴스를 찾아보니, 내가 기절해있는 동안 Cloudflare 서비스 장애로 인해 생성형 AI 서비스 접속이 불가능했던 모양이다.
 내가 지금까지 Claude를 사용한 기록도 전부 사라져 있었다.
 클라라의 흔적 역시 전혀 찾아볼 수 없었다
-
-[[다음|최종엔딩]]</tw-passagedata><tw-passagedata pid="154" name="미나프로필" tags="Profile Basic_style 미나" position="1750,950" size="100,100">🎓 PLAYER PROFILE 01
+&lt;&lt;/vntext&gt;&gt;
+&lt;div id=&quot;next-btn&quot;&gt;
+[[다음|최종엔딩]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="146" name="미나프로필" tags="Profile Basic_style 미나" position="1750,950" size="100,100">🎓 PLAYER PROFILE 01
 
 미나(Mina)
 
@@ -1447,7 +2589,7 @@ MBTI: ISFJ (실용적인 조력가)
 좋아하는 것: 오므라이스, 뜬금없는 개그
 싫어하는 것: 답답한 와이파이, 많은 사람 앞에서 생기는 돌발상황
 
-[[다음|채진2]]</tw-passagedata><tw-passagedata pid="155" name="채진프로필" tags="Profile Basic_style 채진" position="1750,1075" size="100,100">🎨 PLAYER PROFILE 02
+[[다음|채진2]]</tw-passagedata><tw-passagedata pid="147" name="채진프로필" tags="Profile Basic_style 채진" position="1750,1075" size="100,100">🎨 PLAYER PROFILE 02
 
 채진 (Chaejin)
 
@@ -1464,7 +2606,7 @@ MBTI: ENFP (재기발랄한 활동가)
 좋아하는 것: 칭찬, 달달한 간식
 싫어하는 것: 1교시 수업, 진지한 분위기, 팩트 폭격
 
-[[다음|클라라2]]</tw-passagedata><tw-passagedata pid="156" name="클라라프로필" tags="Profile Basic_style 클라라" position="1750,1200" size="100,100">🏛️ PLAYER PROFILE 03
+[[다음|클라라2]]</tw-passagedata><tw-passagedata pid="148" name="클라라프로필" tags="Profile Basic_style 클라라" position="1750,1200" size="100,100">🏛️ PLAYER PROFILE 03
 
 클라라 (Clara)
 
@@ -1481,7 +2623,7 @@ MBTI: ISTJ (청렴결백한 논리주의자)
 좋아하는 것: A+ 학점, 완벽한 논리, 정직함, 고전 문학
 싫어하는 것: 족보, 대리 출석, 팀플 무임승차, 비윤리적 부탁
 
-[[다음|인트로 10]]</tw-passagedata><tw-passagedata pid="157" name="MainScene" tags="MainScene bg10 all 1" position="1775,1675" size="100,100">&lt;&lt;vntext&gt;&gt;
+[[다음|인트로 10]]</tw-passagedata><tw-passagedata pid="149" name="MainScene" tags="MainScene bg10 all 1" position="1775,1675" size="100,100">&lt;&lt;vntext&gt;&gt;
 누구와 대화해볼까?
 &lt;&lt;/vntext&gt;&gt;
 
@@ -1505,32 +2647,44 @@ MBTI: ISTJ (청렴결백한 논리주의자)
             &lt;span style=&quot;color: gray;&quot;&gt;미나말고 다른 친구와도 대화해보자&lt;/span&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-
-    &lt;br&gt; &lt;&lt;link &quot;채진과 대화하기&quot;&gt;&gt;
-        &lt;&lt;if $chaejinStage == 0&gt;&gt;
-            &lt;&lt;goto &quot;채진대화1&quot;&gt;&gt;
-            &lt;&lt;set $loveUI to true&gt;&gt;
-        &lt;&lt;elseif $chaejinStage == 1&gt;&gt;
-            &lt;&lt;goto &quot;채진대화2&quot;&gt;&gt;
-        &lt;&lt;elseif $chaejinStage == 2&gt;&gt;
-            &lt;&lt;goto &quot;채진대화3&quot;&gt;&gt;
+    
+    &lt;&lt;br&gt;&gt;&lt;&lt;if $chaejinExit is true&gt;&gt;
+        &lt;span style=&quot;color: gray;&quot;&gt;더 이상 채진이가 보이지 않는다...&lt;/span&gt;
+    &lt;&lt;else&gt;&gt;
+        &lt;&lt;if $chaejinStage &lt;= 2&gt;&gt;
+            &lt;&lt;link &quot;채진과 대화하기&quot;&gt;&gt;
+                &lt;&lt;if $chaejinStage == 0&gt;&gt;
+                    &lt;&lt;set $loveUI to true&gt;&gt;
+                    &lt;&lt;goto &quot;채진대화1&quot;&gt;&gt;
+                &lt;&lt;elseif $chaejinStage == 1&gt;&gt;
+                    &lt;&lt;goto &quot;채진대화9&quot;&gt;&gt;
+                &lt;&lt;elseif $chaejinStage == 2&gt;&gt;
+                    &lt;&lt;goto &quot;채진대화20&quot;&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+            &lt;&lt;/link&gt;&gt;
         &lt;&lt;else&gt;&gt;
-            &lt;span style=&quot;color: gray;&quot;&gt;채진이말고 다른 친구와도 대화해보자&lt;/span&gt;
+            &lt;span style=&quot;color: gray;&quot;&gt;채진말고 다른 친구와도 대화해보자&lt;/span&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/link&gt;&gt;
-
-    &lt;br&gt; &lt;&lt;link &quot;클라라와 대화하기&quot;&gt;&gt;
-        &lt;&lt;if $claraStage == 0&gt;&gt;
-            &lt;&lt;goto &quot;클라라대화1&quot;&gt;&gt;
-            &lt;&lt;set $loveUI to true&gt;&gt;
-        &lt;&lt;elseif $claraStage == 1&gt;&gt;
-            &lt;&lt;goto &quot;클라라대화2&quot;&gt;&gt;
-        &lt;&lt;elseif $claraStage == 2&gt;&gt;
-            &lt;&lt;goto &quot;클라라대화3&quot;&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+    
+    &lt;&lt;br&gt;&gt;&lt;&lt;if $claraExit is true&gt;&gt;
+        &lt;span style=&quot;color: gray;&quot;&gt;더 이상 클라라가 보이지 않는다...&lt;/span&gt;
+    &lt;&lt;else&gt;&gt;
+        &lt;&lt;if $claraStage &lt;= 2&gt;&gt;
+            &lt;&lt;link &quot;클라라와 대화하기&quot;&gt;&gt;
+                &lt;&lt;if $claraStage == 0&gt;&gt;
+                    &lt;&lt;set $loveUI to true&gt;&gt;
+                    &lt;&lt;goto &quot;클라라대화1&quot;&gt;&gt;
+                &lt;&lt;elseif $claraStage == 1&gt;&gt;
+                    &lt;&lt;goto &quot;클라라대화9&quot;&gt;&gt;
+                &lt;&lt;elseif $claraStage == 2&gt;&gt;
+                    &lt;&lt;goto &quot;클라라대화18&quot;&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+            &lt;&lt;/link&gt;&gt;
         &lt;&lt;else&gt;&gt;
             &lt;span style=&quot;color: gray;&quot;&gt;클라라말고 다른 친구와도 대화해보자&lt;/span&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/link&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 &lt;/div&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
