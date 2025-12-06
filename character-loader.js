@@ -1,44 +1,77 @@
-// 캐릭터 이미지 로더
+/* character-loader.js - 캐릭터 이미지 로더 (All 태그 기능 추가됨) */
 
 // 캐릭터 약자 목록
 const characters = ['cg', 'mn', 'ry'];
 
-// passage가 표시된 후 실행 (DOM에 완전히 추가된 후)
 $(document).on(':passagedisplay', function (ev) {
-    
-    // [수정] DOM에서 읽지 않고, 엔진이 주는 passage 객체에서 태그 배열을 직접 가져옵니다.
-    // 태그가 없으면 빈 배열 []을 반환하므로 에러가 나지 않습니다.
     const passageTags = ev.passage.tags || [];
+    const vars = SugarCube.State.variables; // SugarCube 변수 가져오기
 
-    // 캐릭터와 번호 찾기
-    let character = null;
-    let imageNumber = null;
+    // ----------------------------------------------------
+    // [CASE 1] "all" 태그가 있는 경우 (3인 집합)
+    // ----------------------------------------------------
+    if (passageTags.includes('all')) {
+        // 기존 싱글 이미지 제거
+        $('#character-image').remove();
+        // 기존 그룹 컨테이너 제거 (중복 방지)
+        $('#all-chars-container').remove();
 
-    passageTags.forEach(tag => {
-        if (characters.includes(tag)) {
-            character = tag;
+        // 새 컨테이너 생성
+        const $container = $('<div id="all-chars-container"></div>');
+
+        // 1. 미나 (mn) 체크
+        if (vars.minaExit !== true) { // false이거나 설정 안됐을 때 출력
+            $container.append('<img src="assets/mn/1.png" class="char-sprite-group" alt="미나">');
         }
-        if (/^\d+$/.test(tag)) {
-            imageNumber = tag;
+
+        // 2. 채진 (cg) 체크
+        if (vars.chaejinExit !== true) {
+            $container.append('<img src="assets/cg/1.png" class="char-sprite-group" alt="채진">');
         }
-    });
 
-    // 기존 캐릭터 이미지 제거
-    $('#character-image').remove();
+        // 3. 클라라 (ry) 체크
+        if (vars.claraExit !== true) {
+            $container.append('<img src="assets/ry/1.png" class="char-sprite-group" alt="클라라">');
+        }
 
-    // 이미지 파일 로딩
-    if (character && imageNumber) {
-        const imagePath = `assets/${character}/${imageNumber}.png`;
-        const img = $('<img>')
-            .attr('id', 'character-image')
-            .attr('src', imagePath)
-            .attr('alt', `${character} ${imageNumber}`)
-            .on('error', function() {
-                console.log('이미지 로드 실패:', imagePath);
-                $(this).remove(); // 이미지 파일이 없으면 엑박 뜨지 않게 제거
-            });
-        $('body').append(img);
-    } else {
-        console.log('Character or image number missing. Character:', character, 'Number:', imageNumber);
+        // body에 추가
+        $('body').append($container);
+    } 
+    
+    // ----------------------------------------------------
+    // [CASE 2] "all" 태그가 없는 경우 (기존 로직: 1명만 표시)
+    // ----------------------------------------------------
+    else {
+        // 그룹 컨테이너 제거
+        $('#all-chars-container').remove();
+
+        // 기존 로직: 캐릭터 1명 찾기
+        let character = null;
+        let imageNumber = null;
+
+        passageTags.forEach(tag => {
+            if (characters.includes(tag)) {
+                character = tag;
+            }
+            if (/^\d+$/.test(tag)) {
+                imageNumber = tag;
+            }
+        });
+
+        // 기존 싱글 이미지 제거 및 새로 그리기
+        $('#character-image').remove();
+
+        if (character && imageNumber) {
+            const imagePath = `assets/${character}/${imageNumber}.png`;
+            const img = $('<img>')
+                .attr('id', 'character-image')
+                .attr('src', imagePath)
+                .attr('alt', `${character} ${imageNumber}`)
+                .on('error', function() {
+                    console.log('이미지 로드 실패:', imagePath);
+                    $(this).remove(); 
+                });
+            $('body').append(img);
+        }
     }
 });

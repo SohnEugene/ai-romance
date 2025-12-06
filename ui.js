@@ -126,3 +126,78 @@ $(document).on("keyup", function(ev) {
         window.togglePauseMenu();
     }
 });
+
+
+$(document).on(":passagedisplay", function() {
+    var $sidebar = $("#right-sidebar");
+    var $pause = $("#pause-screen");
+
+    // 사이드바가 존재한다면 body의 직계 자식으로 이동 (패시지 밖으로 꺼냄)
+    if ($sidebar.length > 0) {
+        $sidebar.appendTo("body");
+    }
+    
+    // 일시정지 메뉴도 안전하게 body로 이동
+    if ($pause.length > 0) {
+        $pause.appendTo("body");
+    }
+});
+
+$(document).on(":passagedisplay", function(ev) {
+    // 1. 현재 패시지가 'bad_ending' 태그를 가지고 있는지 확인
+    if (ev.passage.tags.includes("bad_ending")) {
+        
+        let lastBgTag = null;
+
+        // 2. 과거 히스토리(기록)를 거슬러 올라가며 배경 태그 찾기
+        // State.history는 플레이어가 거쳐온 경로를 담고 있습니다.
+        // 맨 뒤(최근)부터 0번(처음)까지 역순으로 탐색합니다.
+        for (let i = SugarCube.State.history.length - 1; i >= 0; i--) {
+            let turn = SugarCube.State.history[i];
+            let passage = SugarCube.Story.get(turn.title);
+
+            if (passage && passage.tags) {
+                // 태그 중에 'bg'로 시작하는 것(예: bg1, bg_park)을 찾습니다.
+                let found = passage.tags.find(tag => tag.startsWith("bg"));
+                if (found) {
+                    lastBgTag = found;
+                    break; // 찾았으면 탐색 중단
+                }
+            }
+        }
+
+        // 3. 찾은 배경 태그를 현재 패시지(HTML)에 강제로 주입
+        if (lastBgTag) {
+            // 현재 화면에 떠 있는 .passage 요소의 data-tags 속성에 배경 태그를 추가
+            // 이렇게 하면 CSS의 body:has(...) 선택자가 반응하여 배경을 바꿔줍니다.
+            $("#passages .passage").attr("data-tags", function(i, val) {
+                // 기존 태그 뒤에 공백을 두고 붙임
+                return val + " " + lastBgTag;
+            });
+            
+            console.log("배경 계승됨:", lastBgTag); // 확인용 로그
+        }
+    }
+});
+
+/* ui.js - 맨 아래에 추가 */
+
+// 8. Restart (처음부터 다시하기) 버튼 로직
+$(document).off("click", "#btn-restart").on("click", "#btn-restart", function() {
+    // 1. 확인 창 띄우기 (브라우저 기본 기능 사용)
+    var isConfirmed = confirm("정말로 다시 시작하시겠습니까?\n\n❗주의: 저장된 모든 데이터가 삭제됩니다");
+
+    if (isConfirmed) {
+        // 2. '예'를 눌렀을 때
+        
+        // A. 모든 세이브 슬롯 삭제 (요청사항 반영)
+        SugarCube.Save.browser.clear(); 
+        
+        // B. 게임 엔진 리스타트 (변수 초기화 및 첫 페이지로 이동)
+        SugarCube.Engine.restart();
+        
+        // C. 메뉴 닫기 (리스타트 되면 자동으로 닫히지만 안전장치)
+        window.togglePauseMenu();
+        
+    }
+});

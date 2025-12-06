@@ -27,6 +27,7 @@ SugarCube.Macro.add('vntext', {
         let linesData = content.split('\n\n').filter(line => line.trim() !== '').map(line => {
             let text = line.trim();
             let speaker = null;
+         	let charImg = null;
 
             // 정규표현식: <<name "..." >> 또는 <<name $... >> 찾기
             // match[1]에 이름 데이터가 잡힘
@@ -46,8 +47,19 @@ SugarCube.Macro.add('vntext', {
                 }
             }
             
-            // 텍스트 내용과 화자 정보를 객체로 리턴
-            return { text: text, speaker: speaker };
+            // B. [NEW] 이미지 태그 추출 (<<img "mn" "3">>)
+            // 정규식 설명: <<img "문자열" "숫자/문자열">> 형태를 찾음
+            const imgMatch = text.match(/<<img\s+["'](.+?)["']\s+["'](.+?)["']>>/);
+            if (imgMatch) {
+                charImg = {
+                    char: imgMatch[1], // 캐릭터 코드 (예: mn)
+                    num: imgMatch[2]   // 번호 (예: 3)
+                };
+                text = text.replace(imgMatch[0], '').trim(); // 태그 삭제
+            }
+            
+            // 텍스트 내용, 화자, 이미지 정보를 리턴
+            return { text: text, speaker: speaker, charImg: charImg };
         });
 
         // 3. 출력 박스 생성
@@ -71,36 +83,62 @@ SugarCube.Macro.add('vntext', {
             }
         }
 
-        // 6. 줄 시작
+        // 6. 줄 시작 (이름표 업데이트 & 색상 적용)
         function startTypingLine() {
-            // 마지막 줄까지 다 봤으면 종료
             if (lineIndex >= linesData.length) {
                 $(document).off('.vntext'); 
-                $('#next-btn').fadeIn(); // 링크 표시
+                $('#next-btn').fadeIn(); 
                 return;
             }
 
-            // 화면 초기화
             $container.empty();
 
-            // 현재 줄의 데이터 가져오기
             let currentData = linesData[lineIndex];
             currentText = currentData.text;
-            let currentSpeaker = currentData.speaker;
+            
+            // 변수 치환 ($name -> 철수)
+            currentText = currentText.replace(/(\$[a-zA-Z0-9_\.]+)/g, function(match) {
+                try {
+                    let result = SugarCube.Scripting.evalTwineScript(match);
+                    return result !== undefined ? result : match;
+                } catch (e) { return match; }
+            });
 
-            // 이름표 UI 갱신
-            if (currentSpeaker) {
-                $("#name-text").text(currentSpeaker);
+            // [핵심 수정] 이름표 처리 및 색상 적용
+            let $nameText = $("#name-text");
+            
+            if (currentData.speaker) {
+                $nameText.text(currentData.speaker);
                 $("#name-zone").show();
+
+                // 1. 기존 색상 클래스 초기화 (이전 캐릭터 색 제거)
+                $nameText.removeClass("name-mina name-chaejin name-clara");
+
+                // 2. 캐릭터 이름에 따라 색상 클래스 부여
+                // (공백 제거 후 비교하여 오타 방지)
+                let speaker = currentData.speaker.trim();
+                
+                if (speaker === "미나") {
+                    $nameText.addClass("name-mina");
+                } else if (speaker === "채진") {
+                    $nameText.addClass("name-chaejin");
+                } else if (speaker === "클라라") {
+                    $nameText.addClass("name-clara");
+                }
+                
             } else {
-                $("#name-zone").hide(); // 이름이 없으면(지문) 숨김
+                $("#name-zone").hide();
+            }
+
+            // 이미지 변경 처리
+            if (currentData.charImg) {
+                changeCharacterImage(currentData.charImg.char, currentData.charImg.num);
             }
 
             isTyping = true;
             charIndex = 0;
             $currentLineObj = $('<div class="typing-line"></div>').appendTo($container);
 
-            // 타이핑 시작
             timerId = setInterval(typeNextChar, 30);
         }
 
@@ -133,6 +171,24 @@ SugarCube.Macro.add('vntext', {
                 }
             }
         };
+      
+      	function changeCharacterImage(charCode, num) {
+            // 기존 이미지 제거
+            $('#character-image').remove();
+            
+            // 새 이미지 생성 및 추가
+            const imagePath = `assets/${charCode}/${num}.png`;
+            const img = $('<img>')
+                .attr('id', 'character-image')
+                .attr('src', imagePath)
+                .attr('alt', `${charCode} ${num}`)
+                .on('error', function() {
+                    console.log('이미지 로드 실패:', imagePath);
+                    $(this).remove();
+                });
+            
+            $('body').append(img);
+        }
 
         // 9. 초기 실행
         setTimeout(() => {
@@ -223,13 +279,13 @@ $(document).on(":passagedisplay", function(ev) {
         // 1. 연출 시작 (0.1초 딜레이)
         setTimeout(function() {
             // [단계 1] 2초 동안 검은 막 사라짐 (배경 보임)
-            $overlay.css("transition", "opacity 2s ease-out").removeClass("active").css("opacity", "0");
+            $overlay.css("transition", "opacity 1s ease-out").removeClass("active").css("opacity", "0");
             
             // [단계 2] 2초 뒤에 텍스트 등장
             setTimeout(function() {
                 // 숨김 모드 해제 (CSS transition에 의해 부드럽게 나타남)
                 $("html").removeClass("story-hidden");
-            }, 2000);
+            }, 1200);
 
         }, 100);
     }
@@ -246,12 +302,12 @@ $(document).on(":passagedisplay", function(ev) {
             $overlay.css("opacity", "");
 
             // [단계 1] 5초 동안 검은 막 사라짐 (천천히 눈 뜸)
-            $overlay.css("transition", "opacity 5s ease-out").removeClass("active");
+            $overlay.css("transition", "opacity 3s ease-out").removeClass("active");
 
             // [단계 2] 5초 뒤에 텍스트 등장
             setTimeout(function() {
                 $("html").removeClass("story-hidden");
-            }, 5000);
+            }, 3200);
 
         }, 100);
     }
