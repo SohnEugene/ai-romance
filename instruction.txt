@@ -5,5 +5,6 @@ html 파일 100번째 줄에 아래 코드 추가 (</head> 위)
 
 html 파일 맨 밑에 </body> 위에 아래 코드 추가
 
+<script src="audio.js"></script>
 <script src="ui.js"></script>
 <script src="macro.js"></script>

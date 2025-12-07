@@ -139,7 +139,11 @@ SugarCube.Macro.add('vntext', {
             charIndex = 0;
             $currentLineObj = $('<div class="typing-line"></div>').appendTo($container);
 
-            timerId = setInterval(typeNextChar, 30);
+            // 태그에 glitch가 있으면 조금 천천히(50ms), 없으면 정상 속도(30ms)
+            // (State.variables가 아니라 현재 DOM의 태그를 확인해야 함)
+            let speed = $("body").attr("data-tags") && $("body").attr("data-tags").includes("glitch") ? 50 : 30;
+
+            timerId = setInterval(typeNextChar, speed);
         }
 
         // 7. 줄 완성
@@ -279,13 +283,13 @@ $(document).on(":passagedisplay", function(ev) {
         // 1. 연출 시작 (0.1초 딜레이)
         setTimeout(function() {
             // [단계 1] 2초 동안 검은 막 사라짐 (배경 보임)
-            $overlay.css("transition", "opacity 1s ease-out").removeClass("active").css("opacity", "0");
+            $overlay.css("transition", "opacity 2s ease-out").removeClass("active").css("opacity", "0");
             
             // [단계 2] 2초 뒤에 텍스트 등장
             setTimeout(function() {
                 // 숨김 모드 해제 (CSS transition에 의해 부드럽게 나타남)
                 $("html").removeClass("story-hidden");
-            }, 1200);
+            }, 2001);
 
         }, 100);
     }
@@ -307,7 +311,7 @@ $(document).on(":passagedisplay", function(ev) {
             // [단계 2] 5초 뒤에 텍스트 등장
             setTimeout(function() {
                 $("html").removeClass("story-hidden");
-            }, 3200);
+            }, 3001);
 
         }, 100);
     }

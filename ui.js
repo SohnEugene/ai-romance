@@ -129,20 +129,22 @@ $(document).on("keyup", function(ev) {
 
 
 $(document).on(":passagedisplay", function() {
-    var $sidebar = $("#right-sidebar");
-    var $pause = $("#pause-screen");
+    $("body > #right-sidebar").remove();
+    $("body > #pause-screen").remove(); 
 
-    // 사이드바가 존재한다면 body의 직계 자식으로 이동 (패시지 밖으로 꺼냄)
+    // 2. 새로 생성된 요소 선택
+    var $sidebar = $("#passages #right-sidebar"); // #passages 안에 있는 것만 선택
+    var $pause = $("#passages #pause-screen");
+
+    // 3. body로 이동 (패시지 밖으로 꺼냄)
     if ($sidebar.length > 0) {
         $sidebar.appendTo("body");
     }
     
-    // 일시정지 메뉴도 안전하게 body로 이동
     if ($pause.length > 0) {
         $pause.appendTo("body");
     }
 });
-
 $(document).on(":passagedisplay", function(ev) {
     // 1. 현재 패시지가 'bad_ending' 태그를 가지고 있는지 확인
     if (ev.passage.tags.includes("bad_ending")) {
