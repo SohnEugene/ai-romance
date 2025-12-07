@@ -203,3 +203,64 @@ $(document).off("click", "#btn-restart").on("click", "#btn-restart", function() 
         
     }
 });
+
+/* ===========================================================
+   [시스템] Glitch Manager & Overlay Cleanup
+   =========================================================== */
+
+window.glitchTimer = null;
+
+function startGlitchLoop() {
+    // 중복 실행 방지
+    if (window.glitchTimer) clearTimeout(window.glitchTimer);
+
+    // [안전장치] 현재 태그에 glitch가 없거나, 블랙아웃(blur) 상태라면 중단
+    if (!$("body").attr("data-tags") || !$("body").attr("data-tags").includes("glitch")) {
+        $("#glitch-overlay-image").hide();
+        return;
+    }
+
+    var $overlay = $("#glitch-overlay-image");
+    
+    // 깜빡임 효과
+    $overlay.show();
+    var duration = Math.floor(Math.random() * 300) + 50; // 켜짐
+
+    setTimeout(function() {
+        $overlay.hide();
+        var nextInterval = Math.floor(Math.random() * 700) + 100; // 꺼짐
+        
+        // 재귀 호출
+        window.glitchTimer = setTimeout(startGlitchLoop, nextInterval);
+    }, duration);
+}
+
+// [핵심] 패시지 전환 시 초기화 로직
+$(document).on(":passagedisplay", function(ev) {
+    const tags = ev.passage.tags;
+    
+    // 1. 무조건 글리치 타이머 정지 & 이미지 숨김
+    if (window.glitchTimer) {
+        clearTimeout(window.glitchTimer);
+        window.glitchTimer = null;
+    }
+    $("#glitch-overlay-image").hide();
+
+    // 2. 이번 패시지가 'glitch' 태그를 가지고 있다면?
+    if (tags.includes("glitch")) {
+        // 오버레이가 없으면 생성
+        if ($("#glitch-overlay-image").length === 0) {
+            $("body").prepend('<div id="glitch-overlay-image"></div>');
+        }
+        // 루프 시작
+        startGlitchLoop();
+    }
+});
+
+window.hardRestart = function() {
+    // 1. 브라우저 저장 데이터(세이브 슬롯) 클리어
+    SugarCube.Save.browser.clear();
+    
+    // 2. 엔진 리스타트 (새로고침 효과)
+    SugarCube.Engine.restart();
+};
