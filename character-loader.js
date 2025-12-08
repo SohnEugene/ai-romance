@@ -1,7 +1,7 @@
 /* character-loader.js - 캐릭터 이미지 로더 (All 태그 기능 추가됨) */
 
 // 캐릭터 약자 목록
-const characters = ['cg', 'mn', 'ry'];
+const characters = ['cg', 'mn', 'ry', 'phone', 'nurse'];
 
 $(document).on(':passagedisplay', function (ev) {
     const passageTags = ev.passage.tags || [];
