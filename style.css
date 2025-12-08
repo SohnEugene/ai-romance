@@ -242,6 +242,11 @@ body:has(.passage[data-tags~="black"]) {
     animation-delay: 0.3s;
 }
 
+body[data-tags~="phone"] #character-image {
+    height: 60vh !important;   /* 높이 변경 */
+    bottom: 30vh !important;   /* 위치 위로 올림 */
+}
+
 
 /* =========================================
    5. 호감도 UI (Right Sidebar)
